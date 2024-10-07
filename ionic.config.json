@@ -1,0 +1,7 @@
+{
+  "name": "PresumeLink",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
