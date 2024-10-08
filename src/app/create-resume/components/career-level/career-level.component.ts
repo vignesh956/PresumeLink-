@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-career-level',
@@ -11,7 +12,7 @@ export class CareerLevelComponent  implements OnInit {
   selectedButtons: string[] = [];
   showStepperComponent:any=false;
   ShowGetStartedComponent:any=true;
-  constructor() { }
+  constructor(public router : Router) { }
 
   ngOnInit() {}
   items = [
@@ -24,8 +25,8 @@ export class CareerLevelComponent  implements OnInit {
   
     activeButtonIndex: any | null = null; // Track the index of the active button
     ShowComponents(){
-      this.showStepperComponent=true;
-      this.ShowGetStartedComponent=false
+      this.router.navigate(['create-resume/home'])
+
     }
     // Toggle the button state
     toggleButton(index: number) {
