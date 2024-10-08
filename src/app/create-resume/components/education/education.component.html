@@ -1,3 +1,84 @@
-<p>
-  education works!
-</p>
+<div class="education-school-div">
+  <ion-row size="12">
+    <ion-col size="12" style="height: 50px; border-radius: 8px;">
+      <img src="assets/icon/Vector (3).png" alt="" style="margin: 10px 5px 0px 19px; width: 20px; height: 14px;">
+      <ion-text class="school-syllabus-text">Education Details</ion-text>
+      <ion-icon 
+        name="{{ isEducationOpen ? 'chevron-up-outline' : 'chevron-down-outline' }}" 
+        class="school-icon"
+        (click)="toggleEducation()">
+      </ion-icon>
+    </ion-col>
+  </ion-row>
+  
+  <form *ngIf="isEducationOpen" (ngSubmit)="submitEducationDetails(educationForm)" #educationForm="ngForm">
+    <ion-row>
+      <ion-col class="form-group">
+        <ion-label class="required">Education Type</ion-label>
+        <ion-select 
+          [(ngModel)]="educationType" 
+          name="educationType" 
+          placeholder="Select Education Type" 
+          required 
+          (ionChange)="onEducationTypeChange($event)">
+          <ion-select-option value="ssc">SSC</ion-select-option>
+          <ion-select-option value="cbse">CBSE</ion-select-option>
+        </ion-select>
+        <div *ngIf="educationForm.submitted && !educationType" class="error">
+          Education Type is required.
+        </div>
+      </ion-col>
+    </ion-row>
+  
+    <ion-row>
+      <ion-col class="form-group">
+        <ion-label class="required">School Name</ion-label>
+        <ion-input [(ngModel)]="schoolName" name="schoolName" required></ion-input>
+        <div *ngIf="educationForm.submitted && !schoolName" class="error">
+          School Name is required.
+        </div>
+      </ion-col>
+    </ion-row>
+  
+    <ion-row>
+      <ion-col class="form-group">
+        <ion-label class="required">Location</ion-label>
+        <ion-input [(ngModel)]="location" name="location" required></ion-input>
+        <div *ngIf="educationForm.submitted && !location" class="error">
+          Location is required.
+        </div>
+      </ion-col>
+    </ion-row>
+  
+    <ion-row>
+      <ion-col class="form-group">
+        <ion-label class="required">Start Date</ion-label>
+        <ion-input [(ngModel)]="startDate" name="startDate" type="date" required></ion-input>
+        <div *ngIf="educationForm.submitted && !startDate" class="error">
+          Start Date is required.
+        </div>
+      </ion-col>
+      <ion-col class="form-group">
+        <ion-label class="required">End Date</ion-label>
+        <ion-input [(ngModel)]="endDate" name="endDate" type="date" required></ion-input>
+        <div *ngIf="educationForm.submitted && !endDate" class="error">
+          End Date is required.
+        </div>
+      </ion-col>
+    </ion-row>
+    
+    <!-- Submit Button -->
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit">Submit</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+  
+  <div *ngIf="!isEducationOpen && submitted" class="submitted-data">
+    <p><strong>School Name:</strong> {{ schoolName }}</p>
+    <p><strong>Location:</strong> {{ location }}</p>
+    <p><strong>Dates:</strong> {{ startDate }} - {{ endDate }}</p>
+  </div>
+</div> 
+  

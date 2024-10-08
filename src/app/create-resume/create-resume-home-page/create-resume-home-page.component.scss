@@ -1,0 +1,492 @@
+
+.ion-padding {
+    margin: 0px;
+      height: 80vh;
+          --padding-start: var(--ion-padding,0px); 
+         --padding-end: var(--ion-padding, 0px);
+         -webkit-padding-start: var(--ion-grid-padding-xs, var(--ion-grid-padding, 0px));
+    }
+    .resume-template{
+        -webkit-padding-start: var(--ion-grid-padding-xs, var(--ion-grid-padding, 0px)); margin: 0px;}
+        .Resume-text{
+          color: #053750;
+                text-align: center;
+                font-family: Poppins;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;}
+        .backward-icon{ float: inline-end;margin-top: 2px;}
+        .eye-con{float: inline-end;}
+        .stepper-button {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start; // Align content to start
+          --padding-top: 0px; 
+          --padding-bottom: 0px; 
+           --padding-start: 0em; 
+           margin: 0px;
+         --padding-end: 0em;
+    
+         --border-radius:0px;
+          --border: 0.5px solid #71bdbd;
+          --background: #E3F2F2;;}
+                
+    .custom-stepper {
+      display: flex;
+      flex-direction: column; // Arrange steps horizontally
+      overflow-x: auto; // Allow horizontal scrolling
+      position: absolute;
+    
+      ion-step {
+        
+        display: flex;
+        align-items: center; // Center content vertically
+        justify-content: center; // Center content horizontally
+    
+        .step-content {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          
+        }
+    
+        
+    
+          &:hover {
+            
+            --color:#FFF
+          }
+      
+          &.stepper-button.active {
+            --background: 
+            #fff;
+            color: #FFF;
+            // border: 2px solid #003f7f;
+          }
+        }
+        .stepper-Icon {
+            font-size: 14px;
+            color: black;
+            background: white;
+            padding: 4px;
+            position: absolute;
+            border-radius: 10px;
+            margin-right: 65px;
+          }
+    
+          .stepper-text {
+            font-size: 12px;
+        font-weight: 600;
+        color: #000;
+        text-transform: capitalize;
+        position: absolute;
+        // margin-left: 25px;
+    
+          }
+        }
+      
+    
+    
+          
+    .progress-container {
+      width: 272px;
+      height: 8px;
+      background-color: rgba(5, 55, 80, 0.21);
+      border-radius: 20px;
+      overflow: hidden;
+    
+      .progress-fill {
+        height: 100%;
+        background-color:  var(--Color, #71BDBD);;
+        transition: width 0.3s ease;
+      }
+    }
+    
+    .progress-text{
+      color: #0FB50B;
+    
+      text-align: center;
+      font-family: Poppins;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+    .profile-completed{
+      color: #A6A6A6;
+      font-family: Poppins;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;}
+      .component-text{
+        color: var(--Blue, #053750);
+      font-family: Poppins;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      text-decoration-line: underline;}
+      .form-group{
+        border-radius: 8px;
+        border: 1px solid #71BDBD;
+        margin: 16px 0px;
+        height: 50px;
+        display: flex;
+      }
+    
+     
+    .profile-completed{
+      color: #A6A6A6;
+      font-family: Poppins;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;}
+      .component-text{
+        color: var(--Blue, #053750);
+      font-family: Poppins;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      text-decoration-line: underline;}
+      .form-group{
+        border-radius: 8px;
+        border: 1px solid #71BDBD;
+        margin: 16px 0px;
+        height: 50px;
+        display: flex;
+      }
+      .form-group>ion-label{
+        position: absolute;
+    top: -1px;
+    left: 19px;
+    background-color: #fff;
+    line-height: 1px;
+    color: #053750;
+    width: 32vw;
+    padding-left: 12px;
+      }
+      .form-group>ion-input{
+        border:none;
+        border:0;
+        line-height:100%;
+      }
+          
+    :host {
+      display: flex;
+      justify-content: center; // Center the buttons within the row
+      .about-me-row {
+        display: flex;
+        flex-wrap: wrap; // Prevent overflow and allow wrapping if necessary
+        gap: 10px; // Adjust the gap between the buttons
+      }
+    
+      .aboutOutMe-Button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 32px;
+        // padding: 8px 15px;
+        border: 1px solid #71bdbd;
+        background: #71BDBD;
+        gap: 4px;
+        border-radius: 24px;
+        --box-shadow: none;
+        --background: none;
+        --padding-top: 0px;
+        --padding-bottom: 0px;
+        --padding-start: 0em;
+        --padding-end: 0em;
+        border-radius: 24px;
+       
+      }
+    
+      .aboutOutMe-text {
+        color: var(--White, #FFF);
+    text-align: center;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    margin: 10px;
+    line-height: normal;
+    text-transform: capitalize;
+      }
+    
+      .button-image {
+        width: 16px; // Adjust image size if needed
+        height: 16px; // Adjust image size if needed
+        object-fit: contain; // Ensure images are properly contained
+      }
+    }
+    
+    
+    
+    .icon-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    
+      .align-right {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+    
+      .fixed-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+      }
+    
+          .Languages {
+            border-radius: 8px;
+            border: 1px solid #71BDBD;
+            margin: 16px 0;
+            display: flex;
+            flex-direction: column;
+            width: 70vw;
+            height: 10vh;
+            position: relative;
+            padding: 8px; // Added padding for spacing
+          }
+          
+          .Languages > ion-label {
+            position: absolute;
+            top: -1px;
+            left: 19px;
+            background-color: #fff;
+            line-height: 1px;
+            color: #053750;
+            width: 32vw;
+            padding-left: 12px;
+          }
+          
+     
+     
+    .intrests-text{
+    color: #A6A6A6;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;text-transform: capitalize;}
+    
+    ::ng-deep .customButton {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 25px;
+      // border: 0.5px solid #A6A6A6;
+      background: #F5F5F5;
+      flex-shrink: 0;
+      text-transform: capitalize;
+      --padding-start:15px;
+      --padding-end:12px;
+      --border-style: none width: auto;
+    }
+    
+    ::ng-deep .customButton ion-text {
+      color: #A6A6A6;
+      font-family: Poppins;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: normal;
+      margin-left: 10px;
+      text-align: center;
+    }
+   
+    
+    .language-col {
+      display: flex;
+      align-items: center;
+      font-family: Poppins;
+      font-size: 14px;
+      font-weight: 400;
+      color: #000;
+    
+      .required {
+        color: #F90A0A;
+        margin-right: 4px; // Spacing between the asterisk and text
+      }
+    
+      .language-text {
+        text-align: left;
+      }
+    }
+    
+    .level-col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: auto; // Adjust width based on content
+      height: 22px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    
+      &.low {
+        background: #F5F5F5;
+        .level-text {
+          color: #A6A6A6;
+        }
+      }
+    
+      &.medium {
+        background: var(--Color-2, #E3F2F2);
+        width: 58px; // Adjust width for consistency
+        .level-text {
+          color: var(--Blue, #053750);
+        }
+      }
+    
+      &.high {
+        background: #F5F5F5;
+        .level-text {
+          color: #A6A6A6;
+        }
+      }
+    
+      .level-text {
+        font-family: Poppins;
+        font-size: 10px;
+        font-weight: 400;
+        line-height: normal;
+        text-align: center;
+      }
+    }
+    
+    
+    .icon-col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+    }
+    
+    .language-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 280px;
+      height: 44px;
+      margin-top: 30px;
+      border-radius: 6px;
+      border: 1px solid rgba(113, 189, 189, 0.44);
+      box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.07);
+      position: relative; /* Positioning context for the absolute child */
+    }
+    
+    .language-line h2 {
+      font-size: 15px;
+      position: relative;
+      right: 70px;
+      bottom: 5px;
+      text-align: center;
+    }
+    
+    .language-header-text {
+      background-color: white;
+      padding: 0 10px;
+      color: var(--Blue, #053750);
+    }
+           
+    :host {
+     
+    
+      .aboutOutMe-Button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 0em;
+        border: 1px solid #71bdbd;
+    
+        gap: 4px;
+      
+        --box-shadow: none;
+        --background: none;
+        --padding-top: 0px;
+        --padding-bottom: 0px;
+        --padding-start: 0em;
+        --padding-end: 0em;
+        border-radius: 24px;
+       
+      }
+    
+      .aboutOutMe-text {
+        color:  var(--Blue, #053750);
+    text-align: center;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    margin: 10px;
+    line-height: normal;
+    text-transform: capitalize;
+      }
+    
+    }
+    .align-right {
+      display: flex;
+      justify-content: flex-end;
+    }
+    
+  
+    
+    .button-text {
+      color: #053750;
+      text-align: center;
+      font-family: Poppins;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      margin-right: 15px; 
+    }
+    
+    .button-icon {
+      padding: 3px;
+      border-radius: 50%;
+      background: #71bdbd7d;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .footer-button{
+    border-radius: 20px;
+    border: 1px solid rgba(113, 189, 189, 0.08);
+    padding: 6px;
+    height: 36px;
+    width: 110px;
+    background: var(--Color-2, #E3F2F2);
+    box-shadow: 0px 5px 5px -4px rgba(0, 0, 0, 0.25);
+  }  .footer-button{
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    border-radius: 20px;
+    border: 1px solid rgba(113, 189, 189, 0.08);
+    padding: 6px;
+    height: 36px;
+    width: 100px;
+    background: var(--Color-2, #E3F2F2);
+    box-shadow: 0px 5px 5px -4px rgba(0, 0, 0, 0.25);
+  }
+  .previous-icon{padding: 4px;
+  border-radius: 56px;
+  background: #71BDBD7D;
+  margin-right: 5px;}

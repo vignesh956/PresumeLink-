@@ -1,0 +1,96 @@
+
+.language-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 285px;
+    height: 44px;
+    margin-top: 30px;
+    border-radius: 6px;
+    border: 1px solid rgba(113, 189, 189, 0.44);
+   
+    position: relative; /* Positioning context for the absolute child */
+   
+  border: 1px solid var(--White, #FFF);
+  background: #EFF5F5;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.07);
+  }
+  
+  .language-line h2 {
+    font-size: 15px;
+    position: relative;
+    right: 44px;
+    bottom: 6px;
+    text-align: center;
+  }
+  
+  .language-header-text {
+    background-color: white;
+    padding: 0 10px;
+    color: var(--Blue, #053750);
+  }
+  
+  .plus-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 8px; /* Adjust margin as needed */
+    height: 24px; /* Adjust height as needed */
+  }
+  .language-card {
+    border-radius: 6px;
+    border: 1px solid #FFF;
+    background: #E3F2F2;
+    box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.07);
+    width: 280px;
+    height: 90px;
+    padding-top: 12px;
+    padding-right: 45px;
+    box-sizing: border-box;
+    padding-left: 11px;
+  }
+  
+  .language-name {
+    color: #053750;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 12px; /* Space between the language name and the boxes */
+  }
+  
+  .language-options {
+    display: flex;
+    justify-content: space-between; /* Ensure even spacing between the boxes */
+    align-items: center;
+  }
+  
+  .language-box {
+    width: 76px; /* Adjust the width of each box */
+    height: 32px;
+    border-radius: 4px;
+    background-color: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .language-box ion-text {
+    color: #A6A6A6;
+    font-family: Poppins;
+    font-size: 12px;
+    font-weight: 400;
+  }
+  
+  .active .language-box {
+    background-color: #053750 !important;
+  }
+  
+  .active ion-text {
+    color: #FFF !important;
+  }
+  
+  

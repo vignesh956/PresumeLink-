@@ -1,3 +1,27 @@
-<p>
-  login works!
-</p>
+<div *ngIf="pageLoads">
+  <ion-grid class="resume-container">
+    <ion-row class="logo-container">
+      <img src="assets/icon/Group 1000002366 (1).png" alt="" class="logo-image">
+      <ion-text class="logo-text">PresumeLink</ion-text>
+    </ion-row>
+    <img src="assets/icon/ion-avatar-img.png" alt="" class="avatar-image">
+    
+    <ion-row class="input-row">
+      <ion-col size="10">
+        <ion-item class="input-item" (click)="loginAsEmployee()">
+          <ion-label class="input-field">Login as Employee</ion-label>
+          <ion-icon name="chevron-forward-outline" class="input-icon"></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  
+    <ion-row class="input-row">
+      <ion-col size="10">
+        <ion-item class="input-item">
+          <ion-label class="input-field">Login as Employer</ion-label>
+          <ion-icon name="chevron-forward-outline" class="input-icon"></ion-icon>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </div>

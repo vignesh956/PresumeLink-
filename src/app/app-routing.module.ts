@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { CreateResumeHomePageComponent } from './create-resume/create-resume-home-page/create-resume-home-page.component';
 
 const routes: Routes = [
   {
@@ -18,7 +19,7 @@ const routes: Routes = [
     path: '',
     redirectTo: 'auth',
     pathMatch: 'full'
-  },
+  }
 ];
 
 @NgModule({

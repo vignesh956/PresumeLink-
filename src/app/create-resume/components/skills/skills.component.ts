@@ -10,5 +10,5 @@ export class SkillsComponent  implements OnInit {
   constructor() { }
 
   ngOnInit() {}
-
+  buttonTexts: string[] = ['UI Design', 'Prototypeing', 'Sketching', 'User Experience', 'User Research'];
 }

@@ -1,0 +1,306 @@
+
+.grid-container {
+    margin: 0;
+    background: linear-gradient(180deg, rgba(113, 189, 189, 0.90) 3.9%, rgba(5, 55, 80, 0.90) 100%);
+    height: 760px;
+  }
+  
+  .header-row {
+    margin-top: 45px;
+    display: flex;
+    align-items: center;
+  }
+  .header-logo {
+    width: 70px;
+    height: 50px;
+    flex-shrink: 0;
+  }
+  .header-text {
+    color: #FFF;
+    font-family: Josefin Sans, sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 50px;
+    margin-left: 12px;
+  }
+  
+  .title-row {
+    margin: 55px 0 20px 30px;
+  }
+  .title-text {
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins, sans-serif;
+    font-size: 24px;
+    
+    line-height: normal;
+  }
+
+  
+  .custom-segment {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+      border: 1px solid #fff;
+      border-radius: 30px;
+      padding: 0;
+      margin-left: 38px;
+      height: 44px;
+      width: 100%; 
+  }
+  
+  .segment-button {
+    flex: 1; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    --color: #000;
+    max-width: 150px;
+    --border-radius: 30px;
+    border: 1px solid transparent;
+    transition: background 0.3s ease, color 0.3s ease;
+    text-align: center; 
+  }
+  
+  .segment-button.active {
+    background: #fff;
+    border: 1px solid #c3b9b4;
+    --color: #bfb8b4;
+    --color-checked: none;
+    height: 40px;
+    margin: 1px;
+    max-width: 150px;
+  }
+  
+  .segment-button.active .button-icon,
+  .segment-button.active .button-label {
+    color: #053750;
+  }
+  
+  .segment-button .button-icon {
+    margin-right: 5px; 
+    font-size: 18px; 
+    display: inline-block;
+    vertical-align: middle;
+    color: #fff;
+  }
+  
+  .segment-button .button-label {
+    font-family: Poppins, sans-serif;
+    font-size: 14px; 
+    font-weight: 500;
+    color: #FFF;
+    text-transform: capitalize;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .button-label {
+    font-size: 14px; 
+  }
+  
+  
+  .button-icon {
+    height: 24px;
+    width: 24px;
+    margin-right: 8px;
+  }
+  
+  .phone-input-container {
+    display: flex;
+    height: 42px;
+    align-items: center;
+    border-radius: 25px;
+    border: 1px solid #000;
+    background: #FFF;
+    margin-left: 30px;
+  }
+  
+  .phone-number-input {
+    flex: 3;
+  }
+    .email-input-container{
+      display: flex;
+      height: 40px;
+      align-items: center;
+      border-radius: 25px;
+      background: #FFF;
+      margin-left: 30px;
+    }
+    .Email-number-input{
+      flex: 3;
+    }
+    .password-input-container{
+      display: flex;
+      height: 40px;
+      align-items: center;
+      border-radius: 25px;
+      background: #FFF;
+      margin-left: 30px;
+    }
+    .password-input-container{
+      flex: 3;
+    }
+  .forgot-password-text {
+    padding: 5px 19px;
+    float: inline-end;
+    color: #FFF;
+    font-family: Poppins, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: normal;
+  }
+  
+  
+  .login-button {
+    --border-radius: 20px;
+    width: 100%;
+    min-height: 42px;
+    --background: #E3F2F2;
+    margin-left: 30px;
+    --padding: 0px;
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+    --padding-start: 0em;
+    --padding-end: 0em;
+  }
+  
+  .login-button-text {
+    font-family: system-ui;
+    color: #000;
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: capitalize;
+    line-height: 20px;
+  }
+  
+  .account-row {
+    padding: 10px 19px;
+  }
+  
+  .no-account-text {
+    color: #FFF;
+    font-family: Poppins, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 22px;
+    line-height: normal;
+  }
+  
+  .create-account-text {
+    color: #FFF;
+    font-family: Poppins, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+   
+  }
+  .error-mes{
+    font-weight: 900;
+    padding: 5px 38px;
+    color: red;
+  
+  }
+  
+  .footer-text {
+    color: #FFF;
+    font-family: Poppins, sans-serif;
+    font-size: 16px;
+   
+    line-height: normal;
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .centered-row {
+    justify-content: center;
+    margin: 10px 40px;
+  }
+  
+  .centered-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+  
+  .circular-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: white;
+    object-fit: cover;
+    margin: 0 5px;
+    padding: 5px;
+  }
+  .phone-number-input {
+    width: 100%;
+  
+    .ngx-tel-input {
+      width: 100%;
+    }
+  
+    .iti {
+      width: 100%;
+    }
+  
+    .iti__flag-container {
+      padding-right: 10px;
+    }
+    
+  }
+  .country-code {
+    margin-right: 8px;
+    font-weight: bold;
+  }
+  
+  .country-select {
+    width: 120px;
+    margin-right: 8px;
+  }
+  
+  .phone-input {
+    flex: 1;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 13px;
+    margin-top: 4px;
+    margin-left: 24px;
+    font-weight: 700;
+    font-family: sans-serif;
+  }
+  .email-input-container, .password-input-container {
+    --margin-start: 0;
+    --margin-end: 0;
+    --padding-start: 0;
+    --padding-end: 0;
+  }
+  
+  .email-input, .password-input {
+    border: none;
+    border-radius: 4px;
+  }
+  
+  .forgot-password-text {
+    color:#FFF;
+    cursor: pointer;
+  }
+  
+  .create-account-text {
+    color: #FFF;
+    cursor: pointer;
+  }
+  
+  
+  
+  .login-button-text {
+    font-size: 16px;
+  }
+  
+  .no-account-text, .create-account-text {
+    text-align: center;
+  }
+    

@@ -1,0 +1,90 @@
+:host {
+    .form-group {
+      position: relative;
+      margin: 20px 5px;
+      height: 44px;
+      border-radius: 8px;
+      border: 1px solid #FFF;
+      background: #EFF5F5;
+      box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.07);
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+    }
+  
+    .form-group > ion-label {
+      position: absolute;
+      top: -10px;
+      left: 14px;
+      background-color: var(--Color-2, #E3F2F2); 
+      color: #053750;
+      padding: 2px 10px;
+      font-size: 12px;
+      line-height: 14px; 
+      border-radius: 4px;
+      font-weight: 600;
+      z-index: 1; 
+    }
+  
+    .form-group > ion-input {
+      border: none;
+      outline: none;
+      width: 100%;
+      padding-left: 40px; 
+      font-size: 14px;
+      color: #053750;
+      background: transparent;
+    }
+  
+    .aboutOutMe-text {
+      text-transform: capitalize;
+    }
+  }     
+  :host {
+   
+  
+    .aboutOutMe-Button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 32px;
+      background: var(--Blue, #053750);
+      box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+      border: 1px solid #71bdbd;
+      --box-shadow: none;
+      --background: none;
+      --padding-top: 0px;
+      --padding-bottom: 0px;
+      --padding-start: 0em;
+      --padding-end: 0em;
+      border-radius: 24px;
+    }
+  
+    .aboutOutMe-text {
+      color: #FFF;
+      font-family: Poppins;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;margin: 0px 7px;
+  text-transform: capitalize;
+    }
+  
+    .button-image {
+      width: 16px; 
+      height: 16px; 
+      object-fit: contain;
+    }
+  }
+  .corner-img {
+      position: absolute; 
+      top: 0; 
+      right: 0;
+      width: 20px;
+      height: 18px;
+      margin: 5px;
+    }
+    #form-group1{
+      margin: 14px 6px;
+  
+    }

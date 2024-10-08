@@ -1,3 +1,155 @@
-<p>
-  employee-login works!
-</p>
+
+
+<ion-grid class="grid-container">
+  <ion-row class="header-row">
+    <img src="assets/icon/Group 1000002366 (1).png" alt="" class="header-logo">
+    <ion-text class="header-text">PresumeLink</ion-text>
+  </ion-row>
+
+  <ion-row class="title-row">
+    <ion-text class="title-text">Employee Login</ion-text>
+  </ion-row>
+
+  <ion-row size="12">
+    <ion-col class="segment-col" size="9.5">
+      <ion-segment [(ngModel)]="selectedSegment" (ionChange)="onSegmentChange($event)" class="custom-segment">
+        <ion-segment-button value="custom" [ngClass]="{'active': selectedSegment === 'custom'}" class="segment-button">
+          <div>
+            <ion-icon name="call" class="button-icon"></ion-icon>
+            <ion-label class="button-label">Phone</ion-label>
+          </div>
+        </ion-segment-button>
+        <ion-segment-button value="segment" [ngClass]="{'active': selectedSegment === 'segment'}" class="segment-button">
+          <div>
+            <ion-icon name="mail" class="button-icon"></ion-icon>
+            <ion-label class="button-label">Email</ion-label>
+          </div>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-col>
+  </ion-row>
+
+  <div *ngIf="showPhoneComponent" style="margin-top: 25px; height: 33vh;">
+    <ion-row>
+      <ion-col size="11">
+        <form [formGroup]="phoneForm" (ngSubmit)="onSendOtp()" >
+        <ion-item class="phone-input-container" lines="none">
+  
+            <div class="phone-input-wrapper" style="display: flex; align-items: center;">
+              <!-- <span class="country-code">{{ selectedCountryCode }}</span> -->
+              <ion-icon name="caret-down-outline" class="dropdown-icon"></ion-icon>
+              <ion-input formControlName="phone">
+                
+              </ion-input>
+
+            </div>
+        </ion-item>
+        <ion-text color="danger" *ngIf="phoneForm.get('phone')?.invalid && phoneForm.get('phone')?.touched">
+          <p>Phone number is required and should be valid.</p>
+        </ion-text>
+          </form>
+      
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="login-button-row">
+      <ion-col size="10">
+        <ion-button class="login-button"  type="submit" [disabled]="!phoneForm.valid" (click)="onSendOtp()">
+          <ion-text class="login-button-text" >Send OTP</ion-text>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="account-row">
+      <ion-col size="6.5" p="2">
+        <ion-text class="no-account-text">Don’t have an account?</ion-text>
+      </ion-col>
+      <ion-col size="5.5">
+        <ion-text class="create-account-text" (click)="CreateAccount()">Create Account</ion-text>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div *ngIf="showEmailComponent" style="margin-top: 30px;">
+    <form [formGroup]="emailForm" (ngSubmit)="emailVerification()">
+      <ion-row>
+        <ion-col size="11">
+          <ion-item class="email-input-container">
+            <ion-input
+              class="email-input"
+              placeholder="Email"
+              formControlName="email"
+            ></ion-input>
+          </ion-item>
+          <div *ngIf="emailForm.get('email')?.invalid && emailForm.get('email')?.touched" color="danger" class="error-mes">
+              <ion-text *ngIf="emailForm.get('email')?.errors?.['required']">Email is required</ion-text>
+              <ion-text *ngIf="emailForm.get('email')?.errors?.['email']">Invalid email address</ion-text>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="11">
+          <ion-item class="password-input-container">
+            <ion-input
+              class="password-input"
+              placeholder="Password"
+              type="password"
+              formControlName="password"
+            ></ion-input>
+          </ion-item>
+          <div *ngIf="emailForm.get('password')?.invalid && emailForm.get('password')?.touched" color="danger" class="error-mes">
+            <ion-text *ngIf="emailForm.get('password')?.errors?.['required']" >
+              Password is required
+            </ion-text>
+            <ion-text  *ngIf="emailForm.get('password')?.errors?.['minlength']">
+              Password must be at least 6 characters long
+            </ion-text>
+
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="forgot-password-row">
+        <ion-col>
+          <ion-text class="forgot-password-text" (click)="forgotPassword()">Forgot Password?</ion-text>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="login-button-row">
+        <ion-col size="10">
+          <ion-button class="login-button" type="submit">
+            <ion-text class="login-button-text">Verify</ion-text>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="account-row">
+        <ion-col size="6.5">
+          <ion-text class="no-account-text">Don’t have an account?</ion-text>
+        </ion-col>
+        <ion-col size="5.5">
+          <ion-text class="create-account-text" (click)="CreateAccount()">Create Account</ion-text>
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
+
+  <ion-row class="footer-text">
+    <ion-col>
+      <ion-text>Or continue with</ion-text>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="centered-row">
+    <ion-col class="centered-col" size="2.5">
+      <img src="assets/icon/apple.png" alt="Google" class="circular-img" >
+    </ion-col>
+    <ion-col class="centered-col" size="2.5">
+      <img src="assets/icon/download.jpg" alt="Facebook" class="circular-img" >
+    </ion-col>
+    <ion-col class="centered-col" size="2.5" >
+      <img src="assets/icon/google symbol.webp" alt="Apple" class="circular-img">
+    </ion-col>
+  </ion-row>
+</ion-grid>

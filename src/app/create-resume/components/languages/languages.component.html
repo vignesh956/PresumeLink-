@@ -1,3 +1,27 @@
-<p>
-  languages works!
-</p>
+<div class="language-card" *ngFor="let language of languages; let i = index">
+  <ion-row>
+    <div>
+      <ion-text class="language-name">
+        {{ language.name }}
+      </ion-text>
+    </div>
+  </ion-row>
+
+  <ion-row class="language-options">
+    <ion-col (click)="toggleOption(i, 1)" [ngClass]="{'active': language.selectedOptions.includes(1)}" size="3">
+      <div class="language-box">
+        <ion-text>can read</ion-text>
+      </div>
+    </ion-col>
+    <ion-col (click)="toggleOption(i, 2)" [ngClass]="{'active': language.selectedOptions.includes(2)}" size="3">
+      <div class="language-box">
+        <ion-text>can write</ion-text>
+      </div>
+    </ion-col>
+    <ion-col (click)="toggleOption(i, 3)" [ngClass]="{'active': language.selectedOptions.includes(3)}" size="3">
+      <div class="language-box">
+        <ion-text>can speak</ion-text>
+      </div>
+    </ion-col>
+  </ion-row>
+</div>

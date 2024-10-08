@@ -1,3 +1,98 @@
-<p>
-  objective works!
-</p>
+<ion-grid class="gradient-background ">
+  <ion-content style="height:73vh;" class="gradient-background ">
+
+      
+      <ion-row size="12">
+        <ion-col>
+        <div
+      class="display-div"
+        >
+          <ion-text
+            style="color: #000; font-family: Poppins; font-size: 14px; ">
+            {{ displayedText }}
+          </ion-text>
+        </div>
+        <div><ion-text class="words-count">
+          170/400
+        </ion-text></div>
+      </ion-col>
+      </ion-row>
+
+      <div style="margin: 12px 7px;">
+        <ion-text class="examples-text">
+          Examples
+        </ion-text>
+      </div>
+
+      <ion-row>
+        <ion-col size="11">
+          <div
+            class="paragraph-Content"
+            (click)="updateDisplayedText($event, 'paragraph1')"
+            [style.backgroundColor]="clickedParagraphId === 'paragraph1' ? backgroundColor : ''"
+            style="padding: 10px; border-radius: 6px; cursor: pointer; position: relative;"
+          >
+            <ion-text class="paragraph-text">
+              Accessibility-focused web designer with 10 years of experience crafting user interfaces that are inclusive and meet WCAG guidelines. Strong understanding of HTML, CSS, and JavaScript. Proven ability to collaborate with developers.
+            </ion-text>
+            <ion-text *ngIf="showCopyText === 'paragraph1'"
+            class="copy-text">
+              <img src="assets/icon/Group 1000010493.png" alt="" class="copy-img">Copy
+            </ion-text>
+          </div>
+        </ion-col>
+
+        <ion-col size="11">
+          <div
+            class="paragraph-Content"
+            (click)="updateDisplayedText($event, 'paragraph2')"
+            [style.backgroundColor]="clickedParagraphId === 'paragraph2' ? backgroundColor : ''"
+            style="padding: 10px; border-radius: 6px; cursor: pointer; position: relative;"
+          >
+            <ion-text class="paragraph-text">
+              Web developer with expertise in building responsive websites and web applications. Skilled in JavaScript frameworks like Angular and React.
+            </ion-text>
+            <ion-text *ngIf="showCopyText === 'paragraph2'"
+            class="copy-text">
+              <img src="assets/icon/Group 1000010493.png" alt="" class="copy-img">Copy
+            </ion-text>
+          </div>
+        </ion-col>
+
+        <ion-col size="11">
+          <div
+            class="paragraph-Content"
+            (click)="updateDisplayedText($event, 'paragraph3')"
+            [style.backgroundColor]="clickedParagraphId === 'paragraph3' ? backgroundColor : ''"
+           
+          >
+            <ion-text class="paragraph-text">
+              Mobile app developer specializing in creating native and cross-platform mobile apps. Experienced with Ionic, Flutter, and Swift.
+            </ion-text>
+            <ion-text *ngIf="showCopyText === 'paragraph3'"
+            class="copy-text">
+              <img src="assets/icon/Group 1000010493.png" alt="" class="copy-img">Copy
+            </ion-text>
+          </div>
+        </ion-col>
+
+        <ion-col size="11">
+          <div
+            class="paragraph-Content"
+            (click)="updateDisplayedText($event, 'paragraph4')"
+            [style.backgroundColor]="clickedParagraphId === 'paragraph4' ? backgroundColor : ''"
+           
+          >
+            <ion-text class="paragraph-text">
+              Full-stack developer with a focus on creating scalable backend services and front-end interfaces. Expertise in Node.js, Express, and Angular.
+            </ion-text>
+            <ion-text *ngIf="showCopyText === 'paragraph4'"
+             class="copy-text">
+             <img src="assets/icon/Group 1000010493.png" alt="" class="copy-img"> Copy
+            </ion-text>
+          </div>
+        </ion-col>
+      </ion-row>
+  
+  </ion-content>
+</ion-grid>

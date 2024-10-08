@@ -1,0 +1,207 @@
+#resume-Container{
+    background: #EAF3F0;
+    margin: 0px;padding: 15px;
+  }
+  
+  #buttons{
+    border: none;
+    --box-shadow: none;
+    --background:none
+  }
+  .career-div{
+      margin: 10px;
+  }
+  .domain-text{
+    color: #053750;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  }
+  
+  .career-text{
+    color: #000;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  }
+  .preferred-domain{
+    margin: 25px 43px 10px 10px;  }
+    ::ng-deep .domain-input {
+      width: 328px;
+      height: 44px;
+      flex-shrink: 0;
+      border-radius: 25px;
+      border: 1px solid #FFF;
+      background: #EFF5F5;
+    }
+    
+    .domain-hint{
+    color: #A6A6A6;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;margin: 5px}
+    .domain-design{
+      color: #000;
+            font-family: Poppins;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;margin-right: 15px;
+    }
+      .close-circle-icon{
+      width: 20px;color: #A6A6A6;}
+  .custom-button {
+    width: 120px;
+    height: 34px;
+    border-radius: 25px;
+    border: 1px solid rgba(0, 0, 0, 0.50);
+    background: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    float: inline-end;
+    margin: 9px 10px;
+    .button-icon {
+      width: 20px;
+      height: 20px;
+    }
+      .button-text {
+        color: #71BDBD;
+        font-family: 'Poppins', sans-serif;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-left: 8px; // Adjust spacing between the image and text
+      }
+    
+      .button-icon-down {
+        margin-left: 8px; // Adjust spacing between the text and the icon
+        font-size: 14px; // Adjust icon size
+      }
+    }
+    .custom-button1 {
+      --border-radius: 24px;
+      width: 100px;
+  
+  flex-shrink: 0;
+  --min-height: 34px;
+      --background: var(--Blue, #053750);
+      --box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.25);
+      .button-icon {
+        width: 20px;
+        height: 20px;
+      }
+        .button-text {
+          color: #000;
+          font-family: Poppins;
+          font-size: 15px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          margin-right: 13px;
+        }
+      
+        .button-icon-down {
+          margin-left: 8px; // Adjust spacing between the text and the icon
+          font-size: 14px; // Adjust icon size
+        }
+      }
+     
+      
+      ::ng-deep .inactive-button {
+        border-radius: 23px;
+        --border: 1px solid #FFF;
+        --background: #dceded;
+        color: var(--Blue, #053750);
+        text-align: center;
+        text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.2);
+        font-family: Poppins;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        --box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.05);
+        --background-activated:none;
+      }
+      
+      ::ng-deep .active-button {
+        --border-radius: 12px;
+        color: #FFF;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  --background-activated: none;
+        --background: var(--Blue, #053750);
+        --box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+      }
+      
+    // get-started.component.scss
+  
+  .job-content-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    --background: #d1ebe3a8;
+    height: 34vh;
+    border-top: 1px solid grey;
+  
+  }
+  
+  .buttons-container    {
+   
+    max-width: 100%; // Ensure container takes full width
+    margin-top: 10.8px; 
+   
+  }
+  
+  .button-col {
+    flex: 1 1 calc(50% - 10px); // Two buttons per row with gap
+    display: flex;
+    justify-content: center; // Center button in column
+    box-sizing: border-box; // Include padding in width calculation
+  }
+  
+  .career-item {
+    --border-radius: 24px;
+    --background: #EFF5F5;
+    min-height: 1em;
+    --padding-top:10px;
+    margin: 7px 4px;
+    --padding-bottom: 10px;
+  }
+  
+  .career-text {
+    color: var(--Blue, #053750);
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .Get-Started-text{
+    --border-radius: 25px;
+    width: 328px;
+    height: 44px;
+    --background-activated: none;
+    flex-shrink: 0;
+    --background: var(--Color, #71BDBD);}
+          .started-text{color: #FFF;
+          font-family: Poppins;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 500;
+          padding: 4px;
+          line-height: normal;}

@@ -1,3 +1,105 @@
-<p>
-  career-level works!
-</p>
+<div *ngIf="ShowGetStartedComponent">
+  <ion-content style="height: 100vh;">
+    <ion-grid id="resume-Container">
+      <ion-row>
+        <ion-col>
+          <ion-item class="custom-button">
+            <ion-img src="assets/icon/Group.png" class="button-icon"></ion-img>
+            <ion-text class="button-text">
+              English
+            </ion-text>
+            <ion-icon name="caret-down-outline" class="button-icon-down"></ion-icon>
+          </ion-item>
+  
+        </ion-col>
+      </ion-row>
+      <div>
+        <div class="career-div">
+          <ion-text class="domain-text">
+            Career Level and Domain
+          </ion-text>
+        </div>
+        <div style="border-radius: 6px;
+    width: 328px;
+  height: 220px;
+  padding: 10px 9px;
+    border: 1px solid #FFF;
+    background: linear-gradient(0deg, rgba(227, 242, 242, 0.65) 0%, rgba(255, 255, 255, 0.65) 100%);
+    box-shadow: 0px 1px 1px -2px rgba(0, 0, 0, 0.14);">
+          <ion-text class="career-text">
+            What is your career level?
+          </ion-text>
+          <ion-row style="margin: 10px 0px;">
+            <ion-col *ngFor="let career of items ;let i=index">
+              <ion-button [ngClass]="{'active-button': activeButtonIndex === i, 'inactive-button': activeButtonIndex !== i}"
+        (click)="toggleButton(i)" >
+                <!-- <img [name]="career.icon" slot="start"></ion-img>        -->
+                <img [src]="career.icon" alt="" style="margin: 0px 5px;">
+                <ion-text style="text-transform: capitalize;">
+                  {{career.text}}
+                </ion-text>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </div>
+        <div class="preferred-domain">
+          <ion-text style="color: #000;
+      text-align: center;
+      font-family: Poppins;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;">Choose your preferred domain</ion-text>
+        </div>
+  
+        <ion-row>
+          <ion-col>
+            <ion-input class="domain-input">
+            </ion-input>
+          </ion-col>
+  
+          <ion-text class="domain-hint">
+            Select min 1 and max 2 domains
+          </ion-text>
+  
+        </ion-row>
+  
+        <ion-row>
+          <ion-col>
+            <ion-item class="custom-button1">
+  
+              <ion-text style="color: #FFF;
+              text-align: center;
+              font-family: Poppins;
+              margin: 5px;
+              font-size: 12px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;">
+                Design
+              </ion-text>
+              <img src="assets/icon/Group 1000010326 (2).png" alt="">
+            </ion-item>
+  
+          </ion-col>
+        </ion-row>
+  
+        <ion-content class="job-content-container">
+          <div class="buttons-container">
+            <ion-button class="career-item" *ngFor="let names of careerPurpose">
+              <ion-text class="career-text">{{ names.name }}</ion-text>
+            </ion-button>
+          </div>
+        </ion-content>
+        <ion-row size="12">
+          <ion-col size=12>
+            <ion-button class="Get-Started-text" (click)="ShowComponents()">
+              <ion-text class="started-text">Get Started</ion-text>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+  
+    </ion-grid>
+  </ion-content>
+  </div>

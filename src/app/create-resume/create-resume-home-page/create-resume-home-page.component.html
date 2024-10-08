@@ -1,0 +1,190 @@
+<ion-grid class="resume-template">
+  <ion-row>
+    <ion-col size="1.5">
+      <ion-icon name="arrow-back-outline" class="backward-icon"></ion-icon>
+    </ion-col>
+    <ion-col size="5">
+      <ion-text class="Resume-text">Create Resume</ion-text>
+    </ion-col>
+    <ion-col>
+      <img src="assets/icon/Group 1000010214.png" alt="" class="  ">
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="2" class="resume-template  ">
+
+      <ion-content style="position: fixed;">
+        <div class="custom-stepper">
+          <div *ngFor="let step of steps; let i = index">
+            <div class="step-content">
+              <ion-button expand="block" (click)="toggleStep(step)" [class.active]="activeStepIndex === i"
+                class="stepper-button">
+                <img [src]="step.isActive ? step.activeIcon : step.defaultIcon" class="stepper-icon" />
+              </ion-button>
+            </div>
+          </div>
+        </div>
+      </ion-content>
+
+    </ion-col>
+    <ion-col size="10">
+      <ion-text class="progress-text">{{ progress }}%
+        <span class="profile-completed">
+          Profile Completed
+        </span>
+      </ion-text>
+      <div class="progress-container">
+        <div class="progress-fill" [ngStyle]="{ width: progress + '%' }"></div>
+      </div>
+      <div *ngIf="componentsVisibility['Aboutme']">
+        <ion-text class="component-text">
+          About Me
+        </ion-text>
+        <app-about-me></app-about-me>
+      </div>
+      <div *ngIf="componentsVisibility['objective']">
+        <ion-text class="component-text">
+          Objective
+        </ion-text>
+        <app-objective>
+        </app-objective>
+      </div>
+      <div *ngIf="componentsVisibility['education']">
+        <ion-text class="component-text">
+          Education
+        </ion-text>
+        <app-education>
+        </app-education>
+      </div>
+
+
+
+      <div *ngIf="componentsVisibility['skills']">
+        <ion-text class="component-text">
+          Skills
+        </ion-text>
+        <app-skills>
+        </app-skills>
+      </div>
+      <div *ngIf="componentsVisibility['projects']">
+        <ion-text class="component-text">
+          Projects
+        </ion-text>
+
+        <app-project>
+        </app-project>
+      </div>
+      <div *ngIf="componentsVisibility['experience']">
+        <ion-text class="component-text">
+          Experience
+        </ion-text>
+        <app-experince>
+        </app-experince>
+      </div>
+
+      <div *ngIf="componentsVisibility['Certifications']">
+        <ion-text class="component-text">
+          Certifications
+        </ion-text>
+        <app-certifications></app-certifications>
+      </div>
+
+      <div *ngIf="componentsVisibility['Languages']" style="margin: 10px;">
+        <ion-text class="component-text">
+          Languages
+        </ion-text>
+        <app-languages></app-languages>
+      </div>
+
+      <div *ngIf="componentsVisibility['Social']">
+        <ion-text class="component-text">
+          Social
+        </ion-text>
+        <ion-row>
+          <ion-col size="12">
+            <div class="language-line">
+              <h2>
+                <span class="language-header-text">LinkedIn</span>
+              </h2>
+              <ion-input>
+
+              </ion-input>
+            </div>
+          </ion-col>
+          <ion-col size="12">
+            <div class="language-line">
+              <h2>
+                <span class="language-header-text">Behance</span>
+              </h2>
+              <ion-input></ion-input>
+            </div>
+          </ion-col>
+          <ion-col size="12">
+            <div class="language-line">
+              <h2>
+                <span class="language-header-text">Dribble</span>
+              </h2>
+              <ion-input></ion-input>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="5">
+            <ion-button class="aboutOutMe-Button" id="button-one">
+
+              <ion-text class="aboutOutMe-text">Add more</ion-text>
+              <img src="assets/icon/Group 1000010326.png" alt="" class="button-image" />
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+      </div>
+
+      <div *ngIf="componentsVisibility['Interests']">
+        <ion-text class="component-text">
+          Interests
+        </ion-text>
+        <app-interests></app-interests>
+      </div>
+    </ion-col>
+  </ion-row>
+
+
+
+
+
+
+  <ion-footer class="fixed-footer">
+    <ion-toolbar>
+      <ion-row style="margin: 10px 20px;">
+        <ion-col>
+          <div class="footer-button">
+            <ion-icon name="chevron-back-outline" class="previous-icon" (click)="previousStep()"
+              [ngClass]="{'disabled': activeStepIndex === 0}"></ion-icon>
+
+            <ion-text style="position: absolute;color: #053750;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;">
+              Previous
+            </ion-text>
+          </div>
+
+        </ion-col>
+        <ion-col class="align-right">
+          <div class="footer-button">
+            <ion-text class="button-text">Next</ion-text>
+            <ion-icon name="chevron-forward-outline" class="button-icon" (click)="nextStep()"
+              [ngClass]="{'disabled': activeStepIndex === steps.length - 1}"></ion-icon>
+          </div>
+        </ion-col>
+      </ion-row>
+
+    </ion-toolbar>
+  </ion-footer>
+
+</ion-grid>

@@ -1,3 +1,163 @@
-<p>
-  about-me works!
-</p>
+<ion-content  class="AboutMeTemplate">
+  <ion-grid class="gradient-background ">
+  
+    <ion-row>   
+    <ion-col >
+      <ion-avatar class="img-avatar">
+        <img src="assets/icon/Layer 2.png" alt="" >
+      </ion-avatar>
+    </ion-col>
+  </ion-row>
+  
+  <form action="" [formGroup]="profileForm" >
+   
+    <ion-row >
+      
+        <ion-col class="form-group">
+          <ion-label class="required">firstName</ion-label>
+          <ion-input formControlName="firstName" class="form-control"></ion-input>
+        <div *ngIf="profileForm.get('firstName')?.touched && profileForm.get('firstName')?.invalid" class="error">
+          <span *ngIf="profileForm.get('firstName')?.errors?.['required']">
+            First Name is required.
+          </span>
+          <span *ngIf="profileForm.get('firstName')?.errors?.['minlength']">
+            Minimum 2 characters required.
+          </span>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col class="form-group">
+        <ion-label class="required">lastName</ion-label>
+          <ion-input formControlName="lastName" class="form-control"></ion-input>
+      
+        <div *ngIf="profileForm.get('lastName')?.touched && profileForm.get('lastName')?.invalid" class="error">
+          <span *ngIf="profileForm.get('lastName')?.errors?.['required']">
+            Last Name is required.
+          </span>
+          <span *ngIf="profileForm.get('lastName')?.errors?.['minlength']">
+            Minimum 2 characters required.
+          </span> 
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <!-- Male Gender Button -->
+      <ion-col size="6">
+        <div (click)="selectGender('male')" 
+             [ngClass]="{'active-male': selectedGender === 'male', 'inactive': selectedGender !== 'male'}"
+             class="gender-button">
+          <img src="assets/icon/male-technologist-type-1-2_1f468-1f3fb-200d-1f4bb.png" alt="Male Icon" class="gender-icon">
+          <ion-text>Male</ion-text>
+        </div>
+      </ion-col>
+    
+      <!-- Female Gender Button -->
+      <ion-col size="6" class="female-col">
+        <div (click)="selectGender('female')" 
+             [ngClass]="{'active-female': selectedGender === 'female', 'inactive': selectedGender !== 'female'}"
+             class="gender-button">
+          <img src="assets/icon/man-pouting-type-1-2_1f64e-1f3fb-200d-2642-fe0f.png" alt="Female Icon" class="gender-icon">
+          <ion-text>Female</ion-text>
+        </div>
+      </ion-col>
+    </ion-row>
+     
+    <ion-row >
+      <ion-col class="form-group">
+        <ion-label class="required">email</ion-label>
+        <ion-input class="form-control" formControlName="email"></ion-input>
+        <div *ngIf="profileForm.get('email')?.touched && profileForm.get('email')?.invalid" class="error">
+          <span *ngIf="profileForm.get('email')?.errors?.['required']">
+            Email is required.
+          </span>
+          <span *ngIf="profileForm.get('email')?.errors?.['email']">
+            Invalid email format.
+          </span>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col class="form-group">
+        <ion-label class="required">phoneNumber</ion-label>
+        <ion-input class="form-control" formControlName="phoneNumber"></ion-input>
+        <div *ngIf="profileForm.get('phoneNumber')?.touched && profileForm.get('phoneNumber')?.invalid" class="error">
+          <span *ngIf="profileForm.get('phoneNumber')?.errors?.['required']">
+            Phone Number is required.
+          </span>
+          <span *ngIf="profileForm.get('phoneNumber')?.errors?.['pattern']">
+            Invalid phone number format.
+          </span>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col class="form-group">
+        <ion-label class="required">location</ion-label>
+        <ion-input class="form-control" formControlName="location"></ion-input>
+        <div *ngIf="profileForm.get('location')?.touched && profileForm.get('location')?.invalid" class="error">
+          <span *ngIf="profileForm.get('location')?.errors?.['required']">
+            Location is required.
+          </span>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col class="form-group">
+        <ion-label class="required">jobTitles</ion-label>
+        <ion-input class="form-control" formControlName="jobTitles"></ion-input>
+        <div *ngIf="profileForm.get('jobTitles')?.touched && profileForm.get('jobTitles')?.invalid" class="error">
+          <span *ngIf="profileForm.get('jobTitles')?.errors?.['required']">
+            Job title is required.
+          </span>
+          <span *ngIf="profileForm.get('jobTitles')?.errors?.['minlength']">
+            Job title must be a minimum length.
+          </span>
+          <span *ngIf="profileForm.get('jobTitles')?.errors?.['pattern']">
+            Job title contains invalid characters.
+          </span>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="form-group" *ngIf="showInput1" size="12">
+        <ion-label class="required">Marital Status</ion-label>
+        <ion-input class="form-control"></ion-input>
+      </ion-col>
+      <ion-col class="form-group" *ngIf="showInput2" size="12">
+        <ion-label class="required">Birth Date</ion-label>
+        <ion-input class="form-control"></ion-input>
+      </ion-col>
+        <ion-col class="form-group" *ngIf="showInput3" size="12">
+          <ion-label class="required">School Name</ion-label>
+          <ion-input class="form-control"></ion-input>
+          </ion-col>
+        </ion-row>
+  </form>
+  
+  <ion-row class="about-me-row" size="12">
+    <ion-col size="6">
+      <ion-button class="aboutOutMe-Button" id="button-three" (click)="toggleSymbol(1)" [ngClass]="getButtonClass(1)">
+        <img src="assets/icon/Group 1000002124 (3).png " alt="" class="button-image" />
+        <ion-text class="aboutOutMe-text">Marital Status</ion-text>
+        <img [src]="symbolImage1" alt="" class="button-image" />
+      </ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button class="aboutOutMe-Button" id="button-one"  (click)="toggleSymbol(2)" [ngClass]="getButtonClass(2)">
+        <img src="assets/icon/Group 1000002124 (1).png" alt="" class="button-image" />
+        <ion-text class="aboutOutMe-text">Birth Date</ion-text>
+        <img [src]="symbolImage2" alt="" class="button-image" />
+      </ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button class="aboutOutMe-Button" id="button-one"  (click)="toggleSymbol(3)" [ngClass]="getButtonClass(3)">
+        <img src="assets/icon/Group 1000002124 (1).png" alt="" class="button-image" />
+        <ion-text class="aboutOutMe-text">Citizenship</ion-text>
+        <img [src]="symbolImage3" alt="" class="button-image" />
+      </ion-button>
+    </ion-col>
+  
+  </ion-row>
+  </ion-grid>
+  </ion-content>

@@ -1,3 +1,48 @@
-<p>
-  skills works!
-</p>
+<ion-content style="height: 60vh;">
+  <ion-grid style="background: #EAF3F0;">
+    
+    <ion-row>
+      <ion-col class="form-group">
+        <ion-label class="required">School Name</ion-label>
+        
+      </ion-col>
+    </ion-row>
+  <ion-row >
+    <ion-col size="5" style="margin-right: 10px;">
+      <ion-button class="skillsButton">
+        <ion-text class="skills-text">
+          Wireframing
+        </ion-text>
+        <img src="assets/icon/Group 1000010362.png" alt="" style="margin-left: 90px;">
+  
+      </ion-button>
+    </ion-col>
+    <ion-col size="5">
+      <ion-button class="skillsButton">
+        <ion-text class="skills-text">
+          UX Research
+        </ion-text>
+        <img src="assets/icon/Group 1000010362.png" alt="" style="margin-left: 90px;">
+  
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <div style="margin: 40px 0px 15px 10px;">
+  <ion-text class="skills-text">
+    Suggested Skills
+  </ion-text>
+  </div>
+  <ion-row>
+    <ion-col *ngFor="let buttonText of buttonTexts" size=auto >
+      <div>
+      <ion-button class="customButton" fill="outline">
+        <ion-text>{{ buttonText }}</ion-text>
+      </ion-button> 
+    </div>
+    </ion-col>
+  </ion-row>
+  
+  
+  </ion-grid>
+  </ion-content>
+  
