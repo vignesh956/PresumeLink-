@@ -11,13 +11,13 @@ import { ProjectComponent } from './components/project/project.component';
 import { ExperinceComponent } from './components/experince/experince.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { EducationComponent } from './components/education/education.component';
-import { ObjectiveComponent } from './components/objective/objective.component';
 import { CertificationsComponent } from './components/certifications/certifications.component';
 import { LanguagesComponent } from './components/languages/languages.component';
+import { ObjectiveComponent } from './components/objective/objective.component';
 
 
 @NgModule({
-  declarations: [CreateResumeHomePageComponent,AboutMeComponent,InterestsComponent,ProjectComponent,ExperinceComponent,SkillsComponent,EducationComponent,ObjectiveComponent,CertificationsComponent,LanguagesComponent],
+  declarations: [CreateResumeHomePageComponent,AboutMeComponent,InterestsComponent,ProjectComponent,ExperinceComponent,SkillsComponent,EducationComponent,CertificationsComponent,LanguagesComponent,ObjectiveComponent],
   imports: [
     CommonModule,
     CreateResumeRoutingModule,

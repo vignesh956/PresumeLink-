@@ -11,7 +11,7 @@
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col size="2" class="resume-template  ">
+    <ion-col size="2" class="resume-template">
 
       <ion-content style="position: fixed;">
         <div class="custom-stepper">
@@ -46,7 +46,7 @@
         <ion-text class="component-text">
           Objective
         </ion-text>
-        <app-objective>
+        <app-objective >
         </app-objective>
       </div>
       <div *ngIf="componentsVisibility['education']">
@@ -179,7 +179,7 @@
           <div class="footer-button">
             <ion-text class="button-text">Next</ion-text>
             <ion-icon name="chevron-forward-outline" class="button-icon" (click)="nextStep()"
-              [ngClass]="{'disabled': activeStepIndex === steps.length - 1}"></ion-icon>
+              ></ion-icon>
           </div>
         </ion-col>
       </ion-row>

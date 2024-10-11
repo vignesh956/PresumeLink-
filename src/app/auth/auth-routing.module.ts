@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login/login.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
@@ -6,6 +6,7 @@ import { ForgetPasswordComponent } from './components/forget-password/forget-pas
 import { EmployeeLoginComponent } from './components/login/employee-login/employee-login.component';
 import { HomePage } from '../home/home.page';
 import { CareerLevelComponent } from '../create-resume/components/career-level/career-level.component';
+import { ObjectiveComponent } from '../create-resume/components/objective/objective.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,7 @@ const routes: Routes = [
   {path:"get-started",component:CareerLevelComponent}
   ,
   {
-    path: 'signup', component: CreateUserComponent
+    path: 'create-account', component: CreateUserComponent
   },
   {
     path: 'Forgot-password', component: ForgetPasswordComponent
