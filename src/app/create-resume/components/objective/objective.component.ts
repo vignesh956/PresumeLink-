@@ -17,9 +17,7 @@ export class ObjectiveComponent  implements OnInit {
   backgroundColor: string = ' var(--Blue, #053750)';
   showCopyText: string = ''; 
   objectiveId: string = '12345'; 
-  employeeId = '6703af96d431a73e0fa107c2';
   copyform!:FormGroup;
-  accessToken:any="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDNhZjk2ZDQzMWE3M2UwZmExMDdjMiIsImVtYWlsIjoicHZtYWhlc2g3OUBnbWFpbC5jb20iLCJyb2xlcyI6WyJ1c2VyIl0sImlhdCI6MTcyODUzOTk5MSwiZXhwIjoxNzI4NjI2MzkxfQ.ZwcuxirRK9vxXByRxoRpOgOnDtIgrl3tDvQVg8GEI5Q";
   constructor(public fb:FormBuilder ,public copyservice :CreateResumeService) {
     
      this.copyform = this.fb.group({
@@ -53,8 +51,11 @@ export class ObjectiveComponent  implements OnInit {
   updateDisplayedText(event: MouseEvent, paragraphId: string) {
     const target = event.currentTarget as HTMLElement;
     const textContent = target.querySelector('ion-text')?.innerText || '';
-
+    
     this.displayedText = textContent;
+    this.copyform.patchValue({
+      summery : this.displayedText
+    })
     this.clickedParagraphId = paragraphId;
     this.showCopyText = paragraphId;
     const token = 'your-auth-token';
@@ -75,35 +76,35 @@ export class ObjectiveComponent  implements OnInit {
   }
 
 
-submittextDetails() {
-  const copyDetails: any = {
-    examples: [this.displayedText],
-    objective_description: '',
-    stepIndex: 3,
-  };
+// submittextDetails() {
+//   const copyDetails: any = {
+//     examples: [this.displayedText],
+//     objective_description: '',
+//     stepIndex: 3,
+//   };
 
-  this.copyservice.submitCopyDetails(this.employeeId, copyDetails, this.accessToken)
-    .subscribe(
-      response => console.log('Copy details updated:', response),
-      error => console.error('Error updating copy details:', error)
-    );
-}
+//   this.copyservice.submitCopyDetails(this.employeeId, copyDetails, this.accessToken)
+//     .subscribe(
+//       response => console.log('Copy details updated:', response),
+//       error => console.error('Error updating copy details:', error)
+//     );
+// }
 
 
-nextStep() {
-  // if (this.activeStepIndex < this.steps.length - 1) {
-  //   this.activeStepIndex++;
-  //   this.toggleStep(this.steps[this.activeStepIndex]);
-  // }
-}
+// nextStep() {
+//   // if (this.activeStepIndex < this.steps.length - 1) {
+//   //   this.activeStepIndex++;
+//   //   this.toggleStep(this.steps[this.activeStepIndex]);
+//   // }
+// }
 
 // Function to go to the previous step
-previousStep() {
-  // if (this.activeStepIndex > 0) {
-  //   this.activeStepIndex--;
-  //   this.toggleStep(this.steps[this.activeStepIndex]);
-  // }
-}
+// previousStep() {
+//   // if (this.activeStepIndex > 0) {
+//   //   this.activeStepIndex--;
+//   //   this.toggleStep(this.steps[this.activeStepIndex]);
+//   // }
+// }
     }
   
 

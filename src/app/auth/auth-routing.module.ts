@@ -6,7 +6,6 @@ import { ForgetPasswordComponent } from './components/forget-password/forget-pas
 import { EmployeeLoginComponent } from './components/login/employee-login/employee-login.component';
 import { HomePage } from '../home/home.page';
 import { CareerLevelComponent } from '../create-resume/components/career-level/career-level.component';
-import { ObjectiveComponent } from '../create-resume/components/objective/objective.component';
 
 const routes: Routes = [
   {
