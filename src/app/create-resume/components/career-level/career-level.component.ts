@@ -25,8 +25,7 @@ export class CareerLevelComponent  implements OnInit {
   
     activeButtonIndex: any | null = null; // Track the index of the active button
     ShowComponents(){
-      this.router.navigate(['create-resume/home'])
-
+      this.router.navigate(['stepper'])
     }
     // Toggle the button state
     toggleButton(index: number) {

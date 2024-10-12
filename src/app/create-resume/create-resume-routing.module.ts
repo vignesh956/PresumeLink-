@@ -11,7 +11,9 @@ const routes: Routes = [
 {path:"home",component:CreateResumeHomePageComponent},
 {
   path:'career-level', component:CareerLevelComponent
-}
+},
+{path:"stepper",component:CreateResumeHomePageComponent},
+
 ];
 
 @NgModule({

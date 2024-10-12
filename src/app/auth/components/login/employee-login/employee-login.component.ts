@@ -122,7 +122,7 @@ export class EmployeeLoginComponent  implements OnInit {
         (response: any) => {
           console.log('Login successful:', response);
           localStorage.setItem('userData' , JSON.stringify(response.result) );
-          this.router.navigate(['dashboard']); 
+          this.router.navigate(['home']); 
         },
         (error: any) => {
           console.error('Error during login:', error);
