@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   { path: "login/employee", component: EmployeeLoginComponent },
   { path: "login/create-account", component: CreateUserComponent },
-   { path: "home", component: HomePage },
+  //  { path: "home", component: HomePage },
   {path:"get-started",component:CareerLevelComponent}
   ,
   {

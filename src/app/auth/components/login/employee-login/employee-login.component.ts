@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-employee-login',
@@ -22,7 +23,7 @@ export class EmployeeLoginComponent  implements OnInit {
   socialAuthService: any;
   
 
-  constructor(public router: Router, private fb: FormBuilder, private service: AuthService) {}
+  constructor(public router: Router, private fb: FormBuilder, private service: AuthService,private storageService: StorageService) {}
 
   ngOnInit() { 
 
@@ -72,7 +73,7 @@ export class EmployeeLoginComponent  implements OnInit {
   }
 
   CreateAccount() {
-    this.router.navigate(["create-account"]);
+    this.router.navigate(["login/create-account"]);
   }
 
   forgotPassword() {
@@ -120,9 +121,14 @@ export class EmployeeLoginComponent  implements OnInit {
       // Verify email and password
       this.service.verifyEmail(email, password).subscribe(
         (response: any) => {
+
+          if (response && response?.result) {
+            this.storageService.set('accessToken', response?.result?.accessToken);
+            this.storageService.set('userId', response?.result?.id);
+          }
           console.log('Login successful:', response);
-          localStorage.setItem('userData' , JSON.stringify(response.result) );
-          this.router.navigate(['dashboard']); 
+          // localStorage.setItem('userData' , JSON.stringify(response.result) );
+          this.router.navigate(['home']); 
         },
         (error: any) => {
           console.error('Error during login:', error);
