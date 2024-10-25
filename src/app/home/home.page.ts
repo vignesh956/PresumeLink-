@@ -10,6 +10,6 @@ export class HomePage {
 
   constructor(private router:Router) {}
   getStarted(){
-this.router.navigate(["get-started"])
+this.router.navigate(["career-level"])
   }
 }

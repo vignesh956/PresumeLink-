@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { AboutMeComponent } from '../components/about-me/about-me.component';
+import { HttpClient } from '@angular/common/http';
+import { ObjectiveComponent } from '../components/objective/objective.component';
+import { EducationComponent } from '../components/education/education.component';
+import { CreateResumeService } from '../create-resume.service';
 
 @Component({
   selector: 'app-create-resume-home-page',
@@ -10,6 +15,13 @@ export class CreateResumeHomePageComponent  implements OnInit {
   activeStepIndex: number = 0;
   stepIncrement: number = 10;
   rangeValue = 0;
+
+
+  ActiveStep: number = 1;
+  
+  @ViewChild(AboutMeComponent, { static: false }) aboutMeComponent!: AboutMeComponent; 
+  @ViewChild(ObjectiveComponent, { static: false }) objectiveComponent!: ObjectiveComponent;
+  @ViewChild(EducationComponent, { static: false }) educationComponent!: EducationComponent;
 
   // Define steps with corresponding component names
   steps = [
@@ -91,11 +103,12 @@ export class CreateResumeHomePageComponent  implements OnInit {
     Interests:false
   };
 
-  constructor() {}
+  constructor(private http: HttpClient , public createResumeService :CreateResumeService) {}
 
   ngOnInit(): void {
     this.showComponent('Aboutme'); // Display the first component initially
   }
+
 
   // Method to toggle the active step and display the corresponding component
   toggleStep(step: any) {
@@ -134,20 +147,74 @@ export class CreateResumeHomePageComponent  implements OnInit {
     this.rangeValue = event.detail.value;
     console.log('Range changed:', this.rangeValue);
   }
-  nextStep() {
-    if (this.activeStepIndex < this.steps.length - 1) {
-      this.activeStepIndex++;
-      this.toggleStep(this.steps[this.activeStepIndex]);
+
+
+
+
+
+  previousStep() {
+    if (this.ActiveStep > 1) {
+      this.ActiveStep--;
+      console.log(this.ActiveStep ,';');
     }
   }
 
-  // Function to go to the previous step
-  previousStep() {
-    if (this.activeStepIndex > 0) {
-      this.activeStepIndex--;
-      this.toggleStep(this.steps[this.activeStepIndex]);
-    }
+nextStep() {
+  const userDataString = localStorage.getItem('userData');
+  const data: any = userDataString ? JSON.parse(userDataString) : null;
+  
+  const employeeId = data?.id;
+  const token = data?.accessToken;
+
+  switch (this.ActiveStep) {
+    case 1:
+      console.log(this.aboutMeComponent, 'About Me Component');
+      if (this.aboutMeComponent.profileForm.valid) {
+        const personalDetails = this.aboutMeComponent.profileForm.value; 
+        
+        this.createResumeService.submitSscDetails(employeeId, personalDetails, token)
+          .subscribe(
+            response => {
+              console.log('Success:', response);
+              this.ActiveStep++; 
+            },
+            error => {
+              console.error('Error submitting personal details:', error);
+            }
+          );
+      } else {
+        console.warn('Personal details form is not valid.');
+      }
+      break;
+
+    case 2:
+      if (this.objectiveComponent.copyform.valid) {
+
+        const educationDetails: any = {
+          examples: [this.objectiveComponent.copyform.value.summery],
+          objective_description: this.objectiveComponent.copyform.value.summery,
+          stepIndex: 3,
+        };
+        this.createResumeService.submitCopyDetails(employeeId, educationDetails, token)
+          .subscribe(
+            response => {
+              console.log('Success:', response);
+              this.ActiveStep++; 
+            },
+            error => {
+              console.error('Error submitting education details:', error);
+            }
+          );
+      } else {
+        console.warn('Objective form is not valid.');
+      }
+      break;
+
+    default:
+      console.warn('Invalid step.');
+      break;
   }
+}
 
 
 }

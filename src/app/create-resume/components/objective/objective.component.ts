@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { CreateResumeService } from '../../create-resume.service';
 
 @Component({
   selector: 'app-objective',
@@ -9,16 +11,36 @@ export class ObjectiveComponent  implements OnInit {
 
  
 
-
+  submitted = false;
   displayedText: string = ''; 
   clickedParagraphId: string = '';
   backgroundColor: string = ' var(--Blue, #053750)';
   showCopyText: string = ''; 
   objectiveId: string = '12345'; 
-  employeeId = '66fe8b162ffe0aaf9d6f663a';
-  constructor() { }
+  copyform!:FormGroup;
+  constructor(public fb:FormBuilder ,public copyservice :CreateResumeService) {
+    
+     this.copyform = this.fb.group({
+      summery: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(400),
+        ],
+      ]
+    })
+   }
+     
+   get validationCheck() {
+    return this.copyform.controls;
+  }
+
+
+
+
   objectiveData: any = {
-    examples: [],
+    examples: [this.displayedText],
     objective_description: '',
     stepIndex: 3,
   };
@@ -29,11 +51,16 @@ export class ObjectiveComponent  implements OnInit {
   updateDisplayedText(event: MouseEvent, paragraphId: string) {
     const target = event.currentTarget as HTMLElement;
     const textContent = target.querySelector('ion-text')?.innerText || '';
-
+    
     this.displayedText = textContent;
+    this.copyform.patchValue({
+      summery : this.displayedText
+    })
     this.clickedParagraphId = paragraphId;
     this.showCopyText = paragraphId;
-    const token = 'your-auth-token'; // Replace with your logic to get the token
+    const token = 'your-auth-token';
+   
+    // Replace with your logic to get the token
 
     // this.serice.updateObjectiveData(this.employeeId, this.objectiveData, token).subscribe(
     //   (response) => {
@@ -47,4 +74,37 @@ export class ObjectiveComponent  implements OnInit {
       this.showCopyText = '';
     }, 200000);
   }
-}
+
+
+// submittextDetails() {
+//   const copyDetails: any = {
+//     examples: [this.displayedText],
+//     objective_description: '',
+//     stepIndex: 3,
+//   };
+
+//   this.copyservice.submitCopyDetails(this.employeeId, copyDetails, this.accessToken)
+//     .subscribe(
+//       response => console.log('Copy details updated:', response),
+//       error => console.error('Error updating copy details:', error)
+//     );
+// }
+
+
+// nextStep() {
+//   // if (this.activeStepIndex < this.steps.length - 1) {
+//   //   this.activeStepIndex++;
+//   //   this.toggleStep(this.steps[this.activeStepIndex]);
+//   // }
+// }
+
+// Function to go to the previous step
+// previousStep() {
+//   // if (this.activeStepIndex > 0) {
+//   //   this.activeStepIndex--;
+//   //   this.toggleStep(this.steps[this.activeStepIndex]);
+//   // }
+// }
+    }
+  
+

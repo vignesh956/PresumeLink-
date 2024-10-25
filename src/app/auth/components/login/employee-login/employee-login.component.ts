@@ -127,7 +127,7 @@ export class EmployeeLoginComponent  implements OnInit {
             this.storageService.set('userId', response?.result?.id);
           }
           console.log('Login successful:', response);
-          // localStorage.setItem('userData' , JSON.stringify(response.result) );
+          localStorage.setItem('userData' , JSON.stringify(response.result) );
           this.router.navigate(['home']); 
         },
         (error: any) => {
