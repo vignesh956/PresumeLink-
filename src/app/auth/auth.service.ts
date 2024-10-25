@@ -12,11 +12,12 @@ export class AuthService {
   private phoneNumber: string = '+919347252317';
   constructor(private http:HttpClient) { }
   setEmail(email: string) {
-    this.email = email; // Function to set the email when required
+    this.email = email; 
   }
+ 
   resetPassword(email: string, newPassword: string): Observable<any> {
     const payload = {
-      email: email, // Use the email passed as an argument
+      email: email, 
       newPassword: newPassword,
     };
   
@@ -46,11 +47,20 @@ export class AuthService {
     return this.phoneNumber;
   }
   sendEmailOtp(email: string, phone: string): Observable<any> {
-    const payload = {
-      email: email,
-      phone: phone // Send phone number as well
-    };
-    return this.http.post(`${this.apiUrl}/send-otp`, payload);
+    
+    const userData = localStorage.getItem('userData');
+
+ 
+    const accessToken = userData ? JSON.parse(userData).accessToken : null;
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${accessToken}`,
+      'Content-Type': 'application/json', 
+    });
+
+    const body = { email, phone }; 
+
+    return this.http.post(`${this.apiUrl}/send-otp`, body, { headers });
   }
 
   verifyEmail(email: string, password: string) {
@@ -62,13 +72,14 @@ export class AuthService {
   getEmail(): string {
     return this.email;
   }
-  sendOtp(data: { phone: string, password: string }): Observable<any> {
-    this.setPhoneNumber(data.phone); // Store phone number for later use
+  sendOtp(data: { phone: string; password: string }): Observable<any> {
+    this.setPhoneNumber(data.phone); 
+ 
     return this.http.post(`${this.apiUrl}/send-otp`, data);
   }
   verifyPhoneNumberWithOtp(otp: string): Observable<any> {
     const payload = {
-      phone: this.getPhoneNumber(),  // Retrieve stored phone number
+      phone: this.getPhoneNumber(),  
       code: otp
     };
     return this.http.post(`${this.apiUrl}/verify-otp`, payload);

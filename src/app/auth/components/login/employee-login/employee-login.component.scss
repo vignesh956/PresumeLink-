@@ -62,21 +62,23 @@
     transition: background 0.3s ease, color 0.3s ease;
     text-align: center; 
   }
+  .segment-button.active .button-icon,
+  .segment-button.active .button-label {
+    color: #053750;
+  }
+  
   
   .segment-button.active {
     background: #fff;
     border: 1px solid #c3b9b4;
     --color: #bfb8b4;
     --color-checked: none;
-    height: 40px;
+    min-height: 0px;
     margin: 1px;
     max-width: 150px;
   }
   
-  .segment-button.active .button-icon,
-  .segment-button.active .button-label {
-    color: #053750;
-  }
+  
   
   .segment-button .button-icon {
     margin-right: 5px; 
@@ -303,4 +305,61 @@
   .no-account-text, .create-account-text {
     text-align: center;
   }
+  
     
+   :host ::ng-deep .otp-box:focus {
+    outline: none;                     
+    border-color: #2196F3;             
+    box-shadow: 0 4px 10px rgba(33, 150, 243, 0.4); 
+  }
+  .verify-buttton{    --border-radius: 24px;
+  --background: var(--Color-2, #E3F2F2);
+  height: 44px;
+ margin: 20px 20px;
+}
+ 
+  :host ::ng-deep .otp-input.ng-valid {
+    width: 52px;
+    border-radius: 8px;
+    border: 1px solid #FFF;
+    height: 62px;
+    background: none;
+
+  }
+  
+  :host ::ng-deep .otp-input.ng-invalid {
+    border-color: #F44336;
+  }
+  
+    .main-div-otp{top: 100px;
+      position: relative;
+      padding-left: 15px;}
+
+    .otp-verification-text{
+    color: #FFF;
+      text-align: center;
+      font-family: Poppins;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: normal;}
+
+      .otp-div{margin: 20px 0px;
+      width: 262px;}
+
+      .otp-text{
+      color: #FFF;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;}
+
+    .verify-text{
+    color: #000;
+      font-family: Poppins;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 20px; text-transform: none;}
+      

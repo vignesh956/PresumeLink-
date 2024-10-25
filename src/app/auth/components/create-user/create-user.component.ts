@@ -34,11 +34,18 @@ export class CreateUserComponent  implements OnInit {
   onSubmit() {
     if (this.createAccountForm.valid) {
       const { email, password } = this.createAccountForm.value;
-
+  
       // Call the API to create an account
       this.service.createAccount(email, password).subscribe(
         (response:any) => {
           console.log('Account created successfully:', response);
+          const userData = {
+            id: response.id,
+            email: email,
+            accessToken: response.accessToken,
+            refreshToken: response.refreshToken,
+          };
+          localStorage.setItem('userData', JSON.stringify(userData));
           this.router.navigate(['login']);
         },
         (error:any) => {

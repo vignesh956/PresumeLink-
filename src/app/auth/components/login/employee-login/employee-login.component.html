@@ -6,12 +6,13 @@
     <ion-text class="header-text">PresumeLink</ion-text>
   </ion-row>
 
+  <div *ngIf="showLogin">
   <ion-row class="title-row">
     <ion-text class="title-text">Employee Login</ion-text>
   </ion-row>
 
   <ion-row size="12">
-    <ion-col class="segment-col" size="9.5">
+    <ion-col size="9.5">
       <ion-segment [(ngModel)]="selectedSegment" (ionChange)="onSegmentChange($event)" class="custom-segment">
         <ion-segment-button value="custom" [ngClass]="{'active': selectedSegment === 'custom'}" class="segment-button">
           <div>
@@ -119,7 +120,7 @@
       <ion-row class="login-button-row">
         <ion-col size="10">
           <ion-button class="login-button" type="submit">
-            <ion-text class="login-button-text">Verify</ion-text>
+            <ion-text class="login-button-text" >Verify</ion-text>
           </ion-button>
         </ion-col>
       </ion-row>
@@ -152,4 +153,37 @@
       <img src="assets/icon/google symbol.webp" alt="Apple" class="circular-img">
     </ion-col>
   </ion-row>
+</div>
+<div *ngIf="showOtp" class="main-div-otp">
+    <div  class="otp-div">
+      <ion-text class="otp-verification-text">
+    OTP Verification
+      </ion-text>
+    </div>
+  <div class="otp-div">
+    <ion-text class="otp-text">
+      Enter the OTP code we just sent you on your registered phone number
+    </ion-text>
+  </div>
+    <div class="otp-container">
+      <ng-otp-input 
+        [config]="otpConfig" 
+        (onInputChange)="onOtpChange($event)">
+      </ng-otp-input>
+    </div>
+    
+    
+  
+    <ion-button 
+      expand="block" 
+      (click)="verifyOtp()" 
+      class="verify-buttton">
+      <ion-text class="verify-text">Verify OTP</ion-text>
+      
+    </ion-button>
+    
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+  
+  
+</div>
 </ion-grid>

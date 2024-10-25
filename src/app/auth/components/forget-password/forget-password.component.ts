@@ -10,20 +10,28 @@ import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators }
 })
 export class ForgetPasswordComponent  implements OnInit {
   showVerificationEmail:any=false;
+  Emailotp:any="";
   showForgetPassword:any=true
   forgotPasswordForm!: FormGroup;
   showResetPassword:any=false;
   resetPasswordForm: FormGroup;
-  otp1: string = '';
-  otp2: string = '';
-  otp3: string = '';
-  otp4: string = '';
-  otp5: string = '';
-  otp6: string = '';
+  
   phoneNumber: string = '';
+  otpConfig = {
+    length: 6,                   
+    inputClass: 'otp-box',       
+    allowNumbersOnly: true,      
+    disableAutoFocus: false       
+  };
+  onOtpChange(event: any): void {
+    const otp = event?.detail || ''; // Adjust based on actual event structure
+    console.log('OTP:', otp); // Debugging output
+    this.Emailotp = otp; // Store the OTP value in the component's state
+}
+
   constructor(private router:Router,private service:AuthService,private fb: FormBuilder) {
     this.forgotPasswordForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]]  // Email required and must be valid
+      email: ['', [Validators.required, Validators.email]]  
     });
     this.resetPasswordForm = this.fb.group({
       newPassword: ['', [Validators.required, Validators.minLength(6)]],
@@ -32,16 +40,15 @@ export class ForgetPasswordComponent  implements OnInit {
    }
    onSubmit() {
     if (this.resetPasswordForm.valid) {
-      // Get the email from the AuthService
-      const email = this.forgotPasswordForm.value.email; // Retrieve the stored email
+          const email = this.forgotPasswordForm.value.email; 
       const { newPassword } = this.resetPasswordForm.value;
   
-      // Call the resetPassword method from the AuthService
+      
       this.service.resetPassword(email, newPassword).subscribe(
         response => {
           console.log('Password reset successful:', response);
-          // Navigate to login or success page
-          this.router.navigate(['home']); // Adjust the route as needed
+          
+          this.router.navigate(['home']); 
         },
         error => {
           console.error('Error resetting password:', error);
@@ -66,13 +73,13 @@ export class ForgetPasswordComponent  implements OnInit {
     
     this.showVerificationEmail=true;
     this.showForgetPassword=false;
-    // Check if the form is valid before submitting
+    
     if (this.forgotPasswordForm.valid) {
       const email = this.forgotPasswordForm.value.email;
-      const phone = "+919347252317";
+      const phone = "+919618549530";
 
-      console.log('Email:', email);  // Debugging email value
-      console.log('Phone:', phone);  // Debugging phone value
+      console.log('Email:', email);  
+      console.log('Phone:', phone);  
 
       this.service.sendEmailOtp(email, phone).subscribe(
         response => {
@@ -84,26 +91,25 @@ export class ForgetPasswordComponent  implements OnInit {
       );
     } else {
       console.error('Form is invalid');
-      console.log('Form Errors:', this.forgotPasswordForm.errors);  // Debug form errors
+      console.log('Form Errors:', this.forgotPasswordForm.errors);  
     }
   
   }
   verifyOtp() {
-   
-    const enteredOtp = `${this.otp1}${this.otp2}${this.otp3}${this.otp4}${this.otp5}${this.otp6}`;
+
+    const enteredOtp = this.Emailotp;
 
     if (enteredOtp.length !== 6) {
       alert('OTP must be 6 digits.');
       return;
     }
 
+
     this.service.verifyPhoneNumberWithOtp(enteredOtp).subscribe(
       (response: any) => {
         console.log('OTP verified successfully:', response);
-        this.router.navigate(['dashboard']); 
-        this.showForgetPassword=true;
-        this.showForgetPassword=false;
-        this.showVerificationEmail=false 
+        this.router.navigate(['dashboard']);
+
       },
       (error: any) => {
         console.error('Error verifying OTP:', error);
@@ -119,4 +125,5 @@ export class ForgetPasswordComponent  implements OnInit {
       }
     );
   }
+
 }
