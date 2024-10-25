@@ -5,6 +5,7 @@ import { CreateUserComponent } from './components/create-user/create-user.compon
 import { ForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { EmployeeLoginComponent } from './components/login/employee-login/employee-login.component';
 import { HomePage } from '../home/home.page';
+import { CareerLevelComponent } from '../create-resume/components/career-level/career-level.component';
 
 const routes: Routes = [
   {
@@ -15,9 +16,9 @@ const routes: Routes = [
   },
   { path: "login/employee", component: EmployeeLoginComponent },
   { path: "login/create-account", component: CreateUserComponent },
-   { path: "home", component: HomePage },
- 
-  
+  //  { path: "home", component: HomePage },
+  {path:"get-started",component:CareerLevelComponent}
+  ,
   {
     path: 'create-account', component: CreateUserComponent
   },
