@@ -11,11 +11,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { HomePageModule } from '../home/home.module';
-import { CareerLevelComponent } from '../create-resume/components/career-level/career-level.component';
 
 
 @NgModule({
-  declarations: [LoginComponent,EmployeeLoginComponent, CreateUserComponent , ForgetPasswordComponent,CareerLevelComponent],
+  declarations: [LoginComponent,EmployeeLoginComponent, CreateUserComponent , ForgetPasswordComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,

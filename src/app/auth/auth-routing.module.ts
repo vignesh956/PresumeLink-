@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login/login.component';
 import { CreateUserComponent } from './components/create-user/create-user.component';
@@ -20,7 +20,7 @@ const routes: Routes = [
   {path:"get-started",component:CareerLevelComponent}
   ,
   {
-    path: 'signup', component: CreateUserComponent
+    path: 'create-account', component: CreateUserComponent
   },
   {
     path: 'Forgot-password', component: ForgetPasswordComponent

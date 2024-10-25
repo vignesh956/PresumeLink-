@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-career-level',
@@ -11,7 +12,7 @@ export class CareerLevelComponent  implements OnInit {
   selectedButtons: string[] = [];
   showStepperComponent:any=false;
   ShowGetStartedComponent:any=true;
-  constructor() { }
+  constructor(public router : Router) { }
 
   ngOnInit() {}
   items = [
@@ -21,11 +22,11 @@ export class CareerLevelComponent  implements OnInit {
     { icon: 'assets/icon/experience.png', text: 'Experience' }
   ];
   careerPurpose:any=[{name:"Accounting & Finance"},{name:"Administrative"},{name:"Business & Management"},{name:"Developer"},{name:"Customer Service & Operations"},{name:"Sales"},{name:"Dentist"},{name:"Engineering"},{name:"Marketing"},{name:"IT Software"},{name:"HR & Recruitment "}]
-  
+  filteredDomains: any[] = [...this.careerPurpose]; // To display filtered results
+  searchQuery: string = '';
     activeButtonIndex: any | null = null; // Track the index of the active button
     ShowComponents(){
-      this.showStepperComponent=true;
-      this.ShowGetStartedComponent=false
+      this.router.navigate(['stepper'])
     }
     // Toggle the button state
     toggleButton(index: number) {
@@ -37,25 +38,29 @@ export class CareerLevelComponent  implements OnInit {
       
     // this.ShowGetStartedComponent=false
     }
-    addButton() {
-      if (this.userInput.trim()) {
-        this.dynamicButtons.push(this.userInput); // Add the user input to dynamicButtons array
-        this.userInput = ''; // Clear the input field after adding the button
-      }
-    }
   
-    // Function to select a button and add to selectedButtons array
-    selectButton(buttonName: string) {
-      if (!this.selectedButtons.includes(buttonName)) {
-        this.selectedButtons.push(buttonName); // Add selected button to the selectedButtons array
-      }
-    }
   
     // Function to remove a button from selectedButtons array
     removeButton(index: number) {
       this.selectedButtons.splice(index, 1); // Remove button from the selectedButtons array
     }
  
-
+    filterDomains() {
+      const query = this.searchQuery.toLowerCase();
+  
+      // Filter domains based on query
+      const matchingDomains = this.careerPurpose.filter((domain:any) =>
+        domain.name.toLowerCase().includes(query)
+      );
+  
+      // Move exact matches (like "Sales") to the top
+      matchingDomains.sort((a:any, b:any) => {
+        if (a.name.toLowerCase().startsWith(query)) return -1;
+        if (b.name.toLowerCase().startsWith(query)) return 1;
+        return 0;
+      });
+  
+      this.filteredDomains = matchingDomains;
+    }
 
 }

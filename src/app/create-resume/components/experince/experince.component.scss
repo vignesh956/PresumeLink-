@@ -1,6 +1,14 @@
 
 
-
+.required{
+  color: var(--Blue, #053750);
+  text-align: center;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
 .projects-div{
     border-radius: 6px;
   border: 1px solid #FFF;
@@ -8,7 +16,7 @@
   padding: 0px 10px;
   box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.07);
     }
-    .projects-text{
+.projects-text{
     color: var(--Blue, #053750);
     text-align: center;
     font-family: Poppins;
@@ -18,7 +26,7 @@
     margin: 9px;
     line-height: normal;
     position: absolute;}
-    .projects-icon{
+.projects-icon{
     float: inline-end;height: 25px;
     float: inline-end;
     width: 25px;
@@ -66,6 +74,12 @@
     
       .aboutOutMe-text {
         text-transform: capitalize;
+        color: var(--Blue, #053750);
+        font-family: Poppins;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
       }
     }     
     
@@ -144,11 +158,6 @@
       margin: 6px;
     }
   
-    .button-image {
-      width: 16px; 
-      height: 16px; 
-      object-fit: contain; 
-    }
   }
   
   
