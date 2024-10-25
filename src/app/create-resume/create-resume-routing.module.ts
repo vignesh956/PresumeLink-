@@ -6,12 +6,16 @@ const routes: Routes = [
   // {
   //   path: '', redirectTo: 'login', pathMatch: 'full'
   // },
-  
-{path:"home",component:CreateResumeHomePageComponent}
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+  { path: 'home', component: CreateResumeHomePageComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)], 
-  exports: [RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class CreateResumeRoutingModule { }
+export class CreateResumeRoutingModule {}

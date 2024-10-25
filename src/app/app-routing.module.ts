@@ -11,11 +11,12 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule)
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthModule),
   },
   {
     path: 'create-resume',
-    loadChildren: () => import('./create-resume/create-resume.module').then( m => m.CreateResumeModule)
+    loadChildren: () => import('./create-resume/create-resume.module').then( m => m.CreateResumeModule),
+    canActivate: [authGuard]
   },
   {
     path: '',
