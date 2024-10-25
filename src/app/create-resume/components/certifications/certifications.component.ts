@@ -42,17 +42,17 @@ export class CertificationsComponent  implements OnInit {
       stepIndex: 8
     };
 
-    // Call the service to submit the form
-    this.service.submitCertification(payload).subscribe(
-      response => {
-        console.log('Submission successful', response);
-        // Handle success response (e.g., show a success message, redirect, etc.)
-      },
-      error => {
-        console.error('Submission failed', error);
-        // Handle error response (e.g., show an error message)
-      }
-    );
+    // // Call the service to submit the form
+    // this.service.submitCertification(payload).subscribe(
+    //   response => {
+    //     console.log('Submission successful', response);
+    //     // Handle success response (e.g., show a success message, redirect, etc.)
+    //   },
+    //   error => {
+    //     console.error('Submission failed', error);
+    //     // Handle error response (e.g., show an error message)
+    //   }
+    // );
 
     // Print form values to the console
     console.log(this.certificationsForm.value);

@@ -137,16 +137,16 @@
       };
 
       // Call the API to submit the data
-      this.service.submitSchoolDetails(educationDetails).subscribe(
-        (response) => {
-          console.log('Education details submitted successfully', response);
-          this.showEducationSubmittedData = true; // Show the submitted data
-          // form.resetForm(); // Reset form after submission
-        },
-        (error) => {
-          console.error('Error submitting education details', error);
-        }
-      );
+      // this.service.submitSchoolDetails(educationDetails).subscribe(
+      //   (response) => {
+      //     console.log('Education details submitted successfully', response);
+      //     this.showEducationSubmittedData = true; // Show the submitted data
+      //     // form.resetForm(); // Reset form after submission
+      //   },
+      //   (error) => {
+      //     console.error('Error submitting education details', error);
+      //   }
+      // );
     
   }
   submitInterDetails(form: NgForm) {
@@ -163,16 +163,16 @@
         stepIndex: 4,
       };
 
-      this.service.submitInterDetails(educationInterDetails).subscribe(
-        (response) => {
-          console.log('Intermediate/Diploma details submitted successfully', response);
-          this.showInterDiplomaSubmittedData = true;
-          form.resetForm();
-        },
-        (error) => {
-          console.error('Error submitting Intermediate/Diploma details', error);
-        }
-      );
+      // this.service.submitInterDetails(educationInterDetails).subscribe(
+      //   (response) => {
+      //     console.log('Intermediate/Diploma details submitted successfully', response);
+      //     this.showInterDiplomaSubmittedData = true;
+      //     form.resetForm();
+      //   },
+      //   (error) => {
+      //     console.error('Error submitting Intermediate/Diploma details', error);
+      //   }
+      // );
     } else {
       console.error('Intermediate/Diploma form is invalid');
     }
