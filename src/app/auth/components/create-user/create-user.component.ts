@@ -51,6 +51,6 @@ export class CreateUserComponent  implements OnInit {
   }
 
   showPhonecomponent() {
-    this.router.navigate(["login"]);
+    this.router.navigate(["auth/login"]);
   }  
 }
