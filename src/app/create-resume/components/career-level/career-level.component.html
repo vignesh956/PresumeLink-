@@ -20,8 +20,7 @@
           </ion-text>
         </div>
         <div style="border-radius: 6px;
-    width: 328px;
-  height: 220px;
+   
   padding: 10px 9px;
     border: 1px solid #FFF;
     background: linear-gradient(0deg, rgba(227, 242, 242, 0.65) 0%, rgba(255, 255, 255, 0.65) 100%);
@@ -54,7 +53,9 @@
   
         <ion-row>
           <ion-col>
-            <ion-input class="domain-input">
+            <ion-input class="domain-input"  [(ngModel)]="searchQuery" 
+            placeholder="Type your domain" 
+            (ionInput)="filterDomains()">
             </ion-input>
           </ion-col>
   
@@ -64,7 +65,7 @@
   
         </ion-row>
   
-        <ion-row>
+        <!-- <ion-row>
           <ion-col>
             <ion-item class="custom-button1">
   
@@ -82,15 +83,21 @@
             </ion-item>
   
           </ion-col>
-        </ion-row>
-  
-        <ion-content class="job-content-container">
+        </ion-row> -->
+        <div class="buttons-container">
+          <ion-button 
+            class="career-item" 
+            *ngFor="let domain of filteredDomains">
+            <ion-text class="career-text">{{ domain.name }}</ion-text>
+          </ion-button>
+        </div>
+        <!-- <ion-content class="job-content-container">
           <div class="buttons-container">
             <ion-button class="career-item" *ngFor="let names of careerPurpose">
               <ion-text class="career-text">{{ names.name }}</ion-text>
             </ion-button>
           </div>
-        </ion-content>
+        </ion-content> -->
         <ion-row size="12">
           <ion-col size=12>
             <ion-button class="Get-Started-text" (click)="ShowComponents()">

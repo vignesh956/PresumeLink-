@@ -9,25 +9,33 @@ import { StorageService } from 'src/app/services/storage.service';
   templateUrl: './employee-login.component.html',
   styleUrls: ['./employee-login.component.scss'],
 })
-export class EmployeeLoginComponent  implements OnInit {
-
+export class EmployeeLoginComponent implements OnInit {
+  showOtp: any = false;
+  showLogin: any = true;
   phoneForm!: FormGroup;
   emailForm!: FormGroup;
- 
+  otp: string = '';      
+    isOtpValid: boolean = false;
+  errorMessage: string = '';
   showPhoneComponent: any = true;
   showEmailComponent: any = false;
   selectedSegment: any = 'custom';
-  phoneImage: string = 'assets/icon/icon_private_tours_phone.png'; 
-  emailImage1: string = 'assets/icon/icon_private_tours_email1.png'; 
-  emailImage2: string = 'assets/icon/icon_private_tours_email2.png'; 
+  phoneImage: string = 'assets/icon/icon_private_tours_phone.png';
+  emailImage1: string = 'assets/icon/icon_private_tours_email1.png';
+  emailImage2: string = 'assets/icon/icon_private_tours_email2.png';
   socialAuthService: any;
-  
 
-  constructor(public router: Router, private fb: FormBuilder, private service: AuthService,private storageService: StorageService) {}
+  otpConfig = {
+    length: 6,
+    inputClass: 'otp-box',
+    allowNumbersOnly: true,
+    disableAutoFocus: false
+  };
+  constructor(public router: Router, private fb: FormBuilder, private service: AuthService,private storageService: StorageService) { }
 
-  ngOnInit() { 
+  ngOnInit() {
 
-   
+
     this.emailForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -38,10 +46,10 @@ export class EmployeeLoginComponent  implements OnInit {
     });
     this.phoneForm = this.fb.group({
       phone: [
-        '', 
+        '',
         [
           Validators.required,
-          Validators.pattern(/^[0-9]{10}$/) // Validate only the 10-digit phone number (without country code)
+          Validators.pattern(/^[0-9]{10}$/)
         ]
       ],
     });
@@ -66,7 +74,7 @@ export class EmployeeLoginComponent  implements OnInit {
     this.showPhoneComponent = false;
   }
 
-  otpcomponent() {}
+  otpcomponent() { }
 
   emailVarification() {
     this.router.navigate(["Email-varification"]);
@@ -81,26 +89,23 @@ export class EmployeeLoginComponent  implements OnInit {
   }
 
   onSendOtp() {
+    this.showOtp = true;
+    this.showLogin = false
     if (this.phoneForm.valid) {
-      // Get the phone number from the form
       let phoneNumber = this.phoneForm.value.phone;
-      let password = "pasword";  // Assuming you have a password field
-  
-      // Prepend +91 if not already present
+      let password = "pasword";
       if (!phoneNumber.startsWith('+91')) {
         phoneNumber = `+91${phoneNumber}`;
       }
-  
-      // Call the sendOtp service with both phone and password
       this.service.sendOtp({ phone: phoneNumber, password: password }).subscribe(
-        (response:any) => {
+        (response: any) => {
           console.log('OTP sent successfully:', response);
           alert('OTP sent to your phone number.');
           this.router.navigate(["otp-component"])
         },
-        (error:any) => {
+        (error: any) => {
           console.error('Error sending OTP:', error);
-          // Display the appropriate error message
+
           if (error.error && error.error.message) {
             alert(error.error.message[0]);
           } else {
@@ -109,16 +114,16 @@ export class EmployeeLoginComponent  implements OnInit {
         }
       );
     } else {
-      // Handle form validation errors
+
       alert('Please enter a valid phone number and password.');
     }
   }
-  
+
   emailVerification() {
     if (this.emailForm.valid) {
       const { email, password } = this.emailForm.value;
 
-      // Verify email and password
+
       this.service.verifyEmail(email, password).subscribe(
         (response: any) => {
 
@@ -140,15 +145,50 @@ export class EmployeeLoginComponent  implements OnInit {
     }
   }
 
-  
+
   validatePhoneNumber(control: any) {
     const phoneNumberPattern = /^[0-9]{10}$/;
     if (control.value && !phoneNumberPattern.test(control.value)) {
       return { invalidPhoneNumber: true };
     }
     return null;
-  } 
+  }
 
 
- 
+  onOtpChange(otp: string): void {
+    console.log('OTP Entered:', otp);
+    this.otp = otp;
+  }
+
+  verifyOtp() {
+
+    const enteredOtp = this.otp;
+
+    if (enteredOtp.length !== 6) {
+      alert('OTP must be 6 digits.');
+      return;
+    }
+
+
+    this.service.verifyPhoneNumberWithOtp(enteredOtp).subscribe(
+      (response: any) => {
+        console.log('OTP verified successfully:', response);
+        this.router.navigate(['dashboard']);
+
+      },
+      (error: any) => {
+        console.error('Error verifying OTP:', error);
+        if (error.status === 401) {
+          alert('Invalid OTP. Please try again.');
+        } else if (error.status === 400) {
+          alert('Invalid phone number format.');
+        } else if (error.status === 429) {
+          alert('Too many attempts. Please wait and try again.');
+        } else {
+          alert('An unexpected error occurred. Please try again later.');
+        }
+      }
+    );
+  }
+
 }
