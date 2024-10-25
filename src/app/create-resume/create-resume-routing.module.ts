@@ -9,24 +9,12 @@ const routes: Routes = [
   // {
   //   path: '', redirectTo: 'login', pathMatch: 'full'
   // },
-<<<<<<< Updated upstream
   {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
   },
   { path: 'home', component: CreateResumeHomePageComponent },
-=======
-  
-{path:"home",component:CreateResumeHomePageComponent},
-{
-  path:'career-level', component:CareerLevelComponent
-},
-{path:"stepper",component:CreateResumeHomePageComponent},
-{path:"experience",component:ExperinceComponent},
-{path:"skill",component:SkillsComponent}
-
->>>>>>> Stashed changes
 ];
 
 @NgModule({
