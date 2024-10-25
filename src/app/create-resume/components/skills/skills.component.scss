@@ -1,26 +1,26 @@
-:host {
+
     .skillsButton {
       min-width: 121.513px;
       min-height: 32px;
       --padding-top: 0px;
       position: absolute;
       border-radius: 16px;
-background: var(--Blue, #053750);
-box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
+      background: var(--Blue, #053750);
+      box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
       --padding-bottom: 0px;
       --padding-start: 0em;
       --padding-end: 0em;
     
     }
   
-    .skillsButton ion-icon {
-      background: #A6A6A6;
-      border-radius: 24px;
-      width: 15px;
-      height: 15px;
-      margin-left: 95px;
+    // .skillsButton ion-icon {
+    //   background: #A6A6A6;
+    //   border-radius: 24px;
+    //   // width: 15px;
+    //   // height: 15px;
+    //   // margin-left: 95px;
     
-    }
+    // }
   
     .skillsButton ion-text {
       color: #FFF;
@@ -28,83 +28,82 @@ box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.25);
       font-size: 12px;
       font-style: normal;
       font-weight: 400;
-      margin-right: 23px;
+      // margin-right: 23px;
       line-height: normal;
       position: absolute;
       text-transform: capitalize;
     }
-  }
-  .skills-text{
- 
-  }
 .skillsButton{
     --background: none;
     --box-shadow: none;
 
 }  
 
-::ng-deep .customButton {
-  border: 1px solid var(--White, #FFF);
-  --padding-bottom: 6px;
-  --padding-top: 9px;
-  --padding-start: 15px;
+.customButton {
+  // --padding-bottom: 6px;
+  // --padding-top: 9px;
+  // --padding-start: 15px;
+  // --padding-end: 16px;
   margin: 0px;
-  --padding-end: 16px;
   min-height: 2.1em;
+  border-radius: 24px;
+    border: 1px solid var(--White, #FFF);
+    background: #EFF5F5;
   }
   
-  ::ng-deep .customButton ion-text {
-    color: #A6A6A6;
+  .customButton ion-text {
+    // color: #A6A6A6;
     font-family: Poppins;
     font-size: 13px;
     font-weight: 400;
     line-height: normal;
     text-align: center;
+    
   }
   .skills-text{color: #000;
 text-align: center;
 font-family: Poppins;
 font-size: 16px;
 font-style: normal;
-margin: 5px;
+// margin: 5px;
 font-weight: 500;
 line-height: normal;}
-.language-line {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 280px;
-  height: 44px;
-  margin-top: 30px;
-  border-radius: 6px;
-  border: 1px solid rgba(113, 189, 189, 0.44);
-  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.07);
-  position: relative; 
-}
+// .language-line {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   width: 280px;
+//   height: 44px;
+//   margin-top: 30px;
+//   border-radius: 6px;
+//   border: 1px solid rgba(113, 189, 189, 0.44);
+//   box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.07);
+//   position: relative; 
+// }
 
-.language-line h2 {
-  font-size: 15px;
-  position: relative;
-  right: 70px;
-  bottom: 6px;
-  text-align: center;
-}
+// .language-line h2 {
+//   font-size: 15px;
+//   position: relative;
+//   right: 70px;
+//   bottom: 6px;
+//   text-align: center;
+// }
 
-.language-header-text {
-  background-color: white;
-  padding: 0 10px;
-  color: var(--Blue, #053750);
-}
+// .language-header-text {
+//   background-color: white;
+//   padding: 0 10px;
+//   color: var(--Blue, #053750);
+// }
 
-.plus-icon {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 8px; 
-  height: 24px; 
-}
-:host {
+// .plus-icon {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   margin: 8px; 
+//   height: 24px; 
+// }
+
   .form-group {
     position: relative;
     margin: 10px 5px;
@@ -145,4 +144,3 @@ line-height: normal;}
   .aboutOutMe-text {
     text-transform: capitalize;
   }
-}

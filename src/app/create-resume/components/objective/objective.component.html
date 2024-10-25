@@ -1,92 +1,53 @@
-
- <ion-grid class="gradient-background ">
+<ion-content class="gradient-background">
+  <ion-grid>
     <ion-row size="12">
       <ion-col>
         <div class="display-div">
-        <form [formGroup]="copyform">
-  
-          <ion-input placeholder="Type here...." type="text" formControlName="summery" style="color: #000; font-family: Poppins; font-size: 14px; background-color: #EFF5F5;">
-            {{ displayedText }}
-          </ion-input>
-          
-          <!-- <div *ngIf="validationCheck['name'].errors?.['minlength']">
-          summery must be minimun 10 characters.
-          </div>
-          <div *ngIf="validationCheck['name'].errors?.['maxlength']">
-          summery must be maximum 400 characters.
-          </div> -->
-        </form>
-      
-      </div>
-        <div><ion-text class="words-count">
-          170/400
-             </ion-text>
+          <form [formGroup]="copyform">
+            <ion-textarea
+              placeholder="Type here...."
+              formControlName="summary"
+              class="text-summary"
+              auto-grow="true"
+              (input)="updateCharCount()"
+              (paste)="onPaste($event)"
+              maxlength="400">
+            </ion-textarea>
+          </form>
         </div>
-
+        <div *ngIf="validationCheck['summary'].errors?.['minlength']">
+          Summary must be a minimum of 10 characters.
+        </div>
+        <div *ngIf="validationCheck['summary'].errors?.['maxlength']">
+          Summary must be a maximum of 400 characters.
+        </div>
+        <div>
+          <ion-text class="char-count">
+            {{ charCount }}/400
+          </ion-text>
+        </div>
       </ion-col>
     </ion-row>
-    <div style="margin: 12px 7px;">
-      <ion-text class="examples-text">
-        Examples
-      </ion-text>
+    <div class="example-text">
+      <ion-text class="examples-text">Examples</ion-text>
     </div>
-  <ion-content style="height:53vh;" class="gradient-background ">
     <ion-row>
       <ion-col size="12">
-        <div class="paragraph-Content" (click)="updateDisplayedText($event, 'paragraph1')"
-          [style.backgroundColor]="clickedParagraphId === 'paragraph1' ? backgroundColor : ''"
-          style="padding: 10px; border-radius: 6px; cursor: pointer; position: relative;">
-          <ion-text class="paragraph-text">
-            Accessibility-focused web designer with 10 years of experience crafting user interfaces that are inclusive
-            and meet WCAG guidelines. Strong understanding of HTML, CSS, and JavaScript. Proven ability to collaborate
-            with developers.
-          </ion-text>
-          <ion-text *ngIf="showCopyText === 'paragraph1'" class="copy-text">
-            <img src="assets/icon/Group 1000010493.png" alt="" class="copy-img">Copy
-          </ion-text>
-        </div>
-      </ion-col>
-
-      <ion-col size="12">
-        <div class="paragraph-Content" (click)="updateDisplayedText($event, 'paragraph2')"
-          [style.backgroundColor]="clickedParagraphId === 'paragraph2' ? backgroundColor : ''"
-          style="padding: 10px; border-radius: 6px; cursor: pointer; position: relative;">
-          <ion-text class="paragraph-text">
-            Web developer with expertise in building responsive websites and web applications. Skilled in JavaScript
-            frameworks like Angular and React.
-          </ion-text>
-          <ion-text *ngIf="showCopyText === 'paragraph2'" class="copy-text">
-            <img src="assets/icon/Group 1000010493.png" alt="" class="copy-img">Copy
-          </ion-text>
-        </div>
-      </ion-col>
-
-      <ion-col size="12">
-        <div class="paragraph-Content" (click)="updateDisplayedText($event, 'paragraph3')"
-          [style.backgroundColor]="clickedParagraphId === 'paragraph3' ? backgroundColor : ''">
-          <ion-text class="paragraph-text">
-            Mobile app developer specializing in creating native and cross-platform mobile apps. Experienced with Ionic,
-            Flutter, and Swift.
-          </ion-text>
-          <ion-text *ngIf="showCopyText === 'paragraph3'" class="copy-text">
-            <img src="assets/icon/Group 1000010493.png" alt="" class="copy-img">Copy
-          </ion-text>
-        </div>
-      </ion-col>
-
-      <ion-col size="12">
-        <div class="paragraph-Content" (click)="updateDisplayedText($event, 'paragraph4')"
-          [style.backgroundColor]="clickedParagraphId === 'paragraph4' ? backgroundColor : ''">
-          <ion-text class="paragraph-text">
-            Full-stack developer with a focus on creating scalable backend services and front-end interfaces. Expertise
-            in Node.js, Express, and Angular.
-          </ion-text>
-          <ion-text *ngIf="showCopyText === 'paragraph4'" class="copy-text">
-            <img src="assets/icon/Group 1000010493.png" alt="" class="copy-img"> Copy
-          </ion-text>
+        <div class="examples-container">
+          <ion-row *ngFor="let objective of summary; let i = index">
+            <ion-col size="12">
+              <div class="paragraph-Content" [ngClass]="{'highlight': clickedParagraphIndex === i}" (click)="copyTextToInput(objective.description, i)">
+                <ion-text class="paragraph-text">
+                  {{ objective.description }}
+                </ion-text>
+                <ion-text *ngIf="clickedParagraphIndex === i" class="copied-text">
+                  Copied
+                </ion-text>
+              </div>
+            </ion-col>
+          </ion-row>
         </div>
       </ion-col>
     </ion-row>
-  </ion-content>
- </ion-grid>
-
+  </ion-grid>
+</ion-content>

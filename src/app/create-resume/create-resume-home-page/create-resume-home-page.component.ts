@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ObjectiveComponent } from '../components/objective/objective.component';
 import { EducationComponent } from '../components/education/education.component';
 import { CreateResumeService } from '../create-resume.service';
+import { ExperinceComponent } from '../components/experince/experince.component';
 
 @Component({
   selector: 'app-create-resume-home-page',
@@ -15,13 +16,18 @@ export class CreateResumeHomePageComponent  implements OnInit {
   activeStepIndex: number = 0;
   stepIncrement: number = 10;
   rangeValue = 0;
-
-
   ActiveStep: number = 1;
-  
+  companyname:any;
+  position:any;
+  location:any;
+  startdate:any;
+  enddate:any;
+  description:any;
+
   @ViewChild(AboutMeComponent, { static: false }) aboutMeComponent!: AboutMeComponent; 
   @ViewChild(ObjectiveComponent, { static: false }) objectiveComponent!: ObjectiveComponent;
   @ViewChild(EducationComponent, { static: false }) educationComponent!: EducationComponent;
+  @ViewChild(ExperinceComponent, { static: false }) experinceComponent!: ExperinceComponent;
 
   // Define steps with corresponding component names
   steps = [
@@ -151,7 +157,6 @@ export class CreateResumeHomePageComponent  implements OnInit {
 
 
 
-
   previousStep() {
     if (this.ActiveStep > 1) {
       this.ActiveStep--;
@@ -183,6 +188,7 @@ nextStep() {
             }
           );
       } else {
+        this.ActiveStep++;
         console.warn('Personal details form is not valid.');
       }
       break;
@@ -190,12 +196,12 @@ nextStep() {
     case 2:
       if (this.objectiveComponent.copyform.valid) {
 
-        const educationDetails: any = {
-          examples: [this.objectiveComponent.copyform.value.summery],
-          objective_description: this.objectiveComponent.copyform.value.summery,
-          stepIndex: 3,
+        const copyDetails: any = {
+          examples: [this.objectiveComponent.copyform.value.summary],
+          objective_description: this.objectiveComponent.copyform.value.summary,
+          stepIndex: 2,
         };
-        this.createResumeService.submitCopyDetails(employeeId, educationDetails, token)
+        this.createResumeService.submitCopyDetails(employeeId, copyDetails, token)
           .subscribe(
             response => {
               console.log('Success:', response);
@@ -206,13 +212,44 @@ nextStep() {
             }
           );
       } else {
+        this.ActiveStep++;
         console.warn('Objective form is not valid.');
+      
       }
       break;
+      case 3:
+        console.log(this.experinceComponent, 'experince Component');
+        if (this.experinceComponent.experinceform.valid) {
+          const experinceDetails :any={
+            company_name: this.companyname,
+            position: this.position,
+            location: this.location,
+            start_date: this.startdate,
+            end_date: this.enddate,
+            experience_description: this.description
+          }; 
+          
+          this.createResumeService.submitworkDetails(employeeId, experinceDetails, token)
+            .subscribe(
+              response => {
+                console.log('Success:', response);
+                this.ActiveStep++; 
+              },
+              error => {
+                console.error('Error submitting experince details:', error);
+              }
+            );
+        } else {
+          console.warn('Experince details form is not valid.');
+          this.ActiveStep++; 
+        }
+        break; 
 
     default:
       console.warn('Invalid step.');
       break;
+      
+      
   }
 }
 

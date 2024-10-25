@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CreateResumeService } from '../../create-resume.service';
 
 @Component({
@@ -7,104 +7,68 @@ import { CreateResumeService } from '../../create-resume.service';
   templateUrl: './objective.component.html',
   styleUrls: ['./objective.component.scss'],
 })
-export class ObjectiveComponent  implements OnInit {
-
- 
-
-  submitted = false;
+export class ObjectiveComponent implements OnInit {
+submitted = false;
   displayedText: string = ''; 
-  clickedParagraphId: string = '';
-  backgroundColor: string = ' var(--Blue, #053750)';
-  showCopyText: string = ''; 
-  objectiveId: string = '12345'; 
-  copyform!:FormGroup;
-  constructor(public fb:FormBuilder ,public copyservice :CreateResumeService) {
-    
-     this.copyform = this.fb.group({
-      summery: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(10),
-          Validators.maxLength(400),
-        ],
-      ]
-    })
-   }
-     
-   get validationCheck() {
+  charCount: number = 0; 
+  clickedParagraphIndex: number | null = null; 
+
+  summary: Array<{ description: string }> = [
+    { description: 'Accessibility-focused web designer with 10 years of experience crafting user interfaces that are inclusive and meet WCAG guidelines.' },
+    { description: 'Web developer with expertise in building responsive websites and web applications.' },
+    { description: 'Mobile app developer specializing in creating native and cross-platform mobile apps.' },
+    { description: 'Full-stack developer with a focus on creating scalable backend services and front-end interfaces.' }
+  ];
+
+  copyform!: FormGroup;
+
+  constructor(public fb: FormBuilder, public copyservice: CreateResumeService) {
+    this.copyform = this.fb.group({
+      summary: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(400)]]
+    });
+  }
+
+  get validationCheck() {
     return this.copyform.controls;
   }
 
-
-
-
-  objectiveData: any = {
-    examples: [this.displayedText],
-    objective_description: '',
-    stepIndex: 3,
-  };
-
-
   ngOnInit() {}
 
-  updateDisplayedText(event: MouseEvent, paragraphId: string) {
-    const target = event.currentTarget as HTMLElement;
-    const textContent = target.querySelector('ion-text')?.innerText || '';
-    
-    this.displayedText = textContent;
-    this.copyform.patchValue({
-      summery : this.displayedText
-    })
-    this.clickedParagraphId = paragraphId;
-    this.showCopyText = paragraphId;
-    const token = 'your-auth-token';
-   
-    // Replace with your logic to get the token
-
-    // this.serice.updateObjectiveData(this.employeeId, this.objectiveData, token).subscribe(
-    //   (response) => {
-    //     console.log('Data updated successfully:', response);
-    //   },
-    //   (error) => {
-    //     console.error('Error updating data:', error);
-    //   }
-    // );
-    setTimeout(() => {
-      this.showCopyText = '';
-    }, 200000);
+  updateCharCount() {
+    const value = this.copyform.get('summary')?.value || '';
+    this.charCount = value.length;
   }
 
+  copyTextToInput(description: string, index: number) {
+    this.displayedText = description;
+    this.copyform.patchValue({ summary: this.displayedText });
+    this.updateCharCount();
+    this.clickedParagraphIndex = index; 
+    console.log(this.clickedParagraphIndex)
+    setTimeout(() => {
+      this.clickedParagraphIndex = null;
+    }, 1000);
+  }
 
-// submittextDetails() {
-//   const copyDetails: any = {
-//     examples: [this.displayedText],
-//     objective_description: '',
-//     stepIndex: 3,
-//   };
+  onPaste(event: ClipboardEvent) {
+    const clipboardData = event.clipboardData;
+    console.log(this.clickedParagraphIndex)
 
-//   this.copyservice.submitCopyDetails(this.employeeId, copyDetails, this.accessToken)
-//     .subscribe(
-//       response => console.log('Copy details updated:', response),
-//       error => console.error('Error updating copy details:', error)
-//     );
-// }
+    if (clipboardData) {
+      const pastedData = clipboardData.getData('text');
+      const currentValue = this.copyform.get('summary')?.value || '';
+      const newValue = currentValue + pastedData;
 
-
-// nextStep() {
-//   // if (this.activeStepIndex < this.steps.length - 1) {
-//   //   this.activeStepIndex++;
-//   //   this.toggleStep(this.steps[this.activeStepIndex]);
-//   // }
-// }
-
-// Function to go to the previous step
-// previousStep() {
-//   // if (this.activeStepIndex > 0) {
-//   //   this.activeStepIndex--;
-//   //   this.toggleStep(this.steps[this.activeStepIndex]);
-//   // }
-// }
+      if (newValue.length > 400) {
+        event.preventDefault();
+      } else {
+        this.copyform.patchValue({ summary: newValue });
+        this.updateCharCount();
+      }
+    } else {
+      console.error('Clipboard data is not available.');
     }
-  
+  }
 
+ 
+}

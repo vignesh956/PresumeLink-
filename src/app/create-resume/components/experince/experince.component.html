@@ -1,72 +1,117 @@
-
 <ion-content style="height:74vh;">
-  
-  <ion-grid>
-    <div class="projects-div">
-    <ion-row>
-      
-      <ion-col style="height: 50px;border-radius: 8px;
-  " size="11.3">
-  
-  <ion-text class="projects-text">
-    Experience one
-  </ion-text>
-  <ion-icon name="chevron-up-outline" class="projects-icon"></ion-icon>
-      </ion-col>
-      
-   </ion-row>
-   
-    <ion-row>
-      <ion-col class="form-group">
-        <ion-label class="required">Company Name </ion-label>
-        <ion-input class="form-control"></ion-input>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="form-group">
-        <ion-label class="required">Position/Designation</ion-label>
-        <ion-input class="form-control"></ion-input>
-      </ion-col>
-    </ion-row>
-   
-  <ion-row >
-  
-      <ion-col class="form-group" id="Description-input">
-        <ion-label class="required">Description <span class="optional-span">(Optional)</span></ion-label>
-        <ion-input class="form-control" aria-placeholder="jhgyfjh"></ion-input>
-      </ion-col>
-    </ion-row>
-  <ion-row >
-    <ion-col class="form-group">
-      <ion-label class="required">Start Date</ion-label>
-      <ion-input class="form-control">
-  
-       <ion-icon name="calendar-outline" slot="end" class="calendarIcon"></ion-icon>
-      </ion-input>  
-    </ion-col>
-    <ion-col class="form-group">
-      <ion-label class="required">End Date</ion-label>
-      <ion-input class="form-control">
-        <ion-icon name="calendar-outline" slot="end" class="calendarIcon"></ion-icon>
-      </ion-input>
-   </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col size="10" class="checkboxContainer" style="margin: 10px 10px;">
-      <ion-checkbox class="styledCheckbox"></ion-checkbox>
-      <ion-text class="textBehind">Are you currently Working on it?</ion-text>
-    </ion-col>
-  </ion-row>
-  </div>
-  <ion-row>
-    <ion-col size="6.2">
-      <ion-button class="aboutOutMe-Button" id="button-one">
+  <form [formGroup]="experinceform">  
+    <ion-grid>
+      <div class="projects-div">
+        <ion-row>
+          <ion-col class="form-group">
+            <ion-label class="required">Company Name</ion-label>
+            <ion-input class="form-control" formControlName="companyname"></ion-input>
+          </ion-col>
+        </ion-row>
+        <div *ngIf="validationCheck['companyname'].invalid && (validationCheck['companyname'].dirty || validationCheck['companyname'].touched)">
+          <div *ngIf="validationCheck['companyname'].errors?.['required']">
+            Company name is required.
+          </div>
+          <div *ngIf="validationCheck['companyname'].errors?.['minlength']">
+            Company name must be a minimum of 3 characters.
+          </div>
+          <div *ngIf="validationCheck['companyname'].errors?.['maxlength']">
+            Company name must be a maximum of 20 characters.
+          </div>
+        </div>
+        
+        <ion-row>
+          <ion-col class="form-group">
+            <ion-label class="required">Position/Designation</ion-label>
+            <ion-input class="form-control" formControlName="position"></ion-input>
+          </ion-col>
+        </ion-row>
+        <div *ngIf="validationCheck['position'].invalid && (validationCheck['position'].dirty || validationCheck['position'].touched)">
+          <div *ngIf="validationCheck['position'].errors?.['required']">
+            position/designation is required.
+          </div>
+          <div *ngIf="validationCheck['position'].errors?.['minlength']">
+            position/designation must be a minimum of 3 characters.
+          </div>
+          <div *ngIf="validationCheck['position'].errors?.['maxlength']">
+            position/designation must be a maximum of 20 characters.
+          </div>
+        </div>
+        <ion-row>
+          <ion-col class="form-group">
+            <ion-label class="required">Location</ion-label>
+            <ion-input class="form-control" formControlName="location"></ion-input>
+          </ion-col>
+        </ion-row>
+        <div *ngIf="validationCheck['location'].invalid && (validationCheck['location'].dirty || validationCheck['location'].touched)">
+          <div *ngIf="validationCheck['location'].errors?.['required']">
+            location name is required.
+          </div>
+          <div *ngIf="validationCheck['location'].errors?.['minlength']">
+            location name must be a minimum of 3 characters.
+          </div>
+          <div *ngIf="validationCheck['location'].errors?.['maxlength']">
+            location name must be a maximum of 20 characters.
+          </div>
+        </div>
+        <ion-row>
+          <ion-col class="form-group" id="Description-input">
+            <ion-label class="required">Description</ion-label>
+            <ion-input class="form-control" formControlName="description"></ion-input>
+          </ion-col>
+        </ion-row>
+        <div *ngIf="validationCheck['description'].invalid && (validationCheck['description'].dirty || validationCheck['description'].touched)">
+          <div *ngIf="validationCheck['description'].errors?.['required']">
+            description name is required.
+          </div>
+          <div *ngIf="validationCheck['description'].errors?.['minlength']">
+            description name must be a minimum of 10 characters.
+          </div>
+          <div *ngIf="validationCheck['description'].errors?.['maxlength']">
+            description name must be a maximum of 100 characters.
+          </div>
+        </div>
 
-        <ion-text class="aboutOutMe-text">Add Experience </ion-text>
-        <img src="assets/icon/Group 1000010326.png" alt="" class="button-image" />
-      </ion-button>
-    </ion-col>
-  </ion-row>
-  </ion-grid>
-  
-  </ion-content>
+        <ion-row>
+          <ion-col size="5.5" class="form-group">
+            <ion-label class="required">Start Date</ion-label>
+            <ion-input class="form-control" type="date" formControlName="startdate"></ion-input>  
+          </ion-col>
+          
+
+          <ion-col size="5.5" class="form-group">
+            <ion-label class="required">End Date</ion-label>
+            <ion-input class="form-control" type="date" formControlName="enddate"></ion-input> 
+          </ion-col>
+          
+        </ion-row>
+        <div *ngIf="validationCheck['startdate'].invalid && (validationCheck['startdate'].dirty || validationCheck['startdate'].touched)">
+          <div *ngIf="validationCheck['startdate'].errors?.['required']">
+            startdate name is required.
+          </div>
+        </div>
+        <div *ngIf="validationCheck['enddate'].invalid && (validationCheck['enddate'].dirty || validationCheck['enddate'].touched)">
+          <div *ngIf="validationCheck['enddate'].errors?.['required']">
+            enddate name is required.
+          </div>
+        </div>
+        
+        <ion-row>
+          <ion-col  class="checkboxContainer" style="margin: 10px 10px;">
+            <ion-checkbox class="styledCheckbox" formControlName="isCurrentlyWorking"></ion-checkbox>
+            <ion-text class="textBehind">Are you currently working here?</ion-text>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-button class="aboutOutMe-Button" id="button-one">
+            <ion-text class="aboutOutMe-text">Add Experience</ion-text>
+            <ion-icon name="add-circle" style="color: rgba(113, 189, 189, 1);font-size: 20px;"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
