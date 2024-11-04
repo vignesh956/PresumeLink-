@@ -11,7 +11,7 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
-  { path: 'home', component: CreateResumeHomePageComponent },
+  { path: 'stepper', component: CreateResumeHomePageComponent },
 ];
 
 @NgModule({
