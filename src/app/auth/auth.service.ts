@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   private apiUrl = 'http://3.110.176.221:3080/ps/v1/user'; 
-  private baseUrl = 'http://43.204.67.249:3080/ps/v1/employee';
   private email: string = '';
   private phoneNumber: string = '+919347252317';
   constructor(private http:HttpClient) { }

@@ -14,14 +14,18 @@ import { EducationComponent } from './components/education/education.component';
 import { ObjectiveComponent } from './components/objective/objective.component';
 import { CertificationsComponent } from './components/certifications/certifications.component';
 import { LanguagesComponent } from './components/languages/languages.component';
+import { SocialComponent } from './components/social/social.component';
 
 
 @NgModule({
-  declarations: [CreateResumeHomePageComponent,AboutMeComponent,InterestsComponent,ProjectComponent,ExperinceComponent,SkillsComponent,EducationComponent,ObjectiveComponent,CertificationsComponent,LanguagesComponent],
+  declarations: [CreateResumeHomePageComponent,AboutMeComponent,InterestsComponent,ProjectComponent,ExperinceComponent,SkillsComponent,EducationComponent,ObjectiveComponent,CertificationsComponent,LanguagesComponent,SocialComponent],
   imports: [
     CommonModule,
     CreateResumeRoutingModule,
     IonicModule,FormsModule,ReactiveFormsModule
   ]
-})
+}
+)
+
+
 export class CreateResumeModule { }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-resume-home-page',
@@ -10,7 +11,7 @@ export class CreateResumeHomePageComponent  implements OnInit {
   activeStepIndex: number = 0;
   stepIncrement: number = 10;
   rangeValue = 0;
-
+  ActiveStep:any=''
   // Define steps with corresponding component names
   steps = [
     {
@@ -73,7 +74,13 @@ export class CreateResumeHomePageComponent  implements OnInit {
       defaultIcon: 'assets/icon/Group 1000010339.png',
       activeIcon: 'assets/icon/Group 1000010251.png',
       isActive: false,
-    },  
+    }, 
+    {
+      name: 'uiDesign',
+      defaultIcon: 'assets/icon/Group 1000010339.png',
+      activeIcon: 'assets/icon/Group 1000010251.png',
+      isActive: false,
+    },   
     
   ];
  
@@ -88,15 +95,20 @@ export class CreateResumeHomePageComponent  implements OnInit {
     Certifications: false,
     Languages : false,
     Social:false,
-    Interests:false
+    Interests:false,
+    uiDesign:false
   };
 
-  constructor() {}
+  constructor(private route:Router) {}
 
   ngOnInit(): void {
     this.showComponent('Aboutme'); // Display the first component initially
   }
-
+  backButton(){
+    this.route.navigate(["career-Level"])
+    console
+    .log("huxsrfcgcareer-Level  ")
+  }
   // Method to toggle the active step and display the corresponding component
   toggleStep(step: any) {
     // Set all steps to inactive
@@ -135,19 +147,69 @@ export class CreateResumeHomePageComponent  implements OnInit {
     console.log('Range changed:', this.rangeValue);
   }
   nextStep() {
-    if (this.activeStepIndex < this.steps.length - 1) {
-      this.activeStepIndex++;
-      this.toggleStep(this.steps[this.activeStepIndex]);
-    }
-  }
+    const userDataString = localStorage.getItem('userData');
+    const data: any = userDataString ? JSON.parse(userDataString) : null;
+    
+    const employeeId = data?.id;
+    const token = data?.accessToken;
+  
+    // switch (this.ActiveStep) {
+    //   case 1:
+    //     console.log(this.aboutMeComponent, 'About Me Component');
+    //     if (this.aboutMeComponent) {
+          // const personalDetails = this.aboutMeComponent.profileForm.value; 
+          
+          // this.createResumeService.submitSscDetails(employeeId, personalDetails, token)
+          //   .subscribe(
+          //     response => {
+          //       console.log('Success:', response);
+                
+          //     },
+          //     error => {
+          //       console.error('Error submitting personal details:', error);
+          //     }
+          //   );
+      //     this.ActiveStep++; 
+      //   } else {
+      //     console.warn('Personal details form is not valid.');
+      //   }
+      //   break;
+  
+      // case 2:
+      //   if (this.objectiveComponent) {
+  
+          // const educationDetails: any = {
+          //   examples: [this.objectiveComponent.copyform.value.summery],
+          //   objective_description: this.objectiveComponent.copyform.value.summery,
+          //   stepIndex: 3,
+          // };
+          // this.createResumeService.submitCopyDetails(employeeId, educationDetails, token)
+          //   .subscribe(
+          //     response => {
+          //       console.log('Success:', response);
+          //       this.ActiveStep++; 
+          //     },
+          //     error => {
+          //       console.error('Error submitting education details:', error);
+          //     }
+          //   );
+  //         this.ActiveStep++; 
+  //       } else {
+  //         console.warn('Objective form is not valid.');
+  //       }
+  //       break;
+  
+  //     default:
+  //       console.warn('Invalid step.');
+  //       break;
+  //   }
+  // }
 
-  // Function to go to the previous step
-  previousStep() {
-    if (this.activeStepIndex > 0) {
-      this.activeStepIndex--;
-      this.toggleStep(this.steps[this.activeStepIndex]);
-    }
-  }
-
-
-}
+  
+  // previousStep() {
+  //   if (this.activeStepIndex > 0) {
+  //     this.activeStepIndex--;
+  //     this.toggleStep(this.steps[this.activeStepIndex]);
+  //   }
+  // }
+  }}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { CreateResumeService } from '../../create-resume.service';
 
 @Component({
   selector: 'app-about-me',
@@ -22,16 +23,20 @@ export class AboutMeComponent  implements OnInit {
     this.selectedGender = gender;
   }
     
-  constructor(private fb: FormBuilder, ) {}
+  constructor(private fb: FormBuilder,private employeeService:CreateResumeService ) {}
 
   ngOnInit() {
     this.profileForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2)]],
       lastName: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
-      phoneNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]], 
-      location: ['', Validators.required],
-      jobTitles: ['', [Validators.required, Validators.minLength(3)]]
+      phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],  // Basic pattern for numbers
+      location: ['', [Validators.required]],
+      jobTitles: ['', [Validators.required, Validators.minLength(2)]],
+      gender: [''],
+      birthDate: [''],
+      maritalStatus: [''],
+      schoolName: ['']
     });
   }
   onInputBlur(event: any) {
@@ -73,5 +78,44 @@ export class AboutMeComponent  implements OnInit {
         return 'white-background';
     }
   }
+  onSubmit() {
+    if (this.profileForm.valid) {
+      const formData = this.profileForm.value;
+      const dataToSubmit = {
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email,
+        gender: this.selectedGender,
+        phone:`+91${formData.phoneNumber}`,
+        job_title: formData.jobTitles,
+        birth_date: formData.birthDate,
+        avatar: 'avatar_url',  
+        address: formData.location,
+        stepIndex: 1  
+        // first_name: "name",
+        // last_name: "name",
+        // email: "abhishiekoauk@gmail.com",
+        // gender: "male or female",
+        // phone: "+918790747452",
+        // job_title: "Jobtittle",
+        // birth_date: "date",
+        // avatar: "avatar",
+        // address: "address",
+        // stepIndex: 1
+      };
 
+      // Call the ProfileService to submit the profile data
+      this.employeeService.submitAboutMeData(dataToSubmit).subscribe(
+        response => {
+          console.log('Profile Submitted:', response);
+        },
+        error => {
+          console.error('Error submitting profile:', error);
+        }
+      );
+    } else {
+      console.log('Form is invalid');
+    }
+  }
 }
+

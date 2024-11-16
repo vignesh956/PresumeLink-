@@ -7,7 +7,7 @@
       <ion-text class="Resume-text">Create Resume</ion-text>
     </ion-col>
     <ion-col>
-      <img src="assets/icon/Group 1000010214.png" alt="" class="  ">
+      <img src="assets/icon/Group 1000010214.png" alt="" class="  " (click)="backButton()">
     </ion-col>
   </ion-row>
   <ion-row>
@@ -27,7 +27,7 @@
       </ion-content>
 
     </ion-col>
-    <ion-col size="10">
+    <ion-col size="10" style="background: #EAF3F0;">
       <ion-text class="progress-text">{{ progress }}%
         <span class="profile-completed">
           Profile Completed
@@ -145,6 +145,12 @@
         <ion-text class="component-text">
           Interests
         </ion-text>
+        <app-social></app-social>     
+      </div>
+      <div *ngIf="componentsVisibility['uiDesign']">
+        <ion-text class="component-text">
+          Interests
+        </ion-text>
         <app-interests></app-interests>
       </div>
     </ion-col>
@@ -160,7 +166,7 @@
       <ion-row style="margin: 10px 20px;">
         <ion-col>
           <div class="footer-button">
-            <ion-icon name="chevron-back-outline" class="previous-icon" (click)="previousStep()"
+            <ion-icon name="chevron-back-outline" class="previous-icon" 
               [ngClass]="{'disabled': activeStepIndex === 0}"></ion-icon>
 
             <ion-text style="position: absolute;color: #053750;

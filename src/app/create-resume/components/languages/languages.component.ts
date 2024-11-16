@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CreateResumeService } from '../../create-resume.service';
 
 @Component({
   selector: 'app-languages',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LanguagesComponent  implements OnInit {
 
-  constructor() { }
+  constructor( private languageService:CreateResumeService) { }
 
   ngOnInit() {}
   languages: any[] = [
@@ -16,17 +17,33 @@ export class LanguagesComponent  implements OnInit {
     { name: 'Hindi', selectedOptions: [] }
   ];
 
-
-
+fluency: string = 'medium'
   toggleOption(languageIndex: number, option: number) {
     const selectedOptions = this.languages[languageIndex].selectedOptions;
-
     if (selectedOptions.includes(option)) {
-      // If the option is already selected, remove it from the array (deselect)
-      this.languages[languageIndex].selectedOptions = selectedOptions.filter((o:any) => o !== option);
+      this.languages[languageIndex].selectedOptions = selectedOptions.filter((o: any) => o !== option);
     } else {
-      // Otherwise, add the option to the array (select it)
       this.languages[languageIndex].selectedOptions.push(option);
     }
+  }
+
+  submitLanguages() {
+    const payload = {
+      enter_languages: this.languages.map(language => ({
+        name: language.name,
+        selectedOptions: language.selectedOptions
+      })),
+      languages_fluency: this.fluency,  // Corrected to "languages_fluency"
+      stepIndex: 9
+    };
+  
+    this.languageService.submitLanguages(payload).subscribe(
+      response => {
+        console.log('Languages submitted successfully', response);
+      },
+      error => {
+        console.error('Error submitting languages', error);
+      }
+    );
   }
 }

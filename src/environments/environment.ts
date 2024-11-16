@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  basePath: "http://3.110.176.221:3080/ps/v1/presume"
 };
 
 /*

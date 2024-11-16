@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CreateResumeService } from '../../create-resume.service';
+import { IonInput } from '@ionic/angular';
 
 @Component({
   selector: 'app-education',
@@ -8,93 +9,154 @@ import { CreateResumeService } from '../../create-resume.service';
   styleUrls: ['./education.component.scss'],
 })
 export class EducationComponent  implements OnInit {
+  isEducationOpen: boolean = false;
+  isInterDiplomaOpen: boolean = false;
+  isDegreeOpen: boolean = false;
+  educationDetails: any = {};
+  // educationForm: FormGroup;
+  // interDiplomaForm:FormGroup;
 
-  isEducationOpen = false;
+  showEducationSubmittedData: boolean = false;
+  showInterDiplomaSubmittedData: boolean = false;
+  showDegreeSubmittedData: boolean = false;
+
+  educationType: any = '';
+  DegreeEducationType: any = '';
+
+  isSelectOpen: boolean = false;
+
+  closeRow: boolean = true;
+  closeRow1: boolean = true;
+  closeRow2: boolean = true;
+  intergpa:any="";
+  degreegpa:any="";
+  schoolGpa: any = '';
   submitted = false;
-  educationType: string = 'ssc';
-  isDropdownOpen = false;
-  selectedEducationType: string | null = null;
-  schoolName: any;
-  isSelectOpen:any=true
-  location: any;
-  startDate: any;
-  endDate: any;
+  // degreeform:FormGroup;
+  schoolName:any=''
+  schoolLocation:any=" "
+  schoolStartDate:any=""
+  schoolLastDate:any=""
 
-  documents: any[] = [];
-  employeeId = '66fe8b162ffe0aaf9d6f663a';
-  accessToken:any=
 
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDNhZjk2ZDQzMWE3M2UwZmExMDdjMiIsImVtYWlsIjoicHZtYWhlc2g3OUBnbWFpbC5jb20iLCJyb2xlcyI6WyJ1c2VyIl0sImlhdCI6MTcyODI5NDg4MSwiZXhwIjoxNzI4MzgxMjgxfQ.c0QtbsmHA4cnHfL6HUxA6fFiPXjNLmRp_Ik4b_FauaU"
-  constructor(private elementRef: ElementRef,public service:CreateResumeService) {}
+  interCollageName: string = '';
+  interEducationType: any = '';
+  interLocation: string = '';
+  intersStartDate: any = '';
+  interEndDate: any = '';
+  collegeDocuments: any[] = [];
+
   
-  ngOnInit() {
+  universityCollege: string = '';
+  degreeLocation: string = '';
+  degreeStartDate: any = '';
+  degreeEndDate: any = '';
+
+  constructor(
+    private elementRef: ElementRef,
+    public service: CreateResumeService,
+   
+  ) { 
+   
    
   }
-  onEducationTypeChange(event: any) {
-    this.educationType = event.detail.value; 
-  }
 
+  ngOnInit() {
+    console.log(this.educationType, 'education-type',this.schoolName,this.schoolLocation);
+    
+  }
 
   toggleEducation() {
-    if (this.isEducationOpen) {
-      this.submitted = true;
+  this.isEducationOpen=true;
+  
+  }
+
+  displaySelected() {
+    console.log(this.educationType, 'Selected Education Type');
+  }
+
+
+  toggleInterDiploma() {
+    if(this.isEducationOpen){
+      this.isEducationOpen=false;
+      this.showEducationSubmittedData=true;
+      this.closeRow=false
     }
-    this.isEducationOpen = !this.isEducationOpen;
+   this.isInterDiplomaOpen=true
   }
 
+  toggleDegree() {
+   if(this.isInterDiplomaOpen){
+    this.showInterDiplomaSubmittedData=true;
+    this.isInterDiplomaOpen=false;
+    this.closeRow1=false
+   }
 
-  toggleSelect() {
-    this.isSelectOpen = !this.isSelectOpen;
-  }
-  toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
+   this.isDegreeOpen=true
   }
 
-  @HostListener('document:click', ['$event'])
-  clickOutside(event: MouseEvent) {
-    const clickedInside = this.elementRef.nativeElement.contains(event.target);
-    if (!clickedInside && this.isEducationOpen) {
-      this.closeForm();
-    }
+  showSchoolInputs() {
+    this.closeRow = true;
+    this.isEducationOpen = true;
+    this.showEducationSubmittedData = false;
   }
-  selectEducationType(type: string) {
-    this.selectedEducationType = type;
-    this.isDropdownOpen = false;  
+
+  showInterInputs() {
+    this.closeRow1 = true;
+    this.isInterDiplomaOpen = true;
+    this.showInterDiplomaSubmittedData = false;
   }
-  closeForm() {
-    if (this.isEducationOpen) {
-      this.submitted = true;
-    }
-    this.isEducationOpen = false;
-   
-  } 
 
-  submitEducationDetails(form: NgForm) {
-    if (form.valid && this.educationType === 'ssc') {
-      const sscDetails = {
-        ssc: {
-          school_name: this.schoolName,
-          education_type: this.educationType,
-          location: this.location,
-          start_date: this.startDate,
-          end_date: this.endDate,
-          school_documents: this.documents,
-        },
-        stepIndex: 4,
-      };
+  showDegreeInputs() {
+    this.closeRow2 = true;
+    this.isDegreeOpen = true;
+    this.showDegreeSubmittedData = false;
+  }
 
-      this.service.submitSscDetails(this.employeeId, sscDetails, this.accessToken)
-        .subscribe(
-          (response: any) => {
-            console.log('SSC details updated:', response);
-            this.submitted = true;
-            // this.router.navigate(['/dashboard']); // Navigate after successful submission
-          },
-          (error: any) => {
-            console.error('Error updating SSC details:', error);
-          }
-        );
-    } else {
-      console.error('Form is invalid or education type is not SSC');
-    }
-  }}
+  focusInput(input: IonInput) {
+    input.getInputElement().then((el) => el.focus());
+    console.log('Focused on input');
+  }
+
+  updateEducationDetails() {
+    const updatedEducationDetails = {
+      ssc: {
+        school_name: this.schoolName,
+        education_type: this.educationType,
+        location: this.schoolLocation,
+        start_date: this.schoolStartDate,
+        end_date: this.schoolLastDate,
+        gpa: this.schoolGpa,
+        school_documents: [], // Add documents if needed
+      },
+      inter: {
+        institute_name: this.interCollageName,
+        field_of_study: this.interEducationType,
+        location: this.interLocation,
+        start_date: this.intersStartDate,
+        end_date: this.interEndDate,
+        college_documents: [], // Add documents if needed
+      },
+      degree: {
+        university_name: this.universityCollege,
+        field_of_study: this.educationType,  // Replace with appropriate degree type
+        location: this.degreeLocation,
+        start_date: this.degreeStartDate,
+        end_date: this.degreeEndDate,
+        degree_documents: [], // Add documents if needed
+      },
+      stepIndex: 4,
+    };
+
+    // Call the PATCH API method
+    this.service.patchEducationDetails(updatedEducationDetails).subscribe(
+      (response) => {
+        console.log('Education details updated successfully', response);
+      },
+      (error) => {
+        console.error('Error updating education details', error);
+      }
+    );
+  }
+}
+ 

@@ -1,48 +1,40 @@
 <ion-content style="height: 60vh;">
   <ion-grid style="background: #EAF3F0;">
-    
+
+    <!-- Input for adding a new skill -->
     <ion-row>
       <ion-col class="form-group">
-        <ion-label class="required">School Name</ion-label>
-        
+        <ion-label class="required">Enter Skills</ion-label>
+        <ion-input [(ngModel)]="newSkill" placeholder="Type a skill..."></ion-input>
+        <ion-button (click)="addSkill()" style="position: absolute; right: 4px;">
+          <img src="assets/icon/Group 1000010372.png" alt="Add Skill Icon" (click)="addSkill()" >
+        </ion-button>
       </ion-col>
     </ion-row>
-  <ion-row >
-    <ion-col size="5" style="margin-right: 10px;">
-      <ion-button class="skillsButton">
-        <ion-text class="skills-text">
-          Wireframing
-        </ion-text>
-        <img src="assets/icon/Group 1000010362.png" alt="" style="margin-left: 90px;">
-  
-      </ion-button>
-    </ion-col>
-    <ion-col size="5">
-      <ion-button class="skillsButton">
-        <ion-text class="skills-text">
-          UX Research
-        </ion-text>
-        <img src="assets/icon/Group 1000010362.png" alt="" style="margin-left: 90px;">
-  
-      </ion-button>
-    </ion-col>
-  </ion-row>
-  <div style="margin: 40px 0px 15px 10px;">
-  <ion-text class="skills-text">
-    Suggested Skills
-  </ion-text>
-  </div>
-  <ion-row>
-    <ion-col *ngFor="let buttonText of buttonTexts" size=auto >
-      <div>
-      <ion-button class="customButton" fill="outline">
-        <ion-text>{{ buttonText }}</ion-text>
-      </ion-button> 
+
+    <!-- Display entered skills with delete functionality -->
+    <ion-row>
+      <ion-col *ngFor="let skill of enteredSkills" size="5" style="margin-right: 10px;">
+        <ion-button class="skillsButton">
+          <ion-text class="skills-text">{{ skill }}</ion-text>
+          <img src="assets/icon/Group 1000010479.png" (click)="removeSkill(skill)" alt="Delete Icon" style="margin-left: 90px; cursor: pointer;">
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <!-- Suggested Skills Section -->
+    <div style="margin: 40px 0px 15px 10px;">
+      <ion-text class="skills-text">Suggested Skills</ion-text>
     </div>
-    </ion-col>
-  </ion-row>
-  
-  
+    <ion-row>
+      <ion-col *ngFor="let skill of suggestedSkills" size="auto">
+        <ion-button class="customButton" fill="outline" (click)="addSuggestedSkill(skill)">
+          <ion-text>{{ skill }}</ion-text>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <button (click)="updateSkillsData()">
+      skills
+    </button>
   </ion-grid>
-  </ion-content>
-  
+</ion-content>

@@ -1,75 +1,95 @@
-
 <ion-content style="height:74vh;">
-  
-  <ion-grid>
-    <div class="projects-div">
-    <ion-row>
-      
-      <ion-col style="height: 50px;border-radius: 8px;
-  " size="11.3">
-  
-  <ion-text class="projects-text">
-  Project one
-  </ion-text>
-  <ion-icon name="chevron-up-outline" class="projects-icon"></ion-icon>
-      </ion-col>
-      
-   </ion-row>
-   
-    <ion-row>
-      <ion-col class="form-group">
-        <ion-label class="required">Project Title</ion-label>
-        <ion-input class="form-control"></ion-input>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="form-group">
-        <ion-label class="required">Role</ion-label>
-        <ion-input class="form-control"></ion-input>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col class="form-group">
-        <ion-label class="required">Institute/Company</ion-label>
-        <ion-input class="form-control"></ion-input>
-      </ion-col>
-    </ion-row>
-     <ion-row>
-      <ion-col class="form-group">
-        <ion-label class="required">Location</ion-label>
-        <ion-input class="form-control"></ion-input>
-      </ion-col>
-    </ion-row>
-  <ion-row >
-  
-      <ion-col class="form-group" id="Description-input">
-        <ion-label class="required">Description <span class="optional-span">(Optional)</span></ion-label>
-        <ion-input class="form-control" aria-placeholder="jhgyfjh"></ion-input>
-      </ion-col>
-    </ion-row>
-  <ion-row >
-    <ion-col class="form-group">
-      <ion-label class="required">Start Date</ion-label>
-      <ion-input class="form-control">
-  
-       <ion-icon name="calendar-outline" slot="end" class="calendarIcon"></ion-icon>
-      </ion-input>  
-    </ion-col>
-    <ion-col class="form-group">
-      <ion-label class="required">End Date</ion-label>
-      <ion-input class="form-control">
-        <ion-icon name="calendar-outline" slot="end" class="calendarIcon"></ion-icon>
-      </ion-input>
-   </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col size="10" class="checkboxContainer" style="margin: 10px 10px;">
-      <ion-checkbox class="styledCheckbox"></ion-checkbox>
-      <ion-text class="textBehind">Are you currently Working on it?</ion-text>
-    </ion-col>
-  </ion-row>
-  </div>
-  
-  </ion-grid>
-  
-  </ion-content>
+  <form [formGroup]="projectForm" (ngSubmit)="updateForm()">
+    <ion-grid>
+      <div class="projects-div">
+        <ion-row>
+          <ion-col size="11.3" style="height: 50px; border-radius: 8px;">
+            <ion-text class="projects-text">Project Form</ion-text>
+          </ion-col>
+        </ion-row>
+
+        <!-- Project Title -->
+        <ion-row>
+          <ion-col class="form-group">
+            <ion-label class="required">Project Title</ion-label>
+            <ion-input formControlName="project_title" class="form-control"></ion-input>
+            <ion-text color="danger" *ngIf="projectForm.get('project_title')?.touched && projectForm.get('project_title')?.invalid">
+              Project Title is required.
+            </ion-text>
+          </ion-col>
+        </ion-row>
+
+        <!-- Role Field -->
+        <ion-row>
+          <ion-col class="form-group">
+            <ion-label class="required">Role</ion-label>
+            <ion-input formControlName="role" class="form-control"></ion-input>
+            <ion-text color="danger" *ngIf="projectForm.get('role')?.touched && projectForm.get('role')?.invalid">
+              Role is required.
+            </ion-text>
+          </ion-col>
+        </ion-row>
+
+        <!-- Additional Fields (Institute, Location, Description, Start Date, End Date) -->
+        <ion-row>
+          <ion-col class="form-group">
+            <ion-label class="required">Institute/Company</ion-label>
+            <ion-input formControlName="institute" class="form-control"></ion-input>
+            <ion-text color="danger" *ngIf="projectForm.get('institute')?.touched && projectForm.get('institute')?.invalid">
+              Institute is required.
+            </ion-text>
+          </ion-col>
+        </ion-row>
+
+        <!-- Location Field -->
+        <ion-row>
+          <ion-col class="form-group">
+            <ion-label class="required">Location</ion-label>
+            <ion-input formControlName="location" class="form-control"></ion-input>
+            <ion-text color="danger" *ngIf="projectForm.get('location')?.touched && projectForm.get('location')?.invalid">
+              Location is required.
+            </ion-text>
+          </ion-col>
+        </ion-row>
+
+        <!-- Date Fields and Checkbox -->
+        <ion-row>
+          <ion-col class="form-group">
+            <ion-label class="required">Start Date</ion-label>
+            <ion-input formControlName="start_date" class="form-control">
+              <ion-icon name="calendar-outline" slot="end"></ion-icon>
+            </ion-input>
+            <ion-text color="danger" *ngIf="projectForm.get('start_date')?.touched && projectForm.get('start_date')?.invalid">
+              Start Date is required.
+            </ion-text>
+          </ion-col>
+
+          <ion-col class="form-group">
+            <ion-label class="required">End Date</ion-label>
+            <ion-input formControlName="end_date" class="form-control">
+              <ion-icon name="calendar-outline" slot="end"></ion-icon>
+            </ion-input>
+            <ion-text color="danger" *ngIf="projectForm.get('end_date')?.touched && projectForm.get('end_date')?.invalid">
+              End Date is required.
+            </ion-text>
+          </ion-col>
+        </ion-row>
+
+        <!-- Checkbox for Currently Working -->
+        <ion-row>
+          <ion-col size="10" class="checkboxContainer" style="margin: 10px 10px;">
+            <ion-checkbox formControlName="currently_working" class="styledCheckbox"></ion-checkbox>
+            <ion-text class="textBehind">Are you currently working on it?</ion-text>
+          </ion-col>
+        </ion-row>
+
+        <!-- Update Button -->
+        <ion-row>
+          <ion-col>
+            <ion-button expand="full" type="submit" (click)="updateForm ()">Update</ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-grid>
+  </form>
+</ion-content>

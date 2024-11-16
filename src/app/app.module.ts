@@ -11,8 +11,8 @@ import { CreateResumeModule } from './create-resume/create-resume.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AuthModule , CreateResumeModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, AuthModule,CreateResumeModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
-})
+})  
 export class AppModule {}
