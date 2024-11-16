@@ -14,10 +14,10 @@
 
     <!-- Display entered skills with delete functionality -->
     <ion-row>
-      <ion-col *ngFor="let skill of enteredSkills" size="5" style="margin-right: 10px;">
+      <ion-col  size="5" style="margin-right: 10px;">
         <ion-button class="skillsButton">
-          <ion-text class="skills-text">{{ skill }}</ion-text>
-          <img src="assets/icon/Group 1000010479.png" (click)="removeIntrest(Intrest)" alt="Delete Icon" style="margin-left: 90px; cursor: pointer;">
+          <ion-text class="skills-text"></ion-text>
+          <img src="assets/icon/Group 1000010479.png"  alt="Delete Icon" style="margin-left: 90px; cursor: pointer;">
         </ion-button>
       </ion-col>
     </ion-row>
@@ -28,7 +28,7 @@
     </div>
     <ion-row>
       <ion-col *ngFor="let skill of suggestedIntrest" size="auto">
-        <ion-button class="customButton" fill="outline" (click)="addSuggestedSkill(Intrest)">
+        <ion-button class="customButton" fill="outline">
           <ion-text>{{ skill }}</ion-text>
         </ion-button>
       </ion-col>

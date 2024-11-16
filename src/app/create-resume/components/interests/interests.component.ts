@@ -6,9 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./interests.component.scss'],
 })
 export class InterestsComponent  implements OnInit {
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
   // constructor(public skillsService:CreateResumeService) { }
 
-  ngOnInit() {}
+  
   enteredIntrest: string[] = []; // Array to store user-entered skills
   suggestedIntrest: string[] = ['Prototyping', 'User Research', 'Visual Design', 'Information Architecture']; // Suggested skills array
   newIntrest: string = ''; // Temporary variable to store new skill input

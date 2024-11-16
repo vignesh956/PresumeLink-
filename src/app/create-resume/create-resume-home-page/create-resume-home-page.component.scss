@@ -5,18 +5,32 @@
        --padding-end: var(--ion-padding, 0px);
        -webkit-padding-start: var(--ion-grid-padding-xs, var(--ion-grid-padding, 0px));
   }
+  .main-background-stepper{
+    position: fixed;
+     --background: #e3f2f2;
+  }
   .resume-template{
-      -webkit-padding-start: var(--ion-grid-padding-xs, var(--ion-grid-padding, 0px)); margin: 0px;}
-      .Resume-text{
-        color: #053750;
-              text-align: center;
-              font-family: Poppins;
-              font-size: 16px;
-              font-style: normal;
-              font-weight: 500;
-              line-height: normal;}
-      .backward-icon{ float: inline-end;margin-top: 2px;}
-      .eye-con{float: inline-end;}
+    -webkit-padding-start: var(--ion-grid-padding-xs,var(--ion-grid-padding, 0px));
+     margin: 0px;
+     --background: #e3f2f2;
+   
+    }
+    .Resume-text{
+      color: #053750;
+                      text-align: center;
+                      font-family: Poppins;
+                      font-size: 16px;
+                      font-style: normal;
+                      font-weight: 500;
+                      line-height: normal;
+                      --background: #e3f2f2;
+                    }
+      .backward-icon{ 
+        float: inline-end;margin-top: 2px;
+      }
+      .eye-con{
+        float: inline-end;
+      }
       .stepper-button {
         display: flex;
         align-items: center;
@@ -29,7 +43,8 @@
   
        --border-radius:0px;
         --border: 0.5px solid #71bdbd;
-        --background: #E3F2F2;;}
+        --background: #E3F2F2;
+      }
               
   .custom-stepper {
     display: flex;
@@ -126,7 +141,11 @@
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    text-decoration-line: underline;}
+    text-decoration-line: underline;
+    display: inline-block;
+      margin-bottom: 10px;
+      margin-top: 10px;
+  }
     .form-group{
       border-radius: 8px;
       border: 1px solid #71BDBD;
