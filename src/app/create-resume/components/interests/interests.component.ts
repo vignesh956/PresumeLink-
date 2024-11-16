@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CreateResumeService } from '../../create-resume.service';
 
 @Component({
   selector: 'app-interests',
@@ -6,53 +7,60 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./interests.component.scss'],
 })
 export class InterestsComponent  implements OnInit {
-  // constructor(public skillsService:CreateResumeService) { }
+  enteredInterest: string[] = []; 
+  suggestedInterest: string[] = ['Music', 'Painting', 'Travelling', 'User Experience', 'User Research'];
+  newInterest: string = ''; // Variable to store new interest input
+
+  constructor(public interestService: CreateResumeService) {}
 
   ngOnInit() {}
-  enteredIntrest: string[] = []; // Array to store user-entered skills
-  suggestedIntrest: string[] = ['Prototyping', 'User Research', 'Visual Design', 'Information Architecture']; // Suggested skills array
-  newIntrest: string = ''; // Temporary variable to store new skill input
 
-  // Adds a new skill from input
-  addIntrest() {
-    console.log("kjhkcgvjhkjbv")
-    if (this.newIntrest && !this.enteredIntrest.includes(this.newIntrest)) {
-      this.enteredIntrest.push(this.newIntrest);
-      this.newIntrest = ''; // Clear input after adding
+  // Adds a new interest from input
+  addInterest() {
+    if (this.newInterest && !this.enteredInterest.includes(this.newInterest)) {
+      this.enteredInterest.push(this.newInterest);
+      this.newInterest = ''; // Clear input after adding
     }
-   
   }
-  
 
-  // Removes a skill from the entered skills list
-  removeIntrest(Intrest: string) {
-    this.enteredIntrest = this.enteredIntrest.filter(s => s !== Intrest);
+  // Removes an interest from the entered interests list
+  removeInterest(interest: string) {
+    this.enteredInterest = this.enteredInterest.filter(i => i !== interest);
   }
-  updateSkillsData() {
-    const stepIndex = 10; // Adjust the step index if needed
-    const skillsPayload = {
-      objective: 'descriptopon',
-      first_name: 'abhishiekpaul  ',
+
+  // Submits the updated interests to the backend API
+  updateInterestData() {
+    const interestPayload = {
+      objective: 'description',
+      first_name: 'abhishiekpaul',
       last_name: 'paul',
       email: 'abhishiejoauk@Gmail.com',
       gender: 'male',
       phone: '+919347252317',
-      job_title: 'front end devloper',
+      job_title: 'front end developer',
       birth_date: '09/10/2001',
-      skills: this.enteredIntrest, // Your skills data
-      interests: [],
+      skills: [], // Collected skills data
+      interests:this.enteredInterest, // Adjust this if you want to include additional interests
       media: [123],
-      stepIndex: stepIndex,
+      stepIndex: 10,
     };
-  
-  
-  }
-  
-  // Adds a suggested skill to the entered skills list
-  addSuggestedSkill(Intrest: string) {
-    if (!this.enteredIntrest.includes(Intrest)) {
-      this.enteredIntrest.push(Intrest);
-    }
+
+    console.log('Payload to send:', interestPayload);
+
+    this.interestService.updateInterestData(interestPayload)
+      .subscribe(
+        response => {
+          console.log('Data updated successfully:', response);
+        },
+        error => {
+          console.error('Error updating data:', error);
+        }
+      );
   }
 
-}
+  // Adds a suggested interest to the entered interests list
+  addSuggestedInterest(interest: string) {
+    if (!this.enteredInterest.includes(interest)) {
+      this.enteredInterest.push(interest);
+    }
+  }}

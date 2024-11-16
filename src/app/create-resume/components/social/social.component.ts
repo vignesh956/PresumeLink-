@@ -6,54 +6,58 @@ import { CreateResumeService } from '../../create-resume.service';
   templateUrl: './social.component.html',
   styleUrls: ['./social.component.scss'],
 })
-export class SocialComponent  implements OnInit {
+export class SocialComponent   {
+  linkedin: string = '';
+  behance: string = '';
+  dribble: string = '';
 
-  constructor(private dataService: CreateResumeService) { }
-  data: any = {};
-  educationData: any = {}; 
-  project:any=[]
-  experience:any=[]
-  ngOnInit() {
-    this.dataService.getData().subscribe({
-      next: (response: any) => {
-        console.log('Full API Response:', response); // Log the complete response for debugging
-  
-        // Check if the response structure is as expected
-        if (response && response.success && response.result) {
-          // Access the main result object
-          const result = response.result;
-          const user = result.user_id;
-          
-          // Combine first_name and last_name into a single 'name' field
-          const fullName = `${user.first_name || ''} ${user.last_name || ''}`.trim();
-          const name = fullName || user.name || 'N/A';
-  
-          // Extract the required fields from the result and user object
-          this.data = {
-            address: result.address || '', // If the address is available in the result
-            avatar: user.avatar || '',
-            birth_date: result.birth_date || '',
-            email: result.email || '',
-            name: name,
-            gender: result.gender || '',
-            job_title: result.job_title || '',
-            phone: result.phone || '',
-            objective: result.objective || '',
-            stepIndex: result.stepIndex || 0,
-            skills: result.skills || [] // Add the skills array
-          };
-          
-          this.educationData = result.education || {};
-          this.project=result.project||{}
-          this.experience=result.experience
-          console.log('Extracted Data:', this.data);
-        } else {
-          // Log the response to understand why the structure is unexpected
-          console.error('Unexpected response structure:', response);
-        }
+  // Social media options for buttons
+  socialMedia: string[] = ['GitHub', 'Twitter', 'Instagram'];
+  addLinks: { platform: string; url: string }[] = [];
+
+  constructor(private interestsService: CreateResumeService) {}
+
+  ngOnInit() {}
+
+  // Function to add a link to the addLinks array
+  addLink(platform: string) {
+    if (platform && !this.addLinks.some((link) => link.platform === platform)) {
+      this.addLinks.push({ platform, url: '' });
+    }
+  }
+
+  // Function to check if any of the mandatory fields are empty
+  isFormValid() {
+    return this.linkedin || this.behance || this.dribble || this.addLinks.some((link) => link.url);
+  }
+
+  // Submits the form data to the backend API
+  submitData() {
+    // Only send data if there's at least one valid input
+    if (!this.isFormValid()) {
+      console.warn('No valid data to submit.');
+      return;
+    }
+
+    const payload = {
+      linkedin: this.linkedin || null,
+      behance: this.behance || null,
+      dribble: this.dribble || null,
+      add_links: this.addLinks.filter((link) => link.url), // Only include valid URLs
+      stepIndex: 10,
+    };
+
+    console.log('Payload to send:', payload);
+
+    // Call the service to submit the data
+    this.interestsService.submitSocialData(payload).subscribe(
+      (response) => {
+        console.log('API Response:', response);
+        // Handle success (e.g., show a success message or navigate)
       },
-      error: (error) => {
-        console.error('Error fetching data:', error);
+      (error) => {
+        console.error('API Error:', error);
+        // Handle error (e.g., show an error message)
       }
-    });
+    );
   }}

@@ -72,6 +72,19 @@ export class CreateResumeService {
     const url = `${environment.basePath}/${id}/update-presume`;
     return this.http.patch(url, skillsPayload, { headers });
   }
+  updateInterestData(intrestPayload:any): Observable<any> {
+    console.log(intrestPayload)
+    const userDataString = localStorage.getItem('userData');
+    if (!userDataString) {
+      throw new Error('User data is missing in localStorage');
+    }
+    const userData = JSON.parse(userDataString);
+    const id = userData.id;
+    const accessToken = userData.accessToken;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
+    const url = `${environment.basePath}/${id}/update-presume`;
+    return this.http.patch(url, intrestPayload, { headers });
+  }
 
 
 
@@ -100,7 +113,18 @@ export class CreateResumeService {
    const url = `${environment.basePath}/${id}/experience`;
    return this.http.patch(url, data, { headers });
   }
-
+  submitSocialData(payload:any){
+    const userDataString = localStorage.getItem('userData')  
+    if (!userDataString) {
+      throw new Error('User data is missing in localStorage');
+    }
+    const userData = JSON.parse(userDataString);
+  const id = userData.id;
+    const accessToken = userData.accessToken; 
+   const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
+   const url = `${environment.basePath}/${id}/social`;
+   return this.http.patch(url, payload, { headers });
+  }
   updateCertificates(certificates: CourseCertificate): Observable<any> {
     console.log(certificates, '///////////////////////')
     const userDataString = localStorage.getItem('userData')  

@@ -1,85 +1,84 @@
-<ion-content style="height: 60vh;">
-  <div class="user-details">
-    <h2>User Details</h2>
-    
-    <p><strong>Address:</strong> {{ data.address || 'N/A' }}</p>
-    <p><strong>Avatar:</strong> <img [src]="data.avatar" alt="User Avatar" *ngIf="data.avatar; else noAvatar"></p>
-    <ng-template #noAvatar><span>No Avatar Available</span></ng-template>
-    
-    <p><strong>Birth Date:</strong> {{ data.birth_date || 'N/A' }}</p>
-    <p><strong>Email:</strong> {{ data.email || 'N/A' }}</p>
-    <p><strong>Name:</strong> {{ data.name }}</p>
-    <p><strong>Gender:</strong> {{ data.gender || 'N/A' }}</p>
-    <p><strong>Job Title:</strong> {{ data.job_title || 'N/A' }}</p>
-    <p><strong>Phone:</strong> {{ data.phone || 'N/A' }}</p>
-    <p><strong>Objective:</strong> {{ data.objective || 'N/A' }}</p>
-    <p><strong>Step Index:</strong> {{ data.stepIndex }}</p>
-    
-    <!-- Skills Section -->
-    <div *ngIf="data.skills && data.skills.length > 0">
-      <h3>Skills</h3>
-      <ul>
-        <li *ngFor="let skill of data.skills">{{ skill }}</li>
-      </ul>
-    </div>
-  </div>
+<ion-text class="component-text">
+  Social
+</ion-text>
+<div>
+  <ion-grid>
+    <ion-row>
+      <!-- LinkedIn Input -->
+      <ion-col size="12">
+        <div class="language-line">
+          <h2>
+            <span class="language-header-text">LinkedIn</span>
+          </h2>
+          <ion-input
+            [(ngModel)]="linkedin"
+            placeholder="Enter LinkedIn URL"
+          ></ion-input>
+        </div>
+      </ion-col>
 
-  <!-- Education Section -->
-  <div *ngIf="educationData">
-    <h3>Education Details</h3>
-    
-    <!-- SSC Education -->
-    <div *ngIf="educationData.ssc">
-      <h4>SSC Details</h4>
-      <p>School Name: {{ educationData.ssc.school_name }}</p>
-      <p>Location: {{ educationData.ssc.location }}</p>
-      <p>Start Date: {{ educationData.ssc.start_date }}</p>
-      <p>End Date: {{ educationData.ssc.end_date }}</p>
-      <p>Documents: {{ educationData.ssc.school_documents.length }} Documents</p>
-    </div>
-    
-    <!-- Inter Education -->
-    <div *ngIf="educationData.inter">
-      <h4>Inter Details</h4>
-      <p>College Name: {{ educationData.inter.institute_name }}</p>
-      <p>Location: {{ educationData.inter.location }}</p>
-      <p>Start Date: {{ educationData.inter.start_date }}</p>
-      <p>End Date: {{ educationData.inter.end_date }}</p>
-      <p>Documents: {{ educationData.inter.college_documents.length }} Documents</p>
-    </div>
-    
-    <!-- Degree Education -->
-    <div *ngIf="educationData.degree">
-      <h4>Degree Details</h4>
-      <p>Field of Study: {{ educationData.degree.field_of_study }}</p>
-      <p>University Name: {{ educationData.degree.university_name }}</p>
-      <p>Location: {{ educationData.degree.location }}</p>
-      <p>Start Date: {{ educationData.degree.start_date }}</p>
-      <p>End Date: {{ educationData.degree.end_date }}</p>
-      <p>Documents: {{ educationData.degree.degree_documents.length }} Documents</p>
-    </div>
+      <!-- Behance Input -->
+      <ion-col size="12">
+        <div class="language-line">
+          <h2>
+            <span class="language-header-text">Behance</span>
+          </h2>
+          <ion-input
+            [(ngModel)]="behance"
+            placeholder="Enter Behance URL"
+          ></ion-input>
+        </div>
+      </ion-col>
 
-  </div>
-  <div *ngIf="project">
-    <h3>Project Details</h3>
-    <p><strong>Project Title:</strong> {{ project.project_title || 'N/A' }}</p>
-    <p><strong>Role:</strong> {{ project.role || 'N/A' }}</p>
-    <p><strong>Institute:</strong> {{ project.institute || 'N/A' }}</p>
-    <p><strong>Location:</strong> {{ project.location || 'N/A' }}</p>
-    <p><strong>Description:</strong> {{ project.description || 'N/A' }}</p>
-    <p><strong>Start Date:</strong> {{ project.start_date || 'N/A' }}</p>
-    <p><strong>End Date:</strong> {{ project.end_date || 'N/A' }}</p>
-    <p><strong>Currently Working:</strong> {{ project.currently_working ? 'Yes' : 'No' }}</p>
-  </div>
-  <div *ngIf="experience">
-    <h3>experience Details</h3>
-    <p><strong>Project Title:</strong> {{ experience.company_name || 'N/A' }}</p>
-    <p><strong>Role:</strong> {{ experience.position || 'N/A' }}</p>
-    <!-- <p><strong>Institute:</strong> {{ experience.experience_description || 'N/A' }}</p> -->
-    <p><strong>Location:</strong> {{ experience.location || 'N/A' }}</p>
-    <p><strong>Description:</strong> {{ experience.description || 'N/A' }}</p>
-    <p><strong>Start Date:</strong> {{ experience.start_date || 'N/A' }}</p>
-    <p><strong>End Date:</strong> {{ experience.end_date || 'N/A' }}</p>
-    <p><strong>Currently Working:</strong> {{ experience.working ? 'Yes' : 'No' }}</p>
-  </div>
-</ion-content>
+      <!-- Dribbble Input -->
+      <ion-col size="12">
+        <div class="language-line">
+          <h2>
+            <span class="language-header-text">Dribble</span>
+          </h2>
+          <ion-input
+            [(ngModel)]="dribble"
+            placeholder="Enter Dribbble URL"
+          ></ion-input>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- Dynamic Social Media Links -->
+    <ion-row>
+      <ion-col size="12" *ngFor="let link of addLinks">
+        <div class="language-line">
+          <h2>
+            <span class="language-header-text">{{ link.platform }}</span>
+          </h2>
+          <ion-input
+            [(ngModel)]="link.url"
+            placeholder="Enter {{ link.platform }} URL"
+          ></ion-input>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!-- Social Media Buttons -->
+    <ion-row>
+      <ion-col size="5" *ngFor="let social of socialMedia">
+        <ion-button class="skillsButton" (click)="addLink(social)">
+          <ion-text class="skills-text">Add {{ social }}</ion-text>
+          <img
+            src="assets/icon/Group 1000010372.png"
+            alt="Delete Icon"
+            style="margin-left: 90px; cursor: pointer;"
+          />
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <!-- Submit Button -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-button expand="full" (click)="submitData()">Submit</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>
+  

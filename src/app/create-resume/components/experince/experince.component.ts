@@ -10,6 +10,7 @@ import { CreateResumeService } from '../../create-resume.service';
 })
 export class ExperinceComponent  implements OnInit {
   experienceForm!: FormGroup;
+  allExperiences: any[] = []; // Array to store multiple experiences
 
   constructor(private fb: FormBuilder, private experienceService: CreateResumeService) {}
 
@@ -26,36 +27,54 @@ export class ExperinceComponent  implements OnInit {
       start_date: ['', Validators.required],
       end_date: ['', Validators.required],
       experience_description: [''],
-      stepIndex: [7] // Static value as required
+      stepIndex: [7], // Static value as required
     });
   }
 
-  submitExperience() {
+  // Add experience to the array and reset the form for next input
+  addExperience() {
     if (this.experienceForm.invalid) {
       return;
     }
-    const payload = {
-      // project_title: this.experienceForm.get('project_title')?.value,
-      experience_description: this.experienceForm.get('experience_description')?.value,
+    
+    // Add current experience form data to the array
+    const experienceData = {
       company_name: this.experienceForm.get('company_name')?.value,
-      location: this.experienceForm.get('location')?.value,
       position: this.experienceForm.get('position')?.value,
+      location: this.experienceForm.get('location')?.value,
       start_date: this.experienceForm.get('start_date')?.value,
       end_date: this.experienceForm.get('end_date')?.value,
-      working: this.experienceForm.get('working')?.value, // Make sure this is a boolean (true or false)
-      stepIndex: 7// You can replace 6 with any dynamic value if necessary
+      working: this.experienceForm.get('working')?.value,
+      experience_description: this.experienceForm.get('experience_description')?.value,
     };
 
-    // const experienceData = this.experienceForm.value;
+    // Push the experience to the array
+    this.allExperiences.push(experienceData);
+
+    // Reset the form for the next experience input
+    this.experienceForm.reset();
+    this.experienceForm.patchValue({ working: false }); // Optionally reset "working" checkbox
+  }
+
+  // Submit all experiences to the API
+  submitExperience() {
+    if (this.allExperiences.length === 0) {
+      console.log("No experiences to submit.");
+      return;
+    }
+
+    const payload = {
+      experiences: this.allExperiences, // Submit all experiences together
+      stepIndex: 7, // Replace with your dynamic step index if needed
+    };
 
     this.experienceService.updateExperience(payload).subscribe(
       (response) => {
-        console.log('Experience updated successfully', response);
+        console.log('Experiences submitted successfully', response);
       },
       (error) => {
-        console.error('Error updating experience', error);
+        console.error('Error submitting experiences', error);
       }
     );
   }
-
 }
