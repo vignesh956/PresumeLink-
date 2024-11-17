@@ -60,18 +60,17 @@
     </div>
 
   </div>
-<div *ngIf="project">
+<div >
     <h3>Project Details</h3>
     <div *ngFor="let proj of project">
-      
-        <p><strong>Project Title:</strong> {{ proj["0"].project_title }}</p>
-        <p><strong>Role:</strong> {{ proj["0"].role }}</p>
-        <p><strong>Institute:</strong> {{ proj["0"].institute }}</p>
-        <p><strong>Start Date:</strong> {{ proj["0"].start_date }}</p>
-        <p><strong>End Date:</strong> {{ proj["0"].end_date }}</p>
-        <p><strong>Currently Working:</strong> {{ proj["0"].currently_working ? 'Yes' : 'No' }}</p>
-     
-    </div>
+      <p><strong>Project Title:</strong> {{ proj.project_title }}</p>
+      <p><strong>Role:</strong> {{ proj.role }}</p>
+      <p><strong>Institute:</strong> {{ proj.institute }}</p>
+      <p><strong>Start Date:</strong> {{ proj.start_date }}</p>
+      <p><strong>End Date:</strong> {{ proj.end_date }}</p>
+      <p><strong>Currently Working:</strong> {{ proj.currently_working ? 'Yes' : 'No' }}</p>
+   
+  </div>
   </div>
   <div *ngIf="experience">
     <h3>experience Details</h3>
@@ -159,10 +158,9 @@
                   <ion-icon name="journal-outline" class="icon"></ion-icon>
               </div>
            
-              <div *ngIf="project">
+              <div >
                 <h3>Project Details</h3>
-                <div *ngFor="let proj of project.project">
-                  
+                <div *ngFor="let proj of project">
                     <p><strong>Project Title:</strong> {{ proj.project_title }}</p>
                     <p><strong>Role:</strong> {{ proj.role }}</p>
                     <p><strong>Institute:</strong> {{ proj.institute }}</p>
@@ -183,19 +181,25 @@
               </div>
           </div>
           <div class="study1" *ngIf="educationData.ssc">
+            <div>
               <ion-text class="stage">{{ educationData.ssc.education_type }}<span> - </span></ion-text>
               <ion-text class="institute-name">{{ educationData.ssc.school_name }}</ion-text>
+            </div>
               <ion-text class="place">{{ educationData.ssc.start_date }} -  {{ educationData.ssc.end_date }}<span> | </span>{{ educationData.ssc.location }}, 9.7 GPA</ion-text>   
 
             </div>
           <div class="study2" *ngIf="educationData.inter">
+            <div>
               <ion-text class="stage">{{ educationData.inter.field_of_study }}<span> - </span></ion-text>
               <ion-text class="institute-name">{{ educationData.inter.institute_name }}</ion-text>
+            </div>
               <ion-text class="place">{{ educationData.inter.start_date }} - {{ educationData.inter.end_date }} <span> | </span>{{ educationData.inter.location }}, 9.7 GPA</ion-text>
             </div>
             <div class="study2" *ngIf="educationData.inter">
+              <div>
               <ion-text class="stage">{{ educationData.degree.field_of_study }}<span> - </span></ion-text>
               <ion-text class="institute-name">{{ educationData.degree.university_name }}</ion-text>
+            </div>
               <ion-text class="place">{{ educationData.degree.start_date }} - {{ educationData.degree.end_date }} <span> | </span> {{ educationData.degree.location }}, 9.7 GPA</ion-text>
             </div>
             <div>

@@ -51,8 +51,7 @@ export class ResumeTemplateComponent  implements OnInit {
           this.certificates = result.certificates || {}; // Extract certificates data
 
           this.educationData = result.education || {};
-          this.project= result.project||{}
-          console.log(this.project[0]["0"] , 'kkkkkkkkkkkkkkk');
+          this.project= result.project[0].project||{}
           
           this.experience=result.experience
           this.languages = result.languages || []; 
