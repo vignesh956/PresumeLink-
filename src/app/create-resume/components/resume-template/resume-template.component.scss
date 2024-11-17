@@ -1,0 +1,174 @@
+.nav-bar{
+    height: 132px;
+    border: 1px 0px 0px 0px;
+    background-color: #799BCE;
+    display: flex;
+    font-family: Times New Roman;
+    }
+    .image{
+    padding-top: 14px;
+    padding-left: 30px;
+    }
+    .img{
+        width:104px;
+        height:104px;
+        border-radius:50px;
+    }
+    .content{
+    color: #FFFFFF;
+    display:flex;
+    flex-direction: column;
+    }
+    .name-design{
+        margin-top: 14px;
+    margin-left:20px;
+    display:flex;
+    flex-direction: column;
+    }
+    .name{
+    font-size: 16px;
+    font-weight: 700;
+    }
+    .design{
+    font-size: 14px;
+    font-weight: 400;
+    margin-top:8px;
+    }
+    .margin{
+        width:171.77px;
+        border-bottom:1px solid #FFFFFF;
+        height:1px;
+        margin-top:10px;
+    }
+    .info{
+        width: 412px;
+    height: 42px;
+    margin:10px 29px 14px 20px;
+    font-size: 12px;
+    font-weight: 400;
+    text-align: justify;
+    line-height: 13.8px;
+    }
+    .banner{
+        display: flex;
+        font-family: Times New Roman;
+    }
+    .left{
+        padding:0 60px 40px 20px;    
+        display: flex;
+        flex-direction: column;
+    }
+    .right{
+        padding-right:40px; 
+        display: flex;
+        flex-direction: column;
+        padding-bottom:101px;
+    }
+    .heading{
+    margin-top:20px;
+    display: flex;
+    gap:10px;
+    align-items: center;
+    }
+    .outer-icon{
+        width: 24px;
+        height: 24px;
+        background-color: #799BCE;
+        text-align: center;
+        align-content: center;
+        border-radius:2px;
+    }
+    .icon{
+        width: 13.78px;
+    height:12px;
+    color:white;
+    }
+    .experience, .projects, .education, .contact, .skills-tools, .certifications, .languages{
+    font-size: 14px;
+    font-weight: 700;
+    }
+    .sub-heading1, .sub-heading2, .sub-heading3{
+    height: 14px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-top:12px;
+    }
+    .place, .number, .mail, .loc{
+    font-size: 12px;
+    font-weight: 400;
+    margin-top:8px;
+    }
+    .about{
+        font-size: 12px;
+        font-weight: 400;
+        text-align: justify;
+        margin-top:8px;
+        line-height:13.8px;
+    }
+    .sub-heading2{
+        margin-top:14px;
+    }
+    .study1{
+     margin-top:12px;
+     display: flex;
+    }
+    .stage{
+        font-family: Calibri;
+    font-size: 12px;
+    font-weight: 700;
+    }
+    .institute-name{
+    font-size: 12px;
+    font-weight: 700;
+    }
+    .study2{
+        margin-top:14px;
+        display:flex;
+    }
+    .number, .mail, .loc{
+        margin-top:6px;
+    }
+    .sub-heading3{
+        margin-top:10px;
+    }
+    .skills{
+        display: flex;
+         gap:24px;
+     }
+    .tools{
+    font-size: 12px;
+    font-weight: 400;
+    display: flex;
+    flex-direction: column;
+    }
+     .tools .tool1{
+        margin-top:12px;
+    }
+    .tools .tool2, .tool3{
+        margin-top:8px;
+    }
+    .tools .tool4{
+        margin-top:9px;
+    }
+    .certification-design, .certification-date{
+    font-size: 10px;
+    font-weight: 400;
+    margin-top:8px;
+    }
+    .certification-date{
+    margin-top:6px;
+    }
+    .lang1{
+        margin-top:12px;
+    }
+    .lang2, .lang3{
+        margin-top:10px;
+    }
+    .english, .telugu, .hindi{
+    font-size: 12px;
+    font-weight: 700;
+    }
+    .re-sp-wr{
+    font-size: 12px;
+    font-weight: 400;
+    }

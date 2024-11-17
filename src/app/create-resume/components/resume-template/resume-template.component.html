@@ -1,0 +1,264 @@
+ <ion-content style="height: 60vh;">
+  <div class="user-details">
+    <h2>User Details</h2>
+    
+    <p><strong>Address:</strong> {{ data.address || 'N/A' }}</p>
+    <p><strong>Avatar:</strong> <img [src]="data.avatar" alt="User Avatar" *ngIf="data.avatar; else noAvatar"></p>
+    <ng-template #noAvatar><span>No Avatar Available</span></ng-template>
+    
+    <p><strong>Birth Date:</strong> {{ data.birth_date || 'N/A' }}</p>
+    <p><strong>Email:</strong> {{ data.email || 'N/A' }}</p>
+    <p><strong>Name:</strong> {{ data.name }}</p>
+    <p><strong>Gender:</strong> {{ data.gender || 'N/A' }}</p>
+    <p><strong>Job Title:</strong> {{ data.job_title || 'N/A' }}</p>
+    <p><strong>Phone:</strong> {{ data.phone || 'N/A' }}</p>
+    <p><strong>Objective:</strong> {{ data.objective || 'N/A' }}</p>
+    <p><strong>Step Index:</strong> {{ data.stepIndex }}</p>
+    
+    Skills Section
+    <div *ngIf="data.skills && data.skills.length > 0">
+      <h3>Skills</h3>
+      <ul>
+        <li *ngFor="let skill of data.skills">{{ skill }}</li>
+      </ul>
+    </div>
+  </div>
+
+  Education Section
+  <div *ngIf="educationData">
+    <h3>Education Details</h3>
+    
+    SSC Education
+    <div *ngIf="educationData.ssc">
+      <h4>SSC Details</h4>
+      <p>School Name: {{ educationData.ssc.school_name }}</p>
+      <p>Location: {{ educationData.ssc.location }}</p>
+      <p>Start Date: {{ educationData.ssc.start_date }}</p>
+      <p>End Date: {{ educationData.ssc.end_date }}</p>
+      <p>Documents: {{ educationData.ssc.school_documents.length }} Documents</p>
+    </div>
+    
+    Inter Education
+    <div *ngIf="educationData.inter">
+      <h4>Inter Details</h4>
+      <p>College Name: {{ educationData.inter.institute_name }}</p>
+      <p>Location: {{ educationData.inter.location }}</p>
+      <p>Start Date: {{ educationData.inter.start_date }}</p>
+      <p>End Date: {{ educationData.inter.end_date }}</p>
+      <p>Documents: {{ educationData.inter.college_documents.length }} Documents</p>
+    </div>
+    
+    Degree Education
+    <div *ngIf="educationData.degree">
+      <h4>Degree Details</h4>
+      <p>Field of Study: {{ educationData.degree.field_of_study }}</p>
+      <p>University Name: {{ educationData.degree.university_name }}</p>
+      <p>Location: {{ educationData.degree.location }}</p>
+      <p>Start Date: {{ educationData.degree.start_date }}</p>
+      <p>End Date: {{ educationData.degree.end_date }}</p>
+      <p>Documents: {{ educationData.degree.degree_documents.length }} Documents</p>
+    </div>
+
+  </div>
+  <div *ngIf="project">
+    <h3>Project Details</h3>
+    <p><strong>Project Title:</strong> {{ project.project_title || 'N/A' }}</p>
+    <p><strong>Role:</strong> {{ project.role || 'N/A' }}</p>
+    <p><strong>Institute:</strong> {{ project.institute || 'N/A' }}</p>
+    <p><strong>Location:</strong> {{ project.location || 'N/A' }}</p>
+    <p><strong>Description:</strong> {{ project.description || 'N/A' }}</p>
+    <p><strong>Start Date:</strong> {{ project.start_date || 'N/A' }}</p>
+    <p><strong>End Date:</strong> {{ project.end_date || 'N/A' }}</p>
+    <p><strong>Currently Working:</strong> {{ project.currently_working ? 'Yes' : 'No' }}</p>
+  </div>
+  <div *ngIf="experience">
+    <h3>experience Details</h3>
+    <p><strong>Project Title:</strong> {{ experience.company_name || 'N/A' }}</p>
+    <p><strong>Role:</strong> {{ experience.position || 'N/A' }}</p>
+    <p><strong>Institute:</strong> {{ experience.experience_description || 'N/A' }}</p>
+    <p><strong>Location:</strong> {{ experience.location || 'N/A' }}</p>
+    <p><strong>Description:</strong> {{ experience.description || 'N/A' }}</p>
+    <p><strong>Start Date:</strong> {{ experience.start_date || 'N/A' }}</p>
+    <p><strong>End Date:</strong> {{ experience.end_date || 'N/A' }}</p>
+    <p><strong>Currently Working:</strong> {{ experience.working ? 'Yes' : 'No' }}</p>
+  </div>
+  <div *ngIf="languages">
+    <h3>Languages Details</h3>
+    <div *ngFor="let language of languages.enter_languages">
+      <p><strong>{{ language.name }}:</strong></p>
+      <ul>
+        <li *ngFor="let option of language.selectedOptions">{{ option }}</li>
+      </ul>
+    </div>
+  </div>
+  <h3>Social Links</h3>
+    <p><strong>LinkedIn:</strong> <a [href]="social.linkedin" target="_blank">{{ social.linkedin || 'N/A' }}</a></p>
+    <p><strong>Behance:</strong> <a [href]="social.behance" target="_blank">{{ social.behance || 'N/A' }}</a></p>
+    <p><strong>Dribble:</strong> <a [href]="social.dribble" target="_blank">{{ social.dribble || 'N/A' }}</a></p>
+
+    <div *ngIf="social.add_links && social.add_links.length > 0">
+      <h4>Additional Social Links:</h4>
+      <ul>
+        <li *ngFor="let link of social.add_links">
+          <strong>{{ link.platform }}:</strong> <a [href]="link.url" target="_blank">{{ link.url || 'N/A' }}</a>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h3>Interests</h3>
+      <p *ngIf="interests.length > 0">
+        <strong>Interests:</strong> {{ interests.join(', ') || 'N/A' }}
+      </p>
+      <p *ngIf="interests.length === 0">No interests listed.</p>
+  
+    </div>
+    <h3>Certificates</h3>
+    <div *ngIf="certificates.course_name">
+      <p><strong>Course Name:</strong> {{ certificates.course_name || 'N/A' }}</p>
+      <p><strong>Organisation:</strong> {{ certificates.organisation || 'N/A' }}</p>
+      <p><strong>Start Date:</strong> {{ certificates.start_date || 'N/A' }}</p>
+      <p><strong>End Date:</strong> {{ certificates.end_date || 'N/A' }}</p>
+    </div>
+    <p *ngIf="!certificates.course_name">No certificates listed.</p>
+</ion-content> 
+<!-- <ion-grid>
+  <div>
+      <div class="nav-bar">
+          <div class="image">
+              <img src="..\assets\img.jpg" class="img">
+          </div>
+          <div class="content">
+              <div class="name-design">
+                  <ion-text class="name">GAUTHAM NANDA</ion-text>
+                  <ion-text class="design">UX Designer</ion-text>
+                  <ion-text class="margin"></ion-text> 
+             </div>
+             <div class="info">
+                  <ion-text>Enthusiastic and fast-learning motion graphics designer with a passion for visual storytelling.
+               Recent graduate with a strong portfolio showcasing animation skills and a keen eye for design trends, eager to gain...</ion-text>
+             </div>
+          </div>     
+      </div>
+      <div class="banner">
+      <div class="left">
+          <div class="heading">
+              <div class="outer-icon">
+                  <ion-icon name="briefcase" class="icon"></ion-icon>
+              </div>
+              <div class="experience">
+                  <ion-text>EXPERIENCE</ion-text>
+              </div>
+          </div>
+          <ion-text class="sub-heading1">UI Designer Intern</ion-text>
+          <ion-text class="place">July 2008 - Aug 2016<span> | </span>ZeTechno - Madhapur, Hyderabad</ion-text>
+          <ion-text class="about">Strategic product designer with a keen eye for innovative solutions. 5 years of experience designing and developing
+               physical and digital products across various industries. Skilled in user research, prototyping.</ion-text>
+
+          <ion-text class="sub-heading2">UX Designer</ion-text>
+          <ion-text class="place">July 2016 - Present <span> | </span> ZeTechno - Madhapur, Hyderabad</ion-text>
+          <ion-text class="about">Enthusiastic and fast-learning motion graphics designer with a passion for visual storytelling.
+               Recent graduate with a strong portfolio showcasing animation skills and a keen eye for design trends, eager to gain.</ion-text>
+          <div class="heading">
+              <div class="outer-icon">
+                  <ion-icon name="journal-outline" class="icon"></ion-icon>
+              </div>
+              <div class="projects">
+                  <ion-text>PROJECTS</ion-text>
+              </div>
+          </div>
+          <ion-text class="sub-heading1">Fitness Tracking App</ion-text>
+          <ion-text class="place">July 2014 - Feb 2015<span> | </span>ZeTechno - Madhapur, Hyderabad</ion-text>
+          <ion-text class="about">Developed a fitness tracking app that enables users to monitor their workouts and set fitness goals.
+               The design process began with user research to understand motivations for fitness tracking.</ion-text>
+
+          <ion-text class="sub-heading2">Mobile App for Local Services</ion-text>
+          <ion-text class="place">July 2014 - Feb 2015<span> | </span>ZeTechno - Madhapur, Hyderabad</ion-text>
+          <ion-text class="about">I designed an engaging user interface with motivational elements and gamification.
+               The app was tested in various environments to ensure usability.</ion-text>
+          <div class="heading">
+              <div class="outer-icon">
+                  <ion-icon name="school" class="icon"></ion-icon>
+              </div>
+              <div class="education">
+                  <ion-text>EDUCATION</ion-text>
+              </div>
+          </div>
+          <div class="study1">
+              <ion-text class="stage">SSC<span> - </span></ion-text>
+              <ion-text class="institute-name">Indus English Medium School</ion-text>
+          </div>
+          <ion-text class="place">July 2007 - April 2008<span> | </span>Hyderabad, 9.7 GPA</ion-text>   
+          <div class="study2">
+              <ion-text class="stage">Inter<span> - </span></ion-text>
+              <ion-text class="institute-name">YuvaSudha Junior College</ion-text>
+          </div>
+          <ion-text class="place">July 2008 - April 2010<span> | </span>Uppal, 9.7 GPA</ion-text>
+      </div>
+      <div class="right">
+          <div class="heading">
+              <div class="outer-icon">
+                  <ion-icon name="person" class="icon"></ion-icon>
+              </div>
+              <div class="contact">CONTACT</div>
+          </div>
+          <ion-text class="sub-heading1">Phone</ion-text>
+          <ion-text class="number">+919876543212</ion-text>
+          <ion-text class="sub-heading3">Email</ion-text>
+          <ion-text class="mail">suryasivakumar&#64;gmail.com</ion-text>
+          <ion-text class="sub-heading3">Location</ion-text>
+          <ion-text class="loc">Hyderabad, Telangana</ion-text>
+          
+          <div class="heading">
+              <div class="outer-icon">
+                  <img src="..\assets\Vector.png" class="icon">
+              </div>
+              <div class="skills-tools">SKILLS & TOOLS</div>
+          </div>
+          <div class="skills">
+              <div class="tools">
+                  <ion-text class="tool1">Wireframing</ion-text>
+                  <ion-text class="tool2">Prototyping</ion-text>
+                  <ion-text class="tool3">Figma</ion-text>
+                  <ion-text class="tool4">Adobe XD</ion-text>
+              </div>
+              <div class="tools">
+                  <ion-text class="tool1">UserResearch</ion-text>
+                  <ion-text class="tool2">UserExperience</ion-text>
+                  <ion-text class="tool3">AdobePhotoshop</ion-text>
+                  <ion-text class="tool4">AdobeIllustrator</ion-text>
+              </div>
+          </div>
+          <div class="heading">
+              <div class="outer-icon">
+                  <img src="..\assets\Vector.png" class="icon">
+              </div>
+              <div class="certifications">CERTIFICATIONS</div>
+          </div>
+          <div class="sub-heading1">UI/UX Designing</div>
+          <ion-text class="certification-design">Design Academy</ion-text>
+          <ion-text class="certification-date">April 2009 - August 2009</ion-text>
+          <div class="sub-heading2">UI Developing</div>
+          <ion-text class="certification-design">Knowledge Consultz</ion-text>
+          <ion-text class="certification-date">April 2010 - August 2010</ion-text>
+          <div class="heading">
+              <div class="outer-icon">
+                  <ion-icon name="globe-outline" class="icon"></ion-icon>
+              </div>
+              <div class="languages">LANGUAGES</div>
+          </div>
+          <div class="lang1">
+              <ion-text class="english">English<span> - </span></ion-text>
+              <ion-text class="re-sp-wr">speak, write</ion-text>
+          </div>
+          <div class="lang2">
+              <ion-text class="telugu">Telugu<span> - </span></ion-text>
+              <ion-text class="re-sp-wr">read, speak, write</ion-text>
+          </div>
+          <div class="lang3">
+              <ion-text class="hindi">Hindi<span> - </span></ion-text>
+              <ion-text class="re-sp-wr">speak</ion-text>
+          </div>
+      </div>
+      </div>
+  </div>
+</ion-grid> -->

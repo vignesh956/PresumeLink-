@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 <ion-content style="height:74vh;--background: #E3F2F2;">
   <form [formGroup]="projectForm" (ngSubmit)="updateForm()">
     <ion-grid style="background: #E3F2F2;">
+=======
+<ion-content style="height:74vh;">
+  <form [formGroup]="projectsForm" (ngSubmit)="submitProjects()">
+    <ion-grid>
+>>>>>>> 964a9d466c25b7360321363e3eafc562208fd52d
       <div class="projects-div">
         <ion-row>
           <ion-col size="11.3" style="height: 50px; border-radius: 8px;">
@@ -8,50 +14,55 @@
           </ion-col>
         </ion-row>
 
-        <!-- Project Title -->
-        <ion-row>
-          <ion-col class="form-group">
-            <ion-label class="required">Project Title</ion-label>
-            <ion-input formControlName="project_title" class="form-control"></ion-input>
-            <ion-text color="danger" *ngIf="projectForm.get('project_title')?.touched && projectForm.get('project_title')?.invalid">
-              Project Title is required.
-            </ion-text>
-          </ion-col>
-        </ion-row>
+        <!-- Loop through each project form -->
+        <div formArrayName="projects">
+          <div *ngFor="let project of projects.controls; let i = index" [formGroupName]="i">
+            <!-- Project Title -->
+            <ion-row>
+              <ion-col class="form-group">
+                <ion-label class="required">Project Title</ion-label>
+                <ion-input formControlName="project_title" class="form-control"></ion-input>
+                <ion-text color="danger" *ngIf="project.get('project_title')?.touched && project.get('project_title')?.invalid">
+                  Project Title is required.
+                </ion-text>
+              </ion-col>
+            </ion-row>
 
-        <!-- Role Field -->
-        <ion-row>
-          <ion-col class="form-group">
-            <ion-label class="required">Role</ion-label>
-            <ion-input formControlName="role" class="form-control"></ion-input>
-            <ion-text color="danger" *ngIf="projectForm.get('role')?.touched && projectForm.get('role')?.invalid">
-              Role is required.
-            </ion-text>
-          </ion-col>
-        </ion-row>
+            <!-- Role Field -->
+            <ion-row>
+              <ion-col class="form-group">
+                <ion-label class="required">Role</ion-label>
+                <ion-input formControlName="role" class="form-control"></ion-input>
+                <ion-text color="danger" *ngIf="project.get('role')?.touched && project.get('role')?.invalid">
+                  Role is required.
+                </ion-text>
+              </ion-col>
+            </ion-row>
 
-        <!-- Additional Fields (Institute, Location, Description, Start Date, End Date) -->
-        <ion-row>
-          <ion-col class="form-group">
-            <ion-label class="required">Institute/Company</ion-label>
-            <ion-input formControlName="institute" class="form-control"></ion-input>
-            <ion-text color="danger" *ngIf="projectForm.get('institute')?.touched && projectForm.get('institute')?.invalid">
-              Institute is required.
-            </ion-text>
-          </ion-col>
-        </ion-row>
+            <!-- Institute Field -->
+            <ion-row>
+              <ion-col class="form-group">
+                <ion-label class="required">Institute/Company</ion-label>
+                <ion-input formControlName="institute" class="form-control"></ion-input>
+                <ion-text color="danger" *ngIf="project.get('institute')?.touched && project.get('institute')?.invalid">
+                  Institute is required.
+                </ion-text>
+              </ion-col>
+            </ion-row>
 
-        <!-- Location Field -->
-        <ion-row>
-          <ion-col class="form-group">
-            <ion-label class="required">Location</ion-label>
-            <ion-input formControlName="location" class="form-control"></ion-input>
-            <ion-text color="danger" *ngIf="projectForm.get('location')?.touched && projectForm.get('location')?.invalid">
-              Location is required.
-            </ion-text>
-          </ion-col>
-        </ion-row>
+            <!-- Start and End Date -->
+            <ion-row>
+              <ion-col class="form-group">
+                <ion-label class="required">Start Date</ion-label>
+                <ion-input formControlName="start_date" class="form-control" type="date"></ion-input>
+              </ion-col>
+              <ion-col class="form-group">
+                <ion-label class="required">End Date</ion-label>
+                <ion-input formControlName="end_date" class="form-control" type="date"></ion-input>
+              </ion-col>
+            </ion-row>
 
+<<<<<<< HEAD
         <ion-row>
           <ion-col class="form-group">
             <ion-label>Description <span class="optional-span">(Optional)</span></ion-label>
@@ -96,6 +107,31 @@
           
         </ion-button>
       </ion-row>
+=======
+            <!-- Checkbox for Currently Working -->
+            <ion-row>
+              <ion-col size="10" class="checkboxContainer" style="margin: 10px 10px;">
+                <ion-checkbox formControlName="currently_working" class="styledCheckbox"></ion-checkbox>
+                <ion-text class="textBehind">Are you currently working on it?</ion-text>
+              </ion-col>
+            </ion-row>
+          </div>
+        </div>
+
+        <!-- Button to Add More Projects -->
+        <ion-row>
+          <ion-col>
+            <ion-button expand="full" type="button" (click)="addProject()">Add Another Project</ion-button>
+          </ion-col>
+        </ion-row>
+
+        <!-- Submit Button -->
+        <ion-row>
+          <ion-col>
+            <ion-button expand="full" type="submit" [disabled]="projectsForm.invalid">Submit Projects</ion-button>
+          </ion-col>
+        </ion-row>
+>>>>>>> 964a9d466c25b7360321363e3eafc562208fd52d
       </div>
     </ion-grid>
    
