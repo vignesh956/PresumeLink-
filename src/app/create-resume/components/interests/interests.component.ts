@@ -31,15 +31,9 @@ export class InterestsComponent  implements OnInit {
   // Submits the updated interests to the backend API
   updateInterestData() {
     const interestPayload = {
-      objective: 'description',
-      first_name: 'abhishiekpaul',
-      last_name: 'paul',
-      email: 'abhishiejoauk@Gmail.com',
-      gender: 'male',
-      phone: '+919347252317',
-      job_title: 'front end developer',
-      birth_date: '09/10/2001',
-      skills: [], // Collected skills data
+     
+     
+      
       interests:this.enteredInterest, // Adjust this if you want to include additional interests
       media: [123],
       stepIndex: 10,

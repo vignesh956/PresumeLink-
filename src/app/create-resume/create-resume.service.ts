@@ -89,6 +89,7 @@ export class CreateResumeService {
 
 
   updateProjects( data: any): Observable<any> {
+    console.log("jnhvgjbknlk;")
     const userDataString = localStorage.getItem('userData')  
     if (!userDataString) {
       throw new Error('User data is missing in localStorage');

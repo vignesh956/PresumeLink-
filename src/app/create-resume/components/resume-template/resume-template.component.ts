@@ -51,15 +51,17 @@ export class ResumeTemplateComponent  implements OnInit {
           this.certificates = result.certificates || {}; // Extract certificates data
 
           this.educationData = result.education || {};
-          this.project=result.project||{}
+          this.project= result.project||{}
+          console.log(this.project[0]["0"] , 'kkkkkkkkkkkkkkk');
+          
           this.experience=result.experience
           this.languages = result.languages || []; 
           this.social = result.social || {};
           this.interests = result.interests || []; // Extract interests data
 
-          console.log(this.social)
-                    console.log('Extracted Data:', this.data);
-          console.log(this.languages)
+          console.log(this.project)
+                    console.log('Extracted Data:', this.certificates);
+          console.log(this.experience)
         } else {
           // Log the response to understand why the structure is unexpected
           console.error('Unexpected response structure:', response);

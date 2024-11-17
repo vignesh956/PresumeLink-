@@ -49,9 +49,12 @@
               <ion-col class="form-group">
                 <ion-label class="required">Start Date</ion-label>
                 <ion-input formControlName="start_date" class="form-control" type="date"></ion-input>
+                <ion-text color="danger" *ngIf="project.get('start_date')?.touched && project.get('start_date')?.invalid">
+                  Start Date is required.
+                </ion-text>
               </ion-col>
               <ion-col class="form-group">
-                <ion-label class="required">End Date</ion-label>
+                <ion-label>End Date</ion-label>
                 <ion-input formControlName="end_date" class="form-control" type="date"></ion-input>
               </ion-col>
             </ion-row>
@@ -76,7 +79,7 @@
         <!-- Submit Button -->
         <ion-row>
           <ion-col>
-            <ion-button expand="full" type="submit" [disabled]="projectsForm.invalid">Submit Projects</ion-button>
+            <ion-button expand="full" type="submit" [disabled]="isFormInvalid">Submit Projects</ion-button>
           </ion-col>
         </ion-row>
       </div>

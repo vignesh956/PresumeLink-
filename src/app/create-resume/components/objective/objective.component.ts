@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CreateResumeService } from '../../create-resume.service';
 
 @Component({
   selector: 'app-objective',
@@ -16,7 +17,7 @@ export class ObjectiveComponent  implements OnInit {
   showCopyText: string = ''; 
   objectiveId: string = '12345'; 
   employeeId = '66fe8b162ffe0aaf9d6f663a';
-  constructor() { }
+  constructor(private objectiveService:CreateResumeService) { }
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
@@ -36,18 +37,23 @@ export class ObjectiveComponent  implements OnInit {
     this.displayedText = textContent;
     this.clickedParagraphId = paragraphId;
     this.showCopyText = paragraphId;
-    const token = 'your-auth-token'; // Replace with your logic to get the token
-
-    // this.serice.updateObjectiveData(this.employeeId, this.objectiveData, token).subscribe(
-    //   (response) => {
-    //     console.log('Data updated successfully:', response);
-    //   },
-    //   (error) => {
-    //     console.error('Error updating data:', error);
-    //   }
-    // );
     setTimeout(() => {
       this.showCopyText = '';
     }, 200000);
+    this.sendObjectiveToAPI(textContent)
+  }
+
+  sendObjectiveToAPI(objectiveContent: string) {
+    const objectiveData = {
+      objective: objectiveContent, // Only send the objective content
+    };
+    this.objectiveService.submitObjectiveDetails( objectiveData).subscribe(
+      (response) => {
+        console.log('Data updated successfully:', response);
+      },
+      (error) => {
+        console.error('Error updating data:', error);
+      }
+    );
   }
 }

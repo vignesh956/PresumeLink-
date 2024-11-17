@@ -33,16 +33,10 @@ export class SkillsComponent  implements OnInit {
   updateSkillsData() {
     const stepIndex = 10; // Adjust the step index if needed
     const skillsPayload = {
-      objective: 'descriptopon',
-      first_name: 'abhishiekpaul  ',
-      last_name: 'paul',
-      email: 'abhishiejoauk@Gmail.com',
-      gender: 'male',
-      phone: '+919347252317',
-      job_title: 'front end devloper',
-      birth_date: '09/10/2001',
+     
+    
       skills: this.enteredSkills, // Your skills data
-      interests: [],
+     
       media: [123],
       stepIndex: stepIndex,
     };

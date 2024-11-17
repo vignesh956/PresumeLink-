@@ -1,4 +1,4 @@
- <ion-content style="height: 60vh;">
+<ion-content style="height: 80vh;">
   <div class="user-details">
     <h2>User Details</h2>
     
@@ -60,27 +60,30 @@
     </div>
 
   </div>
-  <div *ngIf="project">
+<div *ngIf="project">
     <h3>Project Details</h3>
-    <p><strong>Project Title:</strong> {{ project.project_title || 'N/A' }}</p>
-    <p><strong>Role:</strong> {{ project.role || 'N/A' }}</p>
-    <p><strong>Institute:</strong> {{ project.institute || 'N/A' }}</p>
-    <p><strong>Location:</strong> {{ project.location || 'N/A' }}</p>
-    <p><strong>Description:</strong> {{ project.description || 'N/A' }}</p>
-    <p><strong>Start Date:</strong> {{ project.start_date || 'N/A' }}</p>
-    <p><strong>End Date:</strong> {{ project.end_date || 'N/A' }}</p>
-    <p><strong>Currently Working:</strong> {{ project.currently_working ? 'Yes' : 'No' }}</p>
+    <div *ngFor="let proj of project">
+      
+        <p><strong>Project Title:</strong> {{ proj["0"].project_title }}</p>
+        <p><strong>Role:</strong> {{ proj["0"].role }}</p>
+        <p><strong>Institute:</strong> {{ proj["0"].institute }}</p>
+        <p><strong>Start Date:</strong> {{ proj["0"].start_date }}</p>
+        <p><strong>End Date:</strong> {{ proj["0"].end_date }}</p>
+        <p><strong>Currently Working:</strong> {{ proj["0"].currently_working ? 'Yes' : 'No' }}</p>
+     
+    </div>
   </div>
   <div *ngIf="experience">
     <h3>experience Details</h3>
-    <p><strong>Project Title:</strong> {{ experience.company_name || 'N/A' }}</p>
-    <p><strong>Role:</strong> {{ experience.position || 'N/A' }}</p>
-    <p><strong>Institute:</strong> {{ experience.experience_description || 'N/A' }}</p>
-    <p><strong>Location:</strong> {{ experience.location || 'N/A' }}</p>
-    <p><strong>Description:</strong> {{ experience.description || 'N/A' }}</p>
-    <p><strong>Start Date:</strong> {{ experience.start_date || 'N/A' }}</p>
-    <p><strong>End Date:</strong> {{ experience.end_date || 'N/A' }}</p>
-    <p><strong>Currently Working:</strong> {{ experience.working ? 'Yes' : 'No' }}</p>
+    <div *ngFor="let exp of experience">
+      <p><strong>Company Name:</strong> {{ exp.company_name }}</p>
+      <p><strong>Position:</strong> {{ exp.position }}</p>
+      <p><strong>Location:</strong> {{ exp.location }}</p>
+      <p><strong>Start Date:</strong> {{ exp.start_date }}</p>
+      <p><strong>End Date:</strong> {{ exp.end_date }}</p>
+      <p><strong>Description:</strong> {{ exp.experience_description }}</p>
+      <p><strong>Step Index:</strong> {{ exp.stepIndex }}</p>
+    </div>
   </div>
   <div *ngIf="languages">
     <h3>Languages Details</h3>
@@ -91,19 +94,7 @@
       </ul>
     </div>
   </div>
-  <h3>Social Links</h3>
-    <p><strong>LinkedIn:</strong> <a [href]="social.linkedin" target="_blank">{{ social.linkedin || 'N/A' }}</a></p>
-    <p><strong>Behance:</strong> <a [href]="social.behance" target="_blank">{{ social.behance || 'N/A' }}</a></p>
-    <p><strong>Dribble:</strong> <a [href]="social.dribble" target="_blank">{{ social.dribble || 'N/A' }}</a></p>
-
-    <div *ngIf="social.add_links && social.add_links.length > 0">
-      <h4>Additional Social Links:</h4>
-      <ul>
-        <li *ngFor="let link of social.add_links">
-          <strong>{{ link.platform }}:</strong> <a [href]="link.url" target="_blank">{{ link.url || 'N/A' }}</a>
-        </li>
-      </ul>
-    </div>
+ 
     <div>
       <h3>Interests</h3>
       <p *ngIf="interests.length > 0">
@@ -113,15 +104,16 @@
   
     </div>
     <h3>Certificates</h3>
-    <div *ngIf="certificates.course_name">
-      <p><strong>Course Name:</strong> {{ certificates.course_name || 'N/A' }}</p>
-      <p><strong>Organisation:</strong> {{ certificates.organisation || 'N/A' }}</p>
-      <p><strong>Start Date:</strong> {{ certificates.start_date || 'N/A' }}</p>
-      <p><strong>End Date:</strong> {{ certificates.end_date || 'N/A' }}</p>
+    <div *ngFor="let cert of certificates">
+      <p><strong>Course Name:</strong> {{ cert.course_name }}</p>
+      <p><strong>Organisation:</strong> {{ cert.organisation }}</p>
+      <p><strong>Start Date:</strong> {{ cert.start_date }}</p>
+      <p><strong>End Date:</strong> {{ cert.end_date }}</p>
     </div>
     <p *ngIf="!certificates.course_name">No certificates listed.</p>
-</ion-content> 
-<!-- <ion-grid>
+ 
+
+  <ion-grid>
   <div>
       <div class="nav-bar">
           <div class="image">
@@ -129,17 +121,19 @@
           </div>
           <div class="content">
               <div class="name-design">
-                  <ion-text class="name">GAUTHAM NANDA</ion-text>
-                  <ion-text class="design">UX Designer</ion-text>
+                  <ion-text class="name">{{ data.name }}</ion-text>
+                  <ion-text class="design">{{ data.job_title || 'N/A' }}</ion-text>
                   <ion-text class="margin"></ion-text> 
              </div>
              <div class="info">
-                  <ion-text>Enthusiastic and fast-learning motion graphics designer with a passion for visual storytelling.
-               Recent graduate with a strong portfolio showcasing animation skills and a keen eye for design trends, eager to gain...</ion-text>
-             </div>
+                  <ion-text>{{ data.objective || 'N/A' }}
+                  </ion-text>
+                  </div>
           </div>     
       </div>
+      
       <div class="banner">
+        
       <div class="left">
           <div class="heading">
               <div class="outer-icon">
@@ -149,32 +143,37 @@
                   <ion-text>EXPERIENCE</ion-text>
               </div>
           </div>
-          <ion-text class="sub-heading1">UI Designer Intern</ion-text>
-          <ion-text class="place">July 2008 - Aug 2016<span> | </span>ZeTechno - Madhapur, Hyderabad</ion-text>
-          <ion-text class="about">Strategic product designer with a keen eye for innovative solutions. 5 years of experience designing and developing
-               physical and digital products across various industries. Skilled in user research, prototyping.</ion-text>
+          <div  *ngFor="let exp of experience">
+            <p>{{ exp.company_name }}</p>
 
-          <ion-text class="sub-heading2">UX Designer</ion-text>
+          <ion-text class="sub-heading1">{{ exp.position }}</ion-text>
+          <ion-text class="place"> {{ exp.start_date }}- {{ exp.end_date }}<span> | </span>{{ exp.location }}</ion-text>
+          <ion-text class="about">{{ exp.experience_description }}</ion-text>
+          </div>
+          <!-- <ion-text class="sub-heading2">UX Designer</ion-text>
           <ion-text class="place">July 2016 - Present <span> | </span> ZeTechno - Madhapur, Hyderabad</ion-text>
           <ion-text class="about">Enthusiastic and fast-learning motion graphics designer with a passion for visual storytelling.
-               Recent graduate with a strong portfolio showcasing animation skills and a keen eye for design trends, eager to gain.</ion-text>
+               Recent graduate with a strong portfolio showcasing animation skills and a keen eye for design trends, eager to gain.</ion-text> -->
           <div class="heading">
               <div class="outer-icon">
                   <ion-icon name="journal-outline" class="icon"></ion-icon>
               </div>
-              <div class="projects">
-                  <ion-text>PROJECTS</ion-text>
+           
+              <div *ngIf="project">
+                <h3>Project Details</h3>
+                <div *ngFor="let proj of project.project">
+                  
+                    <p><strong>Project Title:</strong> {{ proj.project_title }}</p>
+                    <p><strong>Role:</strong> {{ proj.role }}</p>
+                    <p><strong>Institute:</strong> {{ proj.institute }}</p>
+                    <p><strong>Start Date:</strong> {{ proj.start_date }}</p>
+                    <p><strong>End Date:</strong> {{ proj.end_date }}</p>
+                    <p><strong>Currently Working:</strong> {{ proj.currently_working ? 'Yes' : 'No' }}</p>
+                 
+                </div>
               </div>
           </div>
-          <ion-text class="sub-heading1">Fitness Tracking App</ion-text>
-          <ion-text class="place">July 2014 - Feb 2015<span> | </span>ZeTechno - Madhapur, Hyderabad</ion-text>
-          <ion-text class="about">Developed a fitness tracking app that enables users to monitor their workouts and set fitness goals.
-               The design process began with user research to understand motivations for fitness tracking.</ion-text>
-
-          <ion-text class="sub-heading2">Mobile App for Local Services</ion-text>
-          <ion-text class="place">July 2014 - Feb 2015<span> | </span>ZeTechno - Madhapur, Hyderabad</ion-text>
-          <ion-text class="about">I designed an engaging user interface with motivational elements and gamification.
-               The app was tested in various environments to ensure usability.</ion-text>
+          
           <div class="heading">
               <div class="outer-icon">
                   <ion-icon name="school" class="icon"></ion-icon>
@@ -183,17 +182,32 @@
                   <ion-text>EDUCATION</ion-text>
               </div>
           </div>
-          <div class="study1">
-              <ion-text class="stage">SSC<span> - </span></ion-text>
-              <ion-text class="institute-name">Indus English Medium School</ion-text>
-          </div>
-          <ion-text class="place">July 2007 - April 2008<span> | </span>Hyderabad, 9.7 GPA</ion-text>   
-          <div class="study2">
-              <ion-text class="stage">Inter<span> - </span></ion-text>
-              <ion-text class="institute-name">YuvaSudha Junior College</ion-text>
-          </div>
-          <ion-text class="place">July 2008 - April 2010<span> | </span>Uppal, 9.7 GPA</ion-text>
+          <div class="study1" *ngIf="educationData.ssc">
+              <ion-text class="stage">{{ educationData.ssc.education_type }}<span> - </span></ion-text>
+              <ion-text class="institute-name">{{ educationData.ssc.school_name }}</ion-text>
+              <ion-text class="place">{{ educationData.ssc.start_date }} -  {{ educationData.ssc.end_date }}<span> | </span>{{ educationData.ssc.location }}, 9.7 GPA</ion-text>   
+
+            </div>
+          <div class="study2" *ngIf="educationData.inter">
+              <ion-text class="stage">{{ educationData.inter.field_of_study }}<span> - </span></ion-text>
+              <ion-text class="institute-name">{{ educationData.inter.institute_name }}</ion-text>
+              <ion-text class="place">{{ educationData.inter.start_date }} - {{ educationData.inter.end_date }} <span> | </span>{{ educationData.inter.location }}, 9.7 GPA</ion-text>
+            </div>
+            <div class="study2" *ngIf="educationData.inter">
+              <ion-text class="stage">{{ educationData.degree.field_of_study }}<span> - </span></ion-text>
+              <ion-text class="institute-name">{{ educationData.degree.university_name }}</ion-text>
+              <ion-text class="place">{{ educationData.degree.start_date }} - {{ educationData.degree.end_date }} <span> | </span> {{ educationData.degree.location }}, 9.7 GPA</ion-text>
+            </div>
+            <div>
+              <h3>Social Links</h3>
+              <p><strong>LinkedIn:</strong> <a [href]="social.linkedin" target="_blank">{{ social.linkedin || 'N/A' }}</a></p>
+              <p><strong>Behance:</strong> <a [href]="social.behance" target="_blank">{{ social.behance || 'N/A' }}</a></p>
+              <p><strong>Dribble:</strong> <a [href]="social.dribble" target="_blank">{{ social.dribble || 'N/A' }}</a></p>
+          
+             
+            </div>
       </div>
+      
       <div class="right">
           <div class="heading">
               <div class="outer-icon">
@@ -201,64 +215,53 @@
               </div>
               <div class="contact">CONTACT</div>
           </div>
-          <ion-text class="sub-heading1">Phone</ion-text>
-          <ion-text class="number">+919876543212</ion-text>
+          <ion-text class="sub-heading1">{{ data.phone || 'N/A' }}</ion-text>
+          <ion-text class="number">{{ data.phone || 'N/A' }}</ion-text>
           <ion-text class="sub-heading3">Email</ion-text>
-          <ion-text class="mail">suryasivakumar&#64;gmail.com</ion-text>
-          <ion-text class="sub-heading3">Location</ion-text>
+          <ion-text class="mail"> {{ data.email || 'N/A' }}</ion-text>
+          <ion-text class="sub-heading3">{{ data.address || 'N/A' }}</ion-text>
           <ion-text class="loc">Hyderabad, Telangana</ion-text>
           
           <div class="heading">
               <div class="outer-icon">
                   <img src="..\assets\Vector.png" class="icon">
               </div>
-              <div class="skills-tools">SKILLS & TOOLS</div>
+              <div *ngIf="data.skills && data.skills.length > 0">
+      <h3>Skills</h3>
+      <ul>
+        <li *ngFor="let skill of data.skills">{{ skill }}</li>
+      </ul>
+    </div>
           </div>
-          <div class="skills">
-              <div class="tools">
-                  <ion-text class="tool1">Wireframing</ion-text>
-                  <ion-text class="tool2">Prototyping</ion-text>
-                  <ion-text class="tool3">Figma</ion-text>
-                  <ion-text class="tool4">Adobe XD</ion-text>
-              </div>
-              <div class="tools">
-                  <ion-text class="tool1">UserResearch</ion-text>
-                  <ion-text class="tool2">UserExperience</ion-text>
-                  <ion-text class="tool3">AdobePhotoshop</ion-text>
-                  <ion-text class="tool4">AdobeIllustrator</ion-text>
-              </div>
-          </div>
+          
           <div class="heading">
               <div class="outer-icon">
                   <img src="..\assets\Vector.png" class="icon">
               </div>
               <div class="certifications">CERTIFICATIONS</div>
           </div>
-          <div class="sub-heading1">UI/UX Designing</div>
-          <ion-text class="certification-design">Design Academy</ion-text>
-          <ion-text class="certification-date">April 2009 - August 2009</ion-text>
-          <div class="sub-heading2">UI Developing</div>
+         
+          <div *ngFor="let cert of certificates">
+          <div class="sub-heading1">{{ cert.course_name }}</div>
+          <ion-text class="certification-design">{{ cert.organisation }}</ion-text>
+          <ion-text class="certification-date">{{ cert.start_date }} -  {{ cert.end_date }}</ion-text>
+          </div>
+          <!-- <div class="sub-heading2">UI Developing</div>
           <ion-text class="certification-design">Knowledge Consultz</ion-text>
-          <ion-text class="certification-date">April 2010 - August 2010</ion-text>
+          <ion-text class="certification-date">April 2010 - August 2010</ion-text> -->
           <div class="heading">
               <div class="outer-icon">
                   <ion-icon name="globe-outline" class="icon"></ion-icon>
               </div>
               <div class="languages">LANGUAGES</div>
           </div>
-          <div class="lang1">
-              <ion-text class="english">English<span> - </span></ion-text>
-              <ion-text class="re-sp-wr">speak, write</ion-text>
+          <div class="lang1" *ngFor="let language of languages.enter_languages">
+              <ion-text class="english">{{ language.name }}<span> - </span></ion-text>
+              <ion-text class="re-sp-wr" *ngFor="let option of language.selectedOptions">{{ option }}</ion-text>
           </div>
-          <div class="lang2">
-              <ion-text class="telugu">Telugu<span> - </span></ion-text>
-              <ion-text class="re-sp-wr">read, speak, write</ion-text>
-          </div>
-          <div class="lang3">
-              <ion-text class="hindi">Hindi<span> - </span></ion-text>
-              <ion-text class="re-sp-wr">speak</ion-text>
-          </div>
+       
       </div>
       </div>
-  </div>
-</ion-grid> -->
+  </div> 
+</ion-grid> 
+</ion-content> 
