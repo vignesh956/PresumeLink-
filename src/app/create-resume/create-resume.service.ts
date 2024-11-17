@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 // certificate.model.ts
 export interface CourseCertificate {
@@ -75,18 +75,20 @@ export class CreateResumeService {
 
 
 
-  updateProjects( data: any): Observable<any> {
-    const userDataString = localStorage.getItem('userData')  
+  updateProjects(data: any): Observable<any> {
+    const userDataString = localStorage.getItem('userData');
     if (!userDataString) {
-      throw new Error('User data is missing in localStorage');
+      console.error('User data is missing in localStorage');
+      return throwError('User data is missing in localStorage');
     }
     const userData = JSON.parse(userDataString);
-  const id = userData.id;
-    const accessToken = userData.accessToken; 
-   const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
-   const url = `${environment.basePath}/${id}/project`;
-   return this.http.patch(url, data, { headers });
+    const id = userData.id;
+    const accessToken = userData.accessToken;
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
+    const url = `${environment.basePath}/${id}/project`;
+    return this.http.patch(url, data, { headers });
   }
+  
 
   updateExperience(data: any): Observable<any> {
     const userDataString = localStorage.getItem('userData')  

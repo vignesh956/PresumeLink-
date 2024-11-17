@@ -1,6 +1,6 @@
-<ion-content style="height:74vh;">
+<ion-content style="height:74vh;--background: #E3F2F2;">
   <form [formGroup]="projectForm" (ngSubmit)="updateForm()">
-    <ion-grid>
+    <ion-grid style="background: #E3F2F2;">
       <div class="projects-div">
         <ion-row>
           <ion-col size="11.3" style="height: 50px; border-radius: 8px;">
@@ -52,6 +52,13 @@
           </ion-col>
         </ion-row>
 
+        <ion-row>
+          <ion-col class="form-group">
+            <ion-label>Description <span class="optional-span">(Optional)</span></ion-label>
+            <ion-input formControlName="experience_description" aria-placeholder="Type here..."></ion-input>
+          </ion-col>
+        </ion-row>
+
         <!-- Date Fields and Checkbox -->
         <ion-row>
           <ion-col class="form-group">
@@ -82,14 +89,15 @@
             <ion-text class="textBehind">Are you currently working on it?</ion-text>
           </ion-col>
         </ion-row>
-
-        <!-- Update Button -->
         <ion-row>
-          <ion-col>
-            <ion-button expand="full" type="submit" (click)="updateForm ()">Update</ion-button>
-          </ion-col>
-        </ion-row>
+        <ion-button class="aboutOutMe-Button" id="button-three" >
+          <ion-text class="aboutOutMe-text">Add project</ion-text>
+          <img src="./../../../../assets/Group 1000010326.png" alt="" class="add-symbol">
+          
+        </ion-button>
+      </ion-row>
       </div>
     </ion-grid>
+   
   </form>
 </ion-content>

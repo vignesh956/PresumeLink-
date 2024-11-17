@@ -49,7 +49,7 @@ export class ProjectComponent  implements OnInit {
       };
   
       // Call the updateProjects method and pass the payload
-      this.projectService.updateProjects( payload).subscribe(
+      this.projectService.updateProjects(payload).subscribe(
         (response: any) => {
           console.log('Project updated successfully', response);
         },
@@ -57,6 +57,7 @@ export class ProjectComponent  implements OnInit {
           console.error('Error updating project', error);
         }
       );
+      
     } else {
       // Mark all fields as touched if the form is invalid
       this.projectForm.markAllAsTouched();
