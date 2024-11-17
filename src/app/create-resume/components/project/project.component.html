@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-<ion-content style="height:74vh;--background: #E3F2F2;">
-  <form [formGroup]="projectForm" (ngSubmit)="updateForm()">
-    <ion-grid style="background: #E3F2F2;">
-=======
 <ion-content style="height:74vh;">
   <form [formGroup]="projectsForm" (ngSubmit)="submitProjects()">
     <ion-grid>
->>>>>>> 964a9d466c25b7360321363e3eafc562208fd52d
       <div class="projects-div">
         <ion-row>
           <ion-col size="11.3" style="height: 50px; border-radius: 8px;">
@@ -62,7 +56,6 @@
               </ion-col>
             </ion-row>
 
-<<<<<<< HEAD
         <ion-row>
           <ion-col class="form-group">
             <ion-label>Description <span class="optional-span">(Optional)</span></ion-label>
@@ -77,9 +70,11 @@
             <ion-input formControlName="start_date" class="form-control">
               <ion-icon name="calendar-outline" slot="end"></ion-icon>
             </ion-input>
-            <ion-text color="danger" *ngIf="projectForm.get('start_date')?.touched && projectForm.get('start_date')?.invalid">
-              Start Date is required.
-            </ion-text>
+            <ion-text 
+            color="danger" 
+            *ngIf="projectsForm?.get('start_date')?.touched && projectsForm.get('start_date')?.invalid">
+            Start date is invalid
+          </ion-text>
           </ion-col>
 
           <ion-col class="form-group">
@@ -87,9 +82,11 @@
             <ion-input formControlName="end_date" class="form-control">
               <ion-icon name="calendar-outline" slot="end"></ion-icon>
             </ion-input>
-            <ion-text color="danger" *ngIf="projectForm.get('end_date')?.touched && projectForm.get('end_date')?.invalid">
-              End Date is required.
-            </ion-text>
+            <ion-text 
+            color="danger" 
+            *ngIf="projectsForm.get('end_date')?.touched && projectsForm.get('end_date')?.invalid">
+            End date is invalid
+          </ion-text>
           </ion-col>
         </ion-row>
 
@@ -107,31 +104,8 @@
           
         </ion-button>
       </ion-row>
-=======
-            <!-- Checkbox for Currently Working -->
-            <ion-row>
-              <ion-col size="10" class="checkboxContainer" style="margin: 10px 10px;">
-                <ion-checkbox formControlName="currently_working" class="styledCheckbox"></ion-checkbox>
-                <ion-text class="textBehind">Are you currently working on it?</ion-text>
-              </ion-col>
-            </ion-row>
-          </div>
-        </div>
-
-        <!-- Button to Add More Projects -->
-        <ion-row>
-          <ion-col>
-            <ion-button expand="full" type="button" (click)="addProject()">Add Another Project</ion-button>
-          </ion-col>
-        </ion-row>
-
-        <!-- Submit Button -->
-        <ion-row>
-          <ion-col>
-            <ion-button expand="full" type="submit" [disabled]="projectsForm.invalid">Submit Projects</ion-button>
-          </ion-col>
-        </ion-row>
->>>>>>> 964a9d466c25b7360321363e3eafc562208fd52d
+      </div>
+      </div>
       </div>
     </ion-grid>
    
